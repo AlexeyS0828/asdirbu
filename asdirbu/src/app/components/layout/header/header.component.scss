@@ -1,0 +1,75 @@
+.nav-item .link {
+    color: #E57D33 !important;
+    background: #FFF !important;
+}
+
+.menu-close-btn {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    .menu-close-btn {
+        position: absolute;
+        top: 20px;
+        left: -16px;
+        border: 100px;
+        padding: 10px 10px 9px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        font-size: 17px;
+        border-radius: 100px;
+        box-shadow: -6px -6px 6px 0px rgba(0, 0, 0, 0.08);
+    }
+    .cu-menu {
+        background: rgb(255, 255, 255);
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -100%;
+        padding: 60px 10px 10px;
+        max-width: 250px;
+        height: 100vh;
+        transition: all 0.7s;
+    }
+    .cu-menu.menu-show {
+        right: 0px;
+    }
+}
+.circle-stack {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: #FFF;
+    border-radius:50%;
+    top:-15px;
+    border:1px solid #E57D33;
+}
+		
+.fa-circle-thin,
+.points-indicator {
+    position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform:translateX(-50%) translateY(-50%);
+  
+}
+.fa-circle{
+  
+  color: #E57D33;
+}
+
+.points-indicator {
+  color: #E57D33;
+    position: absolute;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  font-size: 13px;  
+  transform:translateX(-50%) translateY(-50%);
+}

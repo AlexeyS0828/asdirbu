@@ -1,0 +1,159 @@
+<section class="individual-registration-section" id="business-registration">
+    <div class="container">
+        <div class="row bg-white">
+            <div class="col-md-12 p-0">
+                <h4 class="section-title-one text-center">Registracija</h4>
+            </div>
+            <div class="col-md-12">
+                <form [formGroup]="form" (submit)="onRegister()" class="individual-registration-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">El. paštas</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="email" formControlName="email">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('email').hasError('required') && (form.get('email').touched || submitted)">
+                                        <!-- Email field is required. -->
+                                        El. Pašto laukas yra būtinas.
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('email').hasError('pattern') && (form.get('email').touched || submitted)">
+                                        <!-- Please enter a valid email. -->
+                                        Įveskite galiojantį el. Pašto adresą.
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                    *ngIf="form.get('email').hasError('isEmailUnique') && (form.get('email').touched || submitted)">
+                                    <!-- Email id all ready exist -->
+                                    El. Paštas jau registruotas
+                                </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Slaptažodis</label>
+                                <div class="col-sm-7">
+                                    <input type="password" class="form-control" name="password"
+                                        formControlName="password">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('password').hasError('required') && (form.get('password').touched || submitted)">
+                                        <!-- Password field is required. -->
+                                        Slaptažodžio laukas yra būtinas.
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('password').hasError('pattern') && (form.get('password').touched || submitted)">
+                                        <!-- Please enter a valid password. -->
+                                        Slaptažodis privalo būti sudarytas iš 8 raidžių ir bent vieno skaičiaus.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Pakartoti slaptažodį</label>
+                                <div class="col-sm-7">
+                                    <input type="password" class="form-control" name="confirmPassword"
+                                        formControlName="confirmPassword">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('confirmPassword').hasError('required') && (form.get('confirmPassword').touched || submitted)">
+                                        <!-- Confirm password field is required. -->
+                                        Patvirtinkite slaptažodį
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('confirmPassword').hasError('mustMatch') && (form.get('confirmPassword').touched || submitted)">
+                                        <!-- Password and confirm password must match. -->
+                                        Slaptažodis ir patvirtinimo slaptažodis turi sutapti.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Vardas</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="name" formControlName="name">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('name').invalid && (form.get('name').touched || submitted)">
+                                        <!-- Name field is required. -->
+                                        Vardo laukas yra būtinas.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Pavardė</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="lastname" formControlName="lastname">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('lastname').invalid && (form.get('lastname').touched || submitted)">
+                                        <!-- Name field is required. -->
+                                        Pavardės laukas yra būtinas.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Gimimo diena</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" bsDatepicker
+                                        [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' }" name="dob"
+                                        formControlName="dob" autocomplete="off" onkeydown="return false"
+                                        [maxDate]="maxDate">
+                                    <!-- <input type="text" class="form-control" name="dob" formControlName="dob"> -->
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('dob').hasError('required') && (form.get('dob').touched || submitted)">
+                                        <!-- Birthday field is required. -->
+                                        Gimimo dienos laukas yra būtinas.
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('dob').hasError('eighteenPlus') && (form.get('dob').touched || submitted)">
+                                        Turite būti ne jaunesnis kaip 18 metų
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Paslauga/Profesija</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="service" formControlName="service">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('service').invalid && (form.get('service').touched || submitted)">
+                                        Privalomas paslaugos laukas</div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group font-weight-bold text-center">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                        formControlName="allowRegister" name="allowRegister">
+                                    <label class="custom-control-label" for="customCheck1">
+                                        <a routerLink='/term-condition' class="text-primary" target="_blank">
+                                            Sutinku su taisyklėmis bei
+                                            privatumo politika
+                                        </a>
+                                    </label>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="!form.get('allowRegister').value && submitted">
+                                        <!-- Please accept terms and conditions to proceed. -->
+                                        Norėdami tęsti, sutikite su taisyklėmis ir nuostatomis.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary login-registration-submit" id="submitButton" type="submit">
+                                    Registracija
+                                </button>
+                                <div class="form-group text-center mb-4">
+                                    <a (click)="signInWithFacebook()"><img src="assets/image/facebooklogin.svg" alt="Facebook" class="social-icon first-social-icon" /></a>
+                                    <a (click)="signInWithGoogle()"><img src="assets/image/gmaillogin.svg" alt="Google" class="social-icon first-social-icon" /></a>
+                                </div>
+                                <div class="text-center mt-2 " id="errorMessageSection" style="display: none;">
+                                    <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                                    <label id="errorMessage"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

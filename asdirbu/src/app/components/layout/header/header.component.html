@@ -1,0 +1,103 @@
+<!-- Navigation -->
+<nav class="top-navbar navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" [routerLink]="['/']">
+            <img class="img-fluid brand-logo" src="assets/image/as_dirbu.png" />
+        </a>
+        <button (click)="clickMenuEvent()" class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button"><i class="fas fa-bars"></i>
+        </button>
+        <div class="cu-menu" [ngClass]="menuStatus ? 'menu-show' : '' ">
+            <button (click)="clickMenuEvent()" class="menu-close-btn navbar-toggler-right text-uppercase bg-primary text-white" type="button"><i
+                    class="fas fa-times"></i>
+            </button>
+            <ul class="navbar-nav ml-auto menu-list">
+                <li class="nav-item" *ngIf="!loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="menuStatus = false" routerLinkActive="link" [routerLink]="['/fast-posting']">Greitas darbas</a>
+                </li>
+                <!-- <li class="nav-item" *ngIf="!loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="menuStatus = false"  [routerLink]="['/registration-step']">Pirkėjui</a>
+                </li>
+                <li class="nav-item" *ngIf="!loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="menuStatus = false"  [routerLink]="['/registration-step']">Tiekėjui</a>
+                </li> -->
+                <li class="nav-item" *ngIf="!loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="menuStatus = false" routerLinkActive="link" [routerLink]="['/registration-step']">Registracija</a>
+                </li>
+                <li class="nav-item" *ngIf="!loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="menuStatus = false" routerLinkActive="link" [routerLink]="['/registration']">Prisijungti</a>
+                </li>
+                <li class="nav-item" *ngIf="loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="menuStatus = false" routerLinkActive="link" [routerLink]="['/chat',0,0,0]">Žinutės <div *ngIf="counter" class="message-counter"><span>{{counter}}</span></div></a>
+                </li>
+                <!-- <li class="nav-item" *ngIf="loggedIn && !isJobPosted"> -->
+                <li class="nav-item" *ngIf="loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="menuStatus = false" routerLinkActive="link" [routerLink]="['/fast-posting']">Greitas darbas</a>
+                </li>
+                <li class="nav-item" *ngIf="loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="menuStatus = false" routerLinkActive="link" [routerLink]="['/my-profile']">Profilis</a>
+                </li>
+                <li class="nav-item" *ngIf="loggedIn">
+                    <a class="nav-link js-scroll-trigger" (click)="logout(); menuStatus = false" href="javascript:void(0)">Atsijungti</a>
+                </li>
+            </ul>
+
+            <!-- <ul class="navbar-nav ml-auto menu-list" *ngIf="currentHeader==1">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" routerLink="/registration-step">Registracija</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" routerLink="/registration">Prisijungti</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto menu-list" *ngIf="currentHeader==2">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" (click)="logout()" href="javascript:void(0)">Atsijungti</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto menu-list" *ngIf="currentHeader==3">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger link" routerLink="/my-profile">Profilis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" (click)="logout()" href="javascript:void(0)">Atsijungti</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto menu-list" *ngIf="currentHeader==4">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" routerLink="/reviews">Greitas darbas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" routerLink="/registration-step">Registracija</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" routerLink="/registration">Prisijungti</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto menu-list" *ngIf="currentHeader==5">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger link" href="javascript:void(0)">Pradinis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger link" href="javascript:void(0)">Darbai</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger link" href="javascript:void(0)">Kategorijos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" routerLink="/registration-step">Registracija</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" routerLink="/registration">Prisijungti</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto menu-list" *ngIf="currentHeader==6">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger link" routerLink="/my-profile">Žinutė</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" (click)="logout()" href="javascript:void(0)">Atsijungti</a>
+                </li>
+            </ul> -->
+        </div>
+    </div>
+</nav>

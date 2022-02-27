@@ -1,0 +1,28 @@
+<section class="home-blog bg-white mt-5" id="home-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <h4 class="section-title-one mb-3 text-center">Naujienos</h4>
+                <h6 class="section-sub-title-one text-center">Sužinok apie mus daugiau!.</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4" *ngFor="let blog of blogList">
+                <div class="blog-image">
+                    <img class="img-fluid" src="{{blog.image}}">
+                </div>
+                <div class="blog-shot-content text-center">
+                    <h5 class="blog-title mb-1">{{blog.name}}</h5>
+                    <p class="blog-content  mb-2" [innerHTML]="blog.description"></p>
+                    <a class="btn btn-primary text-center mb-5" [routerLink]="['/blog',blog.id]">Skaityti daugiau</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3" id="errorMessageSection" style="display: none;">
+            <div class="col-md-12 text-center">
+                <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+                <label id="errorMessage"></label>
+            </div>
+        </div>
+    </div>
+</section>

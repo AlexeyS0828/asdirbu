@@ -1,0 +1,160 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="lightred">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title mb-0 text-lightred font-weight-bold">Verslo vartotojų sąrašas</h4>
+                        <button type="button" class="btn btn-success pull-right" [routerLink]="['/adduser',2]">Pridėti naują vartotoją</button>
+                        <div class="material-datatables">
+                            <table #dataTable id="datatables" class=" row-border hover table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Vardas</th>
+                                        <th>Įmonės pavadinimas</th>
+                                        <th>Įmonės kodas</th>
+                                        <th>Pašto adresą</th>
+                                        <th>Telefonu</th>
+                                        <th>Valandinis įkainis</th>
+                                        <th>Miestas</th>
+                                        <th>Statusas</th>
+                                        <th>Veiksmas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of userList; let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{user.name}}</td>
+                                        <td>{{user.companyName}}</td>
+                                        <td>{{user.companyCode}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.mobileNumber}}</td>
+                                        <td>{{user.hourlyRate}}</td>
+                                        <td>{{user.city}}</td>
+                                        <td>
+                                            <span *ngIf="user.isApproved==0">Laukia patvirtinimo</span>
+                                            <span *ngIf="user.isApproved==1">Patvirtinti</span>
+                                            <span *ngIf="user.isApproved==2">Neigti</span>
+                                        </td> 
+                                        <td>                                                
+                                            <button (click)="userDetails(user.id,openModal)" type="button" rel="tooltip" class=" btn  view-profile-button" data-original-title="" title="">
+                                                <i class="material-icons">person</i>
+                                            </button>
+                                            <button  type="button" rel="tooltip" (click)="deleteUserById(user.id)"  class="btn delete-button" data-original-title=""
+                                            title="">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                        <a  rel="tooltip" [routerLink]="['/edituser',user.id]"
+                                        class="btn delete-button" data-original-title=""
+                                        title="">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" #openModal class="btn btn-primary invisible" data-toggle="modal" data-target="#exampleModalLong">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <table class="table table-border user-info-model">
+                <tbody>
+                    <tr>
+                        <th colspan="2" class="text-center">Informacija apie vartotoją</th>
+                    </tr>
+                    <tr>
+                        <th>Vardas</th>
+                        <td>{{userDetail.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Įmonės pavadinimas</th>
+                        <td>{{userDetail.companyName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Įmonės kodas</th>
+                        <td>{{userDetail.companyCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pašto adresą</th>
+                        <td>{{userDetail.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Telefonas</th>
+                        <td>{{userDetail.mobileNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Valandos įkainis</th>
+                        <td>{{userDetail.hourRate}}</td>
+                    </tr>
+                    <tr>
+                        <th>Telefonas</th>
+                        <td>{{userDetail.mobileNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Miestas</th>
+                        <td>{{userDetail.city}}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresas</th>
+                        <td>{{userDetail.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Banko sąskaitos numeris</th>
+                        <td>{{userDetail.bankAccountNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Apie mane</th>
+                        <td>{{userDetail.aboutMe}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pasirink paslaugą</th>
+                        <td>{{userDetail.serviceName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pasirink specialybe</th>
+                        <td>{{userDetail.specialty}}</td>
+                    </tr>
+                    <tr>
+                        <th>Dokumentas</th>
+                        <td><a *ngFor="let document of userDetail.documentFile" href="{{document.documentFile}}" class="text-lightred"  download target="_blank">{{document.documentName}}<br></a>
+						</td>
+                   </tr>
+                   <tr>
+                    <th>Darbo laiko apskaitos žiniaraštis</th>
+                    <td>
+                        <bs-datepicker-inline #bsDatePicker  [bsValue]="bsInlineValue"
+                        [dateCustomClasses]="dateCustomClasses"
+                        [bsConfig]="{ showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY',  displayMonths: 1, containerClass : 'theme-orange'}"
+                        ></bs-datepicker-inline>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" *ngIf="userDetail.isApproved==2 || userDetail.isApproved==0" (click)="updateUserStatus(1,userDetail.id)" data-dismiss="modal">Patvirtinti</button>
+            <button type="button" class="btn btn-danger" *ngIf="userDetail.isApproved==1 || userDetail.isApproved==0" (click)="updateUserStatus(2,userDetail.id)" data-dismiss="modal">Neigti</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

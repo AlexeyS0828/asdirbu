@@ -1,0 +1,5 @@
+{
+  "secret"	: "AbcDefghiJklmnOpqRSTuvWxy1233456789z",
+  "audience": "nodejs-jwt-auth",
+  "issuer"	: "https://www.asdirbu.lt/"
+}

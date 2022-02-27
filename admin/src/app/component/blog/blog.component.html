@@ -1,0 +1,101 @@
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header card-header-icon" data-background-color="lightred">
+						<i class="material-icons">person</i>
+					</div>
+					<div class="card-content">
+						<h4 class="card-title mb-0 text-lightred font-weight-bold">
+                            Dienoraščių sąrašas</h4>
+                            <button type="button" class="btn bg-lightred pull-right" (click)="openModel(openModal)">Pridėti naują dienoraštį</button>
+                            <div class="material-datatables">
+							<table #dataTable id="datatables" class=" row-border hover table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Pavadinimas</th>
+                                        <th>Tekstas</th>
+                                        <th>Vaizdas</th>
+                                        <th>Veiksmas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let blog of blogList; let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{blog.name}}</td>
+                                        <td>{{blog.description}}</td>
+                                        <td><img src="{{blog.image}}" class="blog-image"/></td>
+                                        <td class="text-center">                                                
+                                            <button type="button" rel="tooltip" 
+                                            class="btn delete-button" data-original-title=""
+                                            title="" (click)="deleteBlogById(blog.id)">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                        <button type="button" rel="tooltip" 
+                                        class="btn delete-button" data-original-title=""
+                                        title="" (click)="updateBlogById(blog.id,openModal)">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" #openModal class="btn btn-primary invisible" data-toggle="modal" data-target="#exampleModalLong">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <form [formGroup]="addBlog" (ngSubmit)="blogFormSubmit(closeModal)">
+        <div class="modal-body">
+                <div class="form-group">
+                    <h4 class="text-lightred text-center">Pridėti naują dienoraštį</h4>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Pavadinimas" formControlName="name"  [ngClass]="{'is-invalid':addBlog.get('name').touched && addBlog.get('name').invalid}" />
+                    <div class="invalid-feedback text-left">
+                        Įveskite vardą
+                    </div>
+                </div>             
+                <div class="form-group" >
+                    <!-- <textarea rows="5" name="description" id="description" class="form-control" placeholder="Tekstas" formControlName="description" [ngClass]="{'is-invalid':addBlog.get('description').touched && addBlog.get('description').invalid}" ></textarea> -->
+                    <ejs-richtexteditor  #textEditor formControlName="description" [insertImageSettings]='insertImageSettings'
+                    [showCharCount]='true' autofocous="true" [toolbarSettings]='tools'></ejs-richtexteditor>
+                    <div class="text-left text-danger" *ngIf="addBlog.get('description').touched && addBlog.get('description').invalid">
+                        Įveskite aprašą
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="image" (change)="onImagePicked($event)" #file id="image" class="form-control" placeholder="Image" />
+                    <div class="invalid-feedback text-left">
+                        Pasirinkite failą
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group">
+            <button type="submit" class="btn btn-lightred" value="Pateikti">Pateikti</button>
+            <button type="button" #closeModal class="btn btn-lightred" data-dismiss="modal">Atšaukti</button>
+            </div>
+            <div class="form-group text-center">
+                <label class=" text-danger">{{errorMessage}}</label>
+            </div>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>

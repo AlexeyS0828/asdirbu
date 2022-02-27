@@ -1,0 +1,709 @@
+<div class="content">
+    <div class="container-fluid card">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="text-lightred">Redaguoti vartotoją</h4>
+            </div>
+        </div>
+        <form role="form" [formGroup]="userForm" (ngSubmit)="userFormSubmit()">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="text" class="form-control" id="name" name="name" title="Vardas"
+                        formControlName="name" placeholder="Vardas" />
+                        <div class="text-danger d-block" *ngIf="(userForm.get('name').hasError('required') && (userForm.get('name').touched || submitted))">
+                            Vardo laukas yra būtinas.    
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="text" class="form-control" id="lastname" name="lastname" title="Pavardė"
+                        formControlName="lastname" placeholder="Pavardė" />
+                        <div class="text-danger d-block" *ngIf="(userForm.get('lastname').hasError('required') && (userForm.get('lastname').touched || submitted))">
+                            Pavardės laukas yra būtinas.
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="text" class="form-control" id="dob" name="dob" placeholder="Gimimo diena"
+                        title="Gimimo diena" formControlName="dob" bsDatepicker
+                        [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY',containerClass : 'theme-orange' }" name="dob"
+                        formControlName="dob" autocomplete="off" onkeydown="return false" [maxDate]="maxDate" />            
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="text" class="form-control" id="email" name="email" title="El. paštas"
+                        formControlName="email" placeholder="El. paštas" />
+                        <div class="text-danger d-block"  *ngIf="userForm.get('email').hasError('required') && (userForm.get('email').touched || submitted)">
+                        El. Pašto laukas yra būtinas.
+                    </div>
+                    <div class="text-danger d-block" *ngIf="userForm.get('email').hasError('email') && (userForm.get('email').touched || submitted)">
+                        Įveskite galiojantį el. Pašto adresą.
+                    </div>             
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="password" class="form-control" id="password" name="password" title="Slaptažodis" placeholder="Slaptažodis" formControlName="password" />
+                    <div class="text-danger d-block"  *ngIf="userForm.get('password').hasError('required') && (userForm.get('password').touched || submitted)">
+                        Slaptažodžio laukas yra būtinas.
+                    </div>
+                    <div class="text-danger d-block"  *ngIf="userForm.get('password').hasError('pattern') && (userForm.get('password').touched || submitted)">
+                        Slaptažodis privalo būti sudarytas iš 8 raidžių ir bent vieno skaičiaus.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="file" id="profileImage" #profileImage (change)="onImageSelect($event,profileImage)"  name="profileImage" class="form-control"  title="Profilio vaizdas" placeholder="Profilio vaizdas" />
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="text" class="form-control" id="phone" name="phone" title="Telefono numeris"
+                        formControlName="phone" placeholder="Telefono numeris" />
+                        <div class="text-danger d-block"
+                        *ngIf="((userForm.get('phone').hasError('match') || userForm.get('phone').hasError('pattern') || userForm.get('phone').hasError('required')) && (userForm.get('phone').touched || submitted))">
+                        Telefono yra privalomas.(3706XXXXXXX)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="text" name="city" id="city" class="form-control" formControlName="city" title="Miestas" placeholder="Miestas" />
+                    <!-- <input type="text" class="form-control" id="companyName" name="companyName"
+                    title="Įmonės pavadinimas" placeholder="Įmonės pavadinimas"  formControlName="companyName" /> -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <textarea class="form-control" name="address" id="address" formControlName="address" title="Gatvės pavadinimas" placeholder="Gatvės pavadinimas"></textarea>
+                    <!-- <input type="text" class="form-control" id="companyCode" name="companyCode" title="Įmonės kodas"
+                        formControlName="companyCode" placeholder="Įmonės kodas" /> -->
+                </div>
+            </div>
+            
+            <!-- <div class="col-md-4">
+                <div class="form-group label-floating">
+                    
+                </div>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input  type="text" name="houseNumber" id="houseNumber" class="form-control" formControlName="houseNumber" title="Namo numeris" placeholder="Namo numeris" />
+                    <!-- <select class="form-control" id="type" name="type" formControlName="type" placeholder="Type">
+                        <option value="" selected disabled>Type</option>
+                        <option value="KvM">KvM</option>
+                        <option value="Val">Val</option>
+                        <option value="Vat">Vat</option>
+                    </select> -->
+                    
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <!-- <input type="text" id="backAccountNumber" name="backAccountNumber" class="form-control" formControlName="backAccountNumber" title="Banko sąskaitos numeris" placeholder="Banko sąskaitos numeris" /> -->
+                    <select class="form-control" id="serviceName" name="serviceName" formControlName="serviceName" placeholder="Pasirink paslauga">
+                        <option value="" selected disabled>Pasirink paslaugą</option>
+                        <option value="Aplinkos tvarkymas, apželdinimas">Aplinkos tvarkymas,apželdinimas</option>
+                        <option value="Trinkelių klojimas">Trinkelių klojimas</option>
+                        <option value="Vejos priežiūra">Vejos priežiūra</option>
+                        <option value="Tvoros, vartų montavimas">Tvoros, vartų montavimas</option>
+                        <option value="Medžių genėjimas, priežiūra">Medžių genėjimas,priežiūra</option>
+                        <option value="Landšaftas">Landšaftas</option>
+                        <option value="Kenkėjų naikinimas, prevencija">Kenkėjų naikinimas,prevencija</option>
+                        <option value="Laistymo sistemos">Laistymo sistemos</option>
+                        <option value="Apželdinimas">Apželdinimas</option>
+                        <option value="Interneto svetainių kūrimas">Interneto svetainių kūrimas</option>
+                        <option value="Elektros darbai">Elektros darbai</option>
+                        <option value="Santechnikos darbai">Santechnikos darbai</option>
+                        <option value="Statybos darbai">Statybos darbai</option>
+                        <option value="Grožio paslaugos">Grožio paslaugos</option>
+                        <option value="Valymo paslaugos">Valymo paslaugos</option>
+                        <option value="Automobilių remonto paslaugos">Automobilių remonto paslaugos</option>
+                        <option value="Perkraustymo paslaugos">Perkraustymo paslaugos</option>
+                        <option value="Kompiuterinės technikos remontas">Kompiuterinės technikos remontas</option>
+                        <option value="Mokymai">Mokymai</option>
+                        <option value="Siuvimas">Siuvimas</option>
+                        <option value="Juvelyrika">Juvelyrika</option>
+                        <option value="Keramika">Keramika</option>
+                        <option value="Maisto gaminimas">Maisto gaminimas</option>
+                        <option value="Kita">Kita</option>
+                    </select>                    
+                </div>
+            </div>
+            <div class="col-md-4" *ngIf="userForm.get('serviceName').value=='Kita'">
+                <div class="form-group label-floating">
+                    <input  type="text" name="otherServiceName" id="otherServiceName" class="form-control" formControlName="otherServiceName" title="Kita" placeholder="Kita" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <select class="form-control" id="specialty" name="specialty" formControlName="specialty" placeholder="Pasirink specialybe">
+                        <option value="" selected disabled>Pasirink specialybe</option>
+                        <optgroup label="A">
+                            <option value="Advokatai, teisininkai">Advokatai, teisininkai</option>
+                            <option value="Apsaugininkas">Apsaugininkas</option>
+                            <option value="Architektas, projektavimas">Architektas, projektavimas</option>
+                            <option value="Astrologas">Astrologas</option>
+                            <option value="Auklė">Auklė</option>
+                            <option value="Aukštalipis">Aukštalipis</option>
+                            <option value="Autoelektrikai">Autoelektrikai</option>
+                            <option value="Autoservisai, automobilių remontas">Autoservisai, automobilių remontas
+                            </option>
+                            <option value="Automobilių pirkimo-pardavimo konsultantas">Automobilių pirkimo-pardavimo
+                                konsultantas</option>
+                            <option value="Automobilių plovyklos">Automobilių plovyklos</option>
+                            <option value="Akvariumų specialistas">Akvariumų specialistas</option>
+                            <option value="Automobilių poliravimas, priežiūra">Automobilių poliravimas, priežiūra
+                            </option>
+                            <option value="Aplinkos tvarkymas, apželdinimas">Aplinkos tvarkymas, apželdinimas</option>
+                            <option value="Archyvaras">Archyvaras</option>
+                            <option value="Anglų kalbos kursai, pamokos">Anglų kalbos kursai, pamokos</option>
+                            <option value="Archeologas">Archeologas</option>
+                            <option value="Automobilių nuoma">Automobilių nuoma</option>
+                            <option value="Automobilių tiuningas">Automobilių tiuningas</option>
+                            <option value="Akmens mūras, lauko židiniai, tvoros">Akmens mūras, lauko židiniai, tvoros
+                            </option>
+                            <option value="Audėjas">Audėjas</option>
+                            <option value="Automobilių remonto agentas">Automobilių remonto agentas</option>
+                            <option value="Asmeninis vairuotojas">Asmeninis vairuotojas</option>
+                            <option value="Alternatyvi energija">Alternatyvi energija</option>
+                            <option value="Automatikos sistemos">Automatikos sistemos</option>
+                            <option value="Asmeninis treneris">Asmeninis treneris</option>
+                            <option value="Apšvietimo, įgarsinimo paslaugos">Apšvietimo, įgarsinimo paslaugos</option>
+                            <option value="Automobilių supirkimas">Automobilių supirkimas</option>
+                            <option value="Avarinis atrakinimas">Avarinis atrakinimas</option>
+                            <option value="Antikvariatas">Antikvariatas</option>
+                            <option value="Architektūrinių maketų gamyba">Architektūrinių maketų gamyba</option>
+                            <option value="Architektūros korepetitorius">Architektūros korepetitorius</option>
+                            <option value="Apšiltinimas, šiltinimas">Apšiltinimas, šiltinimas</option>
+                            <option value="Autobusų, limobusų nuoma">Autobusų, limobusų nuoma</option>
+                            <option value="Akmens masės, marmuro, granito darbai">Akmens masės, marmuro, granito darbai
+                            </option>
+                            <option value="Automobilių apsaugos sistemos, montavimas">Automobilių apsaugos sistemos,
+                                montavimas</option>
+                            <option value="Automobilių salonų remontas">Automobilių salonų remontas</option>
+                        </optgroup>
+                        <optgroup label="B">
+                            <option value="Baldų gamyba">Baldų gamyba</option>
+                            <option value="Barmenai, gėrimai renginiams">Barmenai, gėrimai renginiams</option>
+                            <option value="Bitininkas">Bitininkas</option>
+                            <option value="Braižytojas">Braižytojas</option>
+                            <option value="Būrimai, būrėjas">Būrimai, būrėjas</option>
+                            <option value="Buhalterinės apskaitos paslaugos">Buhalterinės apskaitos paslaugos</option>
+                            <option value="Betonavimo darbai, betonavimas">Betonavimo darbai, betonavimas</option>
+                            <option value="Baldų restauravimas, remontas">Baldų restauravimas, remontas</option>
+                            <option value="Buitinės technikos remontas">Buitinės technikos remontas</option>
+                            <option value="Bokso treniruotės">Bokso treniruotės</option>
+                            <option value="Biologijos korepetitorius">Biologijos korepetitorius</option>
+                            <option value="Blakstienų priauginimas">Blakstienų priauginimas</option>
+                            <option value="Baldų projektavimas, dizaineriai">Baldų projektavimas, dizaineriai</option>
+                            <option value="Burnos higienistas">Burnos higienistas</option>
+                            <option value="Bioenergetikas">Bioenergetikas</option>
+                            <option value="Baidarių nuoma">Baidarių nuoma</option>
+                            <option value="Batutų nuoma">Batutų nuoma</option>
+                            <option value="Baseinų, jacuzzi įrengimas, priežiūra">Baseinų, jacuzzi įrengimas, priežiūra
+                            </option>
+                            <option value="Balionai, helio balionai">Balionai, helio balionai</option>
+                            <option value="Betranšėjės technologijos">Betranšėjės technologijos</option>
+                        </optgroup>
+                        <optgroup label="C">
+                            <option value="Choreografas">Choreografas</option>
+                            <option value="Chemijos korepetitorius">Chemijos korepetitorius</option>
+                        </optgroup>
+                        <optgroup label="D">
+                            <option value="Dailininkas">Dailininkas</option>
+                            <option value="Dainavimo, vokalo pamokos">Dainavimo, vokalo pamokos</option>
+                            <option value="DJ">DJ</option>
+                            <option value="Drabužių dizaineris">Drabužių dizaineris</option>
+                            <option value="Dviračių, paspirtukų remontas">Dviračių, paspirtukų remontas</option>
+                            <option value="Draudimas, draudimo agentas">Draudimas, draudimo agentas</option>
+                            <option value="Dietologas">Dietologas</option>
+                            <option value="Dailės mokytojas">Dailės mokytojas</option>
+                            <option value="Dviračių, paspirtukų nuoma">Dviračių, paspirtukų nuoma</option>
+                            <option value="Drožėjas">Drožėjas</option>
+                            <option value="Darbo teisės specialistas">Darbo teisės specialistas</option>
+                            <option value="Danų kalbos kursai, pamokos">Danų kalbos kursai, pamokos</option>
+                            <option value="Drabužių siuvimas, taisymas">Drabužių siuvimas, taisymas</option>
+                            <option value="Dažasvydis, šratasvydis (airsoft)">Dažasvydis, šratasvydis (airsoft)</option>
+                            <option value="Darbo saugos paslaugos">Darbo saugos paslaugos</option>
+                            <option value="Dujų įvedimas, pajungimas">Dujų įvedimas, pajungimas</option>
+                            <option value="Dujų įrangos montavimas">Dujų įrangos montavimas</option>
+                        </optgroup>
+                        <optgroup label="E">
+                            <option value="Elektrikas, elektros darbai">Elektrikas, elektros darbai</option>
+                            <option value="Ekologas">Ekologas</option>
+                            <option value="Ekonomistas">Ekonomistas</option>
+                            <option value="Ekskursijos, gidai">Ekskursijos, gidai</option>
+                            <option value="Ezoterikas">Ezoterikas</option>
+                            <option value="Elektronikos inžinierius">Elektronikos inžinierius</option>
+                            <option value="Ekstremalios pramogos">Ekstremalios pramogos</option>
+                            <option value="Energijos vartojimo auditas">Energijos vartojimo auditas</option>
+                        </optgroup>
+                        <optgroup label="F">
+                            <option value="Floristas, gėlių salonas">Floristas, gėlių salonas</option>
+                            <option value="Fotografas">Fotografas</option>
+                            <option value="Fitneso treneris">Fitneso treneris</option>
+                            <option value="Fizikos korepetitorius">Fizikos korepetitorius</option>
+                            <option value="Fasado apdaila, dažymas">Fasado apdaila, dažymas</option>
+                            <option value="Finansų konsultantas">Finansų konsultantas</option>
+                            <option value="Fotopaslaugos">Fotopaslaugos</option>
+                            <option value="Frezavimas (CNC)">Frezavimas (CNC)</option>
+                            <option value="Fotostudija">Fotostudija</option>
+                            <option value="Fotografijos kursai">Fotografijos kursai</option>
+                            <option value="Fotografai Verslui">Fotografai Verslui</option>
+                            <option value="Foto video technikos remontas">Foto video technikos remontas</option>
+                        </optgroup>
+                        <optgroup label="G">
+                            <option value="Galandimo meistras">Galandimo meistras</option>
+                            <option value="Gyvūnų auginimas ir pardavimas">Gyvūnų auginimas ir pardavimas</option>
+                            <option value="Graviravimo paslaugos">Graviravimo paslaugos</option>
+                            <option value="Grafikos dizaineris">Grafikos dizaineris</option>
+                            <option value="Grindų klojimas, remontas">Grindų klojimas, remontas</option>
+                            <option value="Grožio specialistų mokymai">Grožio specialistų mokymai</option>
+                            <option value="Griovimo darbai">Griovimo darbai</option>
+                            <option value="Grožio specialistas">Grožio specialistas</option>
+                            <option value="Gyvūnų priežiūros prekės">Gyvūnų priežiūros prekės</option>
+                            <option value="Garažo vartai, montavimas">Garažo vartai, montavimas</option>
+                            <option value="Grožio salonai">Grožio salonai</option>
+                            <option value="Gamybos inžinieriai">Gamybos inžinieriai</option>
+                            <option value="Grožio kabineto nuoma">Grožio kabineto nuoma</option>
+                        </optgroup>
+                        <optgroup label="H">
+                            <option value="Homeopatas">Homeopatas</option>
+                        </optgroup>
+                        <optgroup label="I">
+                            <option value="Interneto svetainių kūrimas">Interneto svetainių kūrimas</option>
+                            <option value="Interjero dizaineris">Interjero dizaineris</option>
+                            <option value="Inžinierius">Inžinierius</option>
+                            <option value="IT specialistas">IT specialistas</option>
+                            <option value="Internetinio verslo konsultantas">Internetinio verslo konsultantas</option>
+                            <option value="Interjero dekoravimas">Interjero dekoravimas</option>
+                            <option value="Ispanų kalbos kursai, pamokos">Ispanų kalbos kursai, pamokos</option>
+                            <option value="Istorijos korepetitorius">Istorijos korepetitorius</option>
+                            <option value="Informatikos korepetitorius">Informatikos korepetitorius</option>
+                            <option value="Interneto svetainių administratorius">Interneto svetainių administratorius
+                            </option>
+                            <option value="Iliustruotojas">Iliustruotojas</option>
+                            <option value="Indų nuoma">Indų nuoma</option>
+                            <option value="Italų kalbos kursai, pamokos">Italų kalbos kursai, pamokos</option>
+                            <option value="Interneto svetainių dizaineris">Interneto svetainių dizaineris</option>
+                            <option value="Irklenčių (SUP) nuoma">Irklenčių (SUP) nuoma</option>
+                            <option value="Interjero dekoro montavimas">Interjero dekoro montavimas</option>
+                        </optgroup>
+                        <optgroup label="J">
+                            <option value="Juvelyras, juvelyriniai dirbiniai">Juvelyras, juvelyriniai dirbiniai</option>
+                            <option value="Joga, jogos treneriai">Joga, jogos treneriai</option>
+                            <option value="Jojimo treneris">Jojimo treneris</option>
+                            <option value="Jėgos aitvarų instruktorius">Jėgos aitvarų instruktorius</option>
+                            <option value="Japonų kalbos kursai, pamokos">Japonų kalbos kursai, pamokos</option>
+                        </optgroup>
+                        <optgroup label="K">
+                            <option value="Kėbulo remontas">Kėbulo remontas</option>
+                            <option value="Kalviai, kalvystės darbai">Kalviai, kalvystės darbai</option>
+                            <option value="Kaminų valymas">Kaminų valymas</option>
+                            <option value="Keramikas">Keramikas</option>
+                            <option value="Kompiuterių remontas">Kompiuterių remontas</option>
+                            <option value="Kosmetologė">Kosmetologė</option>
+                            <option value="Krovinių pervežimas">Krovinių pervežimas</option>
+                            <option value="Katilų montavimas, remontas">Katilų montavimas, remontas</option>
+                            <option value="Kirpyklos, kirpėjai, stilistai">Kirpyklos, kirpėjai, stilistai</option>
+                            <option value="Komunikacijos specialistas">Komunikacijos specialistas</option>
+                            <option value="Kelionių organizavimas">Kelionių organizavimas</option>
+                            <option value="Kaligrafijos meistras">Kaligrafijos meistras</option>
+                            <option value="Kalanetikos treneris">Kalanetikos treneris</option>
+                            <option value="Kardiologas">Kardiologas</option>
+                            <option value="Kineziterapeutas">Kineziterapeutas</option>
+                            <option value="Kinų kalbos kursai, pamokos">Kinų kalbos kursai, pamokos</option>
+                            <option value="Kailinių siuvimas">Kailinių siuvimas</option>
+                            <option value="Kovinės savigynos treneris">Kovinės savigynos treneris</option>
+                            <option value="Kemperių nuoma">Kemperių nuoma</option>
+                            <option value="Kvapų sistemų specialistas">Kvapų sistemų specialistas</option>
+                            <option value="Kapų tvarkymas, priežiūra">Kapų tvarkymas, priežiūra</option>
+                            <option value="Kosmetikė">Kosmetikė</option>
+                            <option value="Keleivių pervežimas">Keleivių pervežimas</option>
+                            <option value="Koučingo specialistas">Koučingo specialistas</option>
+                            <option value="Karjeros ir asmeninio augimo konsultantas">Karjeros ir asmeninio augimo
+                                konsultantas</option>
+                            <option value="Knygų nuoma ir pardavimas">Knygų nuoma ir pardavimas</option>
+                            <option value="Kitos statybos paslaugos">Kitos statybos paslaugos</option>
+                            <option value="Kitos ekstremalios paslaugos">Kitos ekstremalios paslaugos</option>
+                            <option value="Kitos pramogos vaikams">Kitos pramogos vaikams</option>
+                            <option value="Karnizų, roletų montavimas">Karnizų, roletų montavimas</option>
+                            <option value="Kiti įvairūs kursai">Kiti įvairūs kursai</option>
+                            <option value="Kenkėjų naikinimas, prevencija">Kenkėjų naikinimas, prevencija</option>
+                            <option value="Kitos paslaugos renginiams">Kitos paslaugos renginiams</option>
+                            <option value="Krosnys, krosnių meistrai">Krosnys, krosnių meistrai</option>
+                            <option value="Kartingai, kartodromai">Kartingai, kartodromai</option>
+                            <option value="Kompiuterių kursai">Kompiuterių kursai</option>
+                            <option value="Kovų menų treneris">Kovų menų treneris</option>
+                            <option value="Kitos įvairios paslaugos">Kitos įvairios paslaugos</option>
+                            <option value="Kitos laisvalaikio paslaugos">Kitos laisvalaikio paslaugos</option>
+                            <option value="Kiti mokymai, kursai">Kiti mokymai, kursai</option>
+                            <option value="Kelių tiesimas">Kelių tiesimas</option>
+                            <option value="Kurjeris">Kurjeris</option>
+                        </optgroup>
+                        <optgroup label="L">
+                            <option value="Laivų, valčių, variklių remontas">Laivų, valčių, variklių remontas</option>
+                            <option value="Lauko žaidimų nuoma">Lauko žaidimų nuoma</option>
+                            <option value="Laiptų gamyba, montavimas">Laiptų gamyba, montavimas</option>
+                            <option value="Lektorius">Lektorius</option>
+                            <option value="Lietuvių kalbos korepetitorius">Lietuvių kalbos korepetitorius</option>
+                            <option value="Langai, durys: gamyba, montavimas">Langai, durys: gamyba, montavimas</option>
+                            <option value="Logopedas">Logopedas</option>
+                            <option value="Limuzinų nuoma, transportas vestuvėms">Limuzinų nuoma, transportas vestuvėms
+                            </option>
+                            <option value="Laistymo sistemos, įrengimas">Laistymo sistemos, įrengimas</option>
+                            <option value="Langų, durų restauravimas">Langų, durų restauravimas</option>
+                            <option value="Laivo, jachtos nuoma">Laivo, jachtos nuoma</option>
+                            <option value="Lieknėjimo procedūros">Lieknėjimo procedūros</option>
+                            <option value="Laidojimo paslaugos">Laidojimo paslaugos</option>
+                        </optgroup>
+                        <optgroup label="M">
+                            <option value="Malkos: gamyba, pristatymas">Malkos: gamyba, pristatymas</option>
+                            <option value="Masažo paslaugos">Masažo paslaugos</option>
+                            <option value="Medžių genėjimas, pjovimas">Medžių genėjimas, pjovimas</option>
+                            <option value="Miškininkas">Miškininkas</option>
+                            <option value="Muzikantas, dainininkas, grupė">Muzikantas, dainininkas, grupė</option>
+                            <option value="Muzikos instrumentų meistras">Muzikos instrumentų meistras</option>
+                            <option value="Mechanikas">Mechanikas</option>
+                            <option value="Medžio darbai, stalius">Medžio darbai, stalius</option>
+                            <option value="Maitinimas, maistas renginiams">Maitinimas, maistas renginiams</option>
+                            <option value="Manikiūras">Manikiūras</option>
+                            <option value="Matininkai, geodezininkai">Matininkai, geodezininkai</option>
+                            <option value="Mobiliųjų telefonų remontas">Mobiliųjų telefonų remontas</option>
+                            <option value="Mezgėja">Mezgėja</option>
+                            <option value="Muitinės tarpininkas">Muitinės tarpininkas</option>
+                            <option value="Metalo gaminiai, suvirintojas">Metalo gaminiai, suvirintojas</option>
+                            <option value="Mūro darbai, mūrijimas">Mūro darbai, mūrijimas</option>
+                            <option value="Matematikos korepetitorius">Matematikos korepetitorius</option>
+                            <option value="Muzikos mokytojas">Muzikos mokytojas</option>
+                            <option value="Muzikos prodiuseris">Muzikos prodiuseris</option>
+                            <option value="Mobilūs gateriai, medienos pjovimas">Mobilūs gateriai, medienos pjovimas
+                            </option>
+                            <option value="Medienos gaminiai">Medienos gaminiai</option>
+                            <option value="Mobiliųjų aplikacijų kūrimas">Mobiliųjų aplikacijų kūrimas</option>
+                            <option value="Meno terapija">Meno terapija</option>
+                            <option value="Motociklų, motorolerių remontas">Motociklų, motorolerių remontas</option>
+                            <option value="Medelynai, uogos, gėlės">Medelynai, uogos, gėlės</option>
+                            <option value="Modeliavimas">Modeliavimas</option>
+                            <option value="Mozaikos meistras">Mozaikos meistras</option>
+                            <option value="Mobilus dokumentų naikinimas">Mobilus dokumentų naikinimas</option>
+                            <option value="Microsoft Office Excel specialistas">Microsoft Office Excel specialistas
+                            </option>
+                            <option value="Metalo apdirbimas">Metalo apdirbimas</option>
+                            <option value="Mikroautobusų nuoma">Mikroautobusų nuoma</option>
+                            <option value="Mobilaus kubilo nuoma">Mobilaus kubilo nuoma</option>
+                            <option value="Mobilios pirties nuoma">Mobilios pirties nuoma</option>
+                            <option value="Motociklų nuoma">Motociklų nuoma</option>
+                            <option value="Metalo laužo supirkimas">Metalo laužo supirkimas</option>
+                        </optgroup>
+                        <optgroup label="N">
+                            <option value="Nuotraukų retušavimas">Nuotraukų retušavimas</option>
+                            <option value="Nekilnojamo turto brokeriai">Nekilnojamo turto brokeriai</option>
+                            <option value="Nekilnojamo turto nuoma">Nekilnojamo turto nuoma</option>
+                            <option value="Namų ūkio meistras">Namų ūkio meistras</option>
+                            <option value="Norvegų kalbos kursai, pamokos">Norvegų kalbos kursai, pamokos</option>
+                            <option value="Nuotekų valymo įrenginiai">Nuotekų valymo įrenginiai</option>
+                            <option value="Neformalus vaikų ugdymas">Neformalus vaikų ugdymas</option>
+                            <option value="Nuotekų išvežimas">Nuotekų išvežimas</option>
+                        </optgroup>
+                        <optgroup label="O">
+                            <option value="Odininkai, odos gaminiai">Odininkai, odos gaminiai</option>
+                            <option value="Odontologas">Odontologas</option>
+                            <option value="Originalios interjero detalės">Originalios interjero detalės</option>
+                            <option value="Olandų kalbos kursai, pamokos">Olandų kalbos kursai, pamokos</option>
+                        </optgroup>
+                        <optgroup label="P">
+                            <option value="Pagalbiniai darbai">Pagalbiniai darbai</option>
+                            <option value="Paminklai, antkapiai, paminklų gamyba">Paminklai, antkapiai, paminklų gamyba
+                            </option>
+                            <option value="Priešgasrinės saugos specialistas">Priešgasrinės saugos specialistas</option>
+                            <option value="Privatus detektyvas">Privatus detektyvas</option>
+                            <option value="Programuotojas">Programuotojas</option>
+                            <option value="Projektų ir dokumentų rengėjas">Projektų ir dokumentų rengėjas</option>
+                            <option value="Psichologas, psichoterapeutas">Psichologas, psichoterapeutas</option>
+                            <option value="Pynimas">Pynimas</option>
+                            <option value="Prodiuseris">Prodiuseris</option>
+                            <option value="Papuošalų, aksesuarų kūrimas">Papuošalų, aksesuarų kūrimas</option>
+                            <option value="Psichiatras">Psichiatras</option>
+                            <option value="Prancūzų kalbos kursai, pamokos">Prancūzų kalbos kursai, pamokos</option>
+                            <option value="Plėvelės klijavimas">Plėvelės klijavimas</option>
+                            <option value="Pobūvių, pokylių salės nuoma">Pobūvių, pokylių salės nuoma</option>
+                            <option value="Plytininkas">Plytininkas</option>
+                            <option value="Pirties nuoma">Pirties nuoma</option>
+                            <option value="Perkraustymo paslaugos">Perkraustymo paslaugos</option>
+                            <option value="Pilateso treneris">Pilateso treneris</option>
+                            <option value="Pramogos vaikams">Pramogos vaikams</option>
+                            <option value="Povandeniniai techniniai darbai">Povandeniniai techniniai darbai</option>
+                            <option value="Personalo sprendimai">Personalo sprendimai</option>
+                            <option value="Pramogų organizatorius">Pramogų organizatorius</option>
+                            <option value="Permanentinio makiažo meistrė">Permanentinio makiažo meistrė</option>
+                            <option value="Prekyba kosmetikos priemonėmis">Prekyba kosmetikos priemonėmis</option>
+                            <option value="Prekyba drabužiais">Prekyba drabužiais</option>
+                            <option value="Prekyba avalyne">Prekyba avalyne</option>
+                            <option value="Prekyba papuošalais ir aksesuarais">Prekyba papuošalais ir aksesuarais
+                            </option>
+                            <option value="Prekyba maisto papildais ir vitaminais">Prekyba maisto papildais ir
+                                vitaminais</option>
+                            <option value="Prekyba baldais">Prekyba baldais</option>
+                            <option value="Prekyba mobiliaisiais telefonais">Prekyba mobiliaisiais telefonais</option>
+                            <option value="Prekyba namų apyvokos reikmenimis">Prekyba namų apyvokos reikmenimis</option>
+                            <option value="Prekyba garso aparatūra">Prekyba garso aparatūra</option>
+                            <option value="Prekyba buitine technika">Prekyba buitine technika</option>
+                            <option value="Prekyba foto technika">Prekyba foto technika</option>
+                            <option value="Prekyba automobilių dalimis">Prekyba automobilių dalimis</option>
+                            <option value="Prekyba žemės ūkio technika">Prekyba žemės ūkio technika</option>
+                            <option value="Prekyba prekėmis vaikams">Prekyba prekėmis vaikams</option>
+                            <option value="Plaukų tiesinimas">Plaukų tiesinimas</option>
+                            <option value="Pasirodymai, šou renginiams">Pasirodymai, šou renginiams</option>
+                            <option value="Priekabų nuoma">Priekabų nuoma</option>
+                            <option value="Portugalų kalbos kursai, pamokos">Portugalų kalbos kursai, pamokos</option>
+                            <option value="Pakuočių gamyba">Pakuočių gamyba</option>
+                            <option value="Prekyba maisto produktais">Prekyba maisto produktais</option>
+                            <option value="Prekyba rankdarbių reikmenimis">Prekyba rankdarbių reikmenimis</option>
+                            <option value="Prekyba laisvalaikio ir sporto prekėmis">Prekyba laisvalaikio ir sporto
+                                prekėmis</option>
+                            <option value="Prekyba atributika">Prekyba atributika</option>
+                            <option value="Prekyba ekologiškais gaminiais">Prekyba ekologiškais gaminiais</option>
+                            <option value="Privati klinika">Privati klinika</option>
+                            <option value="Pardavimų vadybininkas">Pardavimų vadybininkas</option>
+                            <option value="Pamatų liejimas, įrengimas">Pamatų liejimas, įrengimas</option>
+                            <option value="Pelėsio naikinimas">Pelėsio naikinimas</option>
+                            <option value="Prekyba dažais">Prekyba dažais</option>
+                            <option value="Pabėgimo kambariai">Pabėgimo kambariai</option>
+                            <option value="Palapinių, paviljonų nuoma">Palapinių, paviljonų nuoma</option>
+                            <option value="Priekabų, puspriekabių remontas">Priekabų, puspriekabių remontas</option>
+                            <option value="Pirtys, pirčių įrengimas">Pirtys, pirčių įrengimas</option>
+                            <option value="Pradinių klasių mokytoja">Pradinių klasių mokytoja</option>
+                            <option value="Prekyba darbo saugos priemonėmis">Prekyba darbo saugos priemonėmis</option>
+                            <option value="Plytelių pjovimas">Plytelių pjovimas</option>
+                        </optgroup>
+                        <optgroup label="R">
+                            <option value="Reklamos paslaugos">Reklamos paslaugos</option>
+                            <option value="Renginių organizavimas">Renginių organizavimas</option>
+                            <option value="Restauravimas">Restauravimas</option>
+                            <option value="Redaktorius">Redaktorius</option>
+                            <option value="Renginių vedėjas">Renginių vedėjas</option>
+                            <option value="Ryšių su visuomene specialistas">Ryšių su visuomene specialistas</option>
+                            <option value="Roletai, žaliuzės, romanetės">Roletai, žaliuzės, romanetės</option>
+                            <option value="Rašto darbų konsultantas">Rašto darbų konsultantas</option>
+                            <option value="Rusų kalbos mokytojas">Rusų kalbos mokytojas</option>
+                            <option value="Rankdarbių kūrėjas">Rankdarbių kūrėjas</option>
+                            <option value="Rankų darbo muilas">Rankų darbo muilas</option>
+                            <option value="Rankų darbo žaislai">Rankų darbo žaislai</option>
+                            <option value="Reklamos gamyba">Reklamos gamyba</option>
+                            <option value="Rėminimo paslaugos">Rėminimo paslaugos</option>
+                            <option value="Rinkodara (marketingas)">Rinkodara (marketingas)</option>
+                            <option value="Režisierius">Režisierius</option>
+                            <option value="Restoranai, kavinės, barai, salės">Restoranai, kavinės, barai, salės</option>
+                            <option value="Rąstinių namų statyba">Rąstinių namų statyba</option>
+                        </optgroup>
+                        <optgroup label="S">
+                            <option value="Santechnikai, santechnikos darbai">Santechnikai, santechnikos darbai</option>
+                            <option value="Senelių priežiūra">Senelių priežiūra</option>
+                            <option value="Siuvimas, siuvykla, siuvėjas">Siuvimas, siuvykla, siuvėjas</option>
+                            <option value="Skardinimo darbai, skardininkas">Skardinimo darbai, skardininkas</option>
+                            <option value="Slaugytojas">Slaugytojas</option>
+                            <option value="Statybos darbų vykdytojas">Statybos darbų vykdytojas</option>
+                            <option value="Stiklų, veidrodžių gamyba, keitimas">Stiklų, veidrodžių gamyba, keitimas
+                            </option>
+                            <option value="Stilistas">Stilistas</option>
+                            <option value="Stogų dengimas, stogdengiai">Stogų dengimas, stogdengiai</option>
+                            <option value="Suvirintojai, suvirinimo darbai">Suvirintojai, suvirinimo darbai</option>
+                            <option value="Skulptorius">Skulptorius</option>
+                            <option value="Sąmatininkas: sąmatų skaičiavimas">Sąmatininkas: sąmatų skaičiavimas</option>
+                            <option value="SEO paslaugos">SEO paslaugos</option>
+                            <option value="Spaudos paslaugos">Spaudos paslaugos</option>
+                            <option value="Statybos dokumentų tvarkymas">Statybos dokumentų tvarkymas</option>
+                            <option value="Stiklų keitimas, remontas, tonavimas">Stiklų keitimas, remontas, tonavimas
+                            </option>
+                            <option value="Sodybos nuomai">Sodybos nuomai</option>
+                            <option value="Skrydis parasparniu">Skrydis parasparniu</option>
+                            <option value="Siuvinėjimas">Siuvinėjimas</option>
+                            <option value="Suknelių nuoma">Suknelių nuoma</option>
+                            <option value="Statybos darbai">Statybos darbai</option>
+                            <option value="Signalizacijos, kameros, apsaugos sistemos">Signalizacijos, kameros, apsaugos
+                                sistemos</option>
+                            <option value="Sveikatos mokytojas">Sveikatos mokytojas</option>
+                            <option value="Stiklo konstrukcijos, montavimas">Stiklo konstrukcijos, montavimas</option>
+                            <option value="Statybinių medžiagų gamintojas">Statybinių medžiagų gamintojas</option>
+                            <option value="Srautinis valymas">Srautinis valymas</option>
+                            <option value="Senovinių automobilių nuoma">Senovinių automobilių nuoma</option>
+                            <option value="Sveiki produktai">Sveiki produktai</option>
+                            <option value="Statybos projektų valdymas">Statybos projektų valdymas</option>
+                            <option value="Soliariumas">Soliariumas</option>
+                            <option value="Statybos darbų vadovas">Statybos darbų vadovas</option>
+                            <option value="Skylių gręžimas, angų pjovimas">Skylių gręžimas, angų pjovimas</option>
+                            <option value="Stogo bagažinių nuoma">Stogo bagažinių nuoma</option>
+                            <option value="Stovyklavietės">Stovyklavietės</option>
+                            <option value="Sniego valymas">Sniego valymas</option>
+                            <option value="Stovyklos vaikams">Stovyklos vaikams</option>
+                            <option value="Statybinės technikos nuoma">Statybinės technikos nuoma</option>
+                            <option value="Smėliavimas, dažymas">Smėliavimas, dažymas</option>
+                            <option value="Skalda, smėlis, žvyras, juodžemis">Skalda, smėlis, žvyras, juodžemis</option>
+                            <option value="Sunkvežimių, autobusų remontas">Sunkvežimių, autobusų remontas</option>
+                            <option value="Sodo technikos remontas">Sodo technikos remontas</option>
+                            <option value="Skaitmenizacijos paslaugos">Skaitmenizacijos paslaugos</option>
+                        </optgroup>
+                        <optgroup label="T">
+                            <option value="Tortai, desertai">Tortai, desertai</option>
+                            <option value="Tatuiruotės (tattoo)">Tatuiruotės (tattoo)</option>
+                            <option value="Tekstų surinkėjas">Tekstų surinkėjas</option>
+                            <option value="Tekstų kūrėjas">Tekstų kūrėjas</option>
+                            <option value="Tvoros, vartai, montavimas">Tvoros, vartai, montavimas</option>
+                            <option value="Techninė pagalba kelyje">Techninė pagalba kelyje</option>
+                            <option value="Teniso treneris">Teniso treneris</option>
+                            <option value="Tinklinio treneris">Tinklinio treneris</option>
+                            <option value="Termovizijos specialistas">Termovizijos specialistas</option>
+                            <option value="Tinklaraštininkas">Tinklaraštininkas</option>
+                            <option value="Tarologas">Tarologas</option>
+                            <option value="Tekintojas, frezuotojas">Tekintojas, frezuotojas</option>
+                            <option value="Trinkelių klojimas">Trinkelių klojimas</option>
+                            <option value="Tentai, tentų gamyba">Tentai, tentų gamyba</option>
+                        </optgroup>
+                        <optgroup label="U">
+                            <option value="Užuolaidų siuvimas">Užuolaidų siuvimas</option>
+                            <option value="Ugnies šou">Ugnies šou</option>
+                        </optgroup>
+                        <optgroup label="V">
+                            <option value="Video filmavimas, operatorius">Video filmavimas, operatorius</option>
+                            <option value="Vaismedžių genėjimas">Vaismedžių genėjimas</option>
+                            <option value="Vantų rišėjas">Vantų rišėjas</option>
+                            <option value="Vertimų biurai, vertėjai">Vertimų biurai, vertėjai</option>
+                            <option value="Vizažistė">Vizažistė</option>
+                            <option value="Vandens gręžiniai">Vandens gręžiniai</option>
+                            <option value="Vestuvinių suknelių siuvimas">Vestuvinių suknelių siuvimas</option>
+                            <option value="Video animacijos, animatorius">Video animacijos, animatorius</option>
+                            <option value="Veterinarijos klinikos, veterinarai">Veterinarijos klinikos, veterinarai
+                            </option>
+                            <option value="Vestuvių planuotojas">Vestuvių planuotojas</option>
+                            <option value="Vokiečių kalbos kursai, pamokos">Vokiečių kalbos kursai, pamokos</option>
+                            <option value="Vidaus apdaila, remontas">Vidaus apdaila, remontas</option>
+                            <option value="Verslo konsultantas">Verslo konsultantas</option>
+                            <option value="Vaikų darželis">Vaikų darželis</option>
+                            <option value="Vestuvių, švenčių dekoravimas">Vestuvių, švenčių dekoravimas</option>
+                            <option value="Vėlėja">Vėlėja</option>
+                            <option value="Vitražai, stiklo interjero detalės">Vitražai, stiklo interjero detalės
+                            </option>
+                            <option value="Valymo paslaugos">Valymo paslaugos</option>
+                            <option value="Video montavimas, dizaineris">Video montavimas, dizaineris</option>
+                            <option value="Vandens filtrai: montavimas, keitimas">Vandens filtrai: montavimas, keitimas
+                            </option>
+                            <option value="Ventiliacija, vėdinimo sistemos">Ventiliacija, vėdinimo sistemos</option>
+                            <option value="Viešųjų pirkimų konsultantas">Viešųjų pirkimų konsultantas</option>
+                            <option value="Vejos priežiūra, įrengimas">Vejos priežiūra, įrengimas</option>
+                            <option value="Vonios restauravimas">Vonios restauravimas</option>
+                            <option value="Vairavimo mokykla">Vairavimo mokykla</option>
+                            <option value="Vaizdo stebėjimo, apsaugos, IP kameros">Vaizdo stebėjimo, apsaugos, IP
+                                kameros</option>
+                            <option value="Virtualus asistentas">Virtualus asistentas</option>
+                            <option value="Vestuvinių suknelių salonas">Vestuvinių suknelių salonas</option>
+                            <option value="Viešbučiai">Viešbučiai</option>
+                            <option value="Vaikų žaidimų kambarys">Vaikų žaidimų kambarys</option>
+                            <option value="Vertimo kursai">Vertimo kursai</option>
+                            <option value="Voljerai, šuns būdos, gamyba">Voljerai, šuns būdos, gamyba</option>
+                        </optgroup>
+                        <optgroup label="Į">
+                            <option value="Įvairios technikos nuoma">Įvairios technikos nuoma</option>
+                            <option value="Įtempiamos lubos, montavimas">Įtempiamos lubos, montavimas</option>
+                            <option value="Įvairios paslaugos vestuvėms">Įvairios paslaugos vestuvėms</option>
+                            <option value="Įrankių nuoma">Įrankių nuoma</option>
+                        </optgroup>
+                        <optgroup label="Š">
+                            <option value="Šunų dresuotojas">Šunų dresuotojas</option>
+                            <option value="Šokiai, šokių pamokos">Šokiai, šokių pamokos</option>
+                            <option value="Šunų kirpykla">Šunų kirpykla</option>
+                            <option value="Šeimos gydytojas">Šeimos gydytojas</option>
+                            <option value="Šventinės įrangos nuoma">Šventinės įrangos nuoma</option>
+                            <option value="Švedų kalbos kursai, pamokos">Švedų kalbos kursai, pamokos</option>
+                            <option value="Šunų veislynas">Šunų veislynas</option>
+                            <option value="Šiukšlių išvežimas: statybinių ir kt.">Šiukšlių išvežimas: statybinių ir kt.
+                            </option>
+                            <option value="Šokėjas">Šokėjas</option>
+                            <option value="Šunų viešbutis">Šunų viešbutis</option>
+                        </optgroup>
+                        <optgroup label="Ž">
+                            <option value="Žurnalistas">Žurnalistas</option>
+                            <option value="Žemės kasimas, lyginimas">Žemės kasimas, lyginimas</option>
+                            <option value="Žolininkas">Žolininkas</option>
+                            <option value="Žvakių gamyba">Žvakių gamyba</option>
+                            <option value="Židinių meistrai">Židinių meistrai</option>
+                            <option value="Žemės ūkio technikos nuoma">Žemės ūkio technikos nuoma</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="text" id="backAccountNumber" name="backAccountNumber" class="form-control" formControlName="backAccountNumber" title="Banko sąskaitos numeris" placeholder="Banko sąskaitos numeris" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label>Pridėk dokumentus (Pasas arba ID kortelė)</label>
+                    <input type="file" id="documentFile" #documentFile (change)="onFileSelect($event,documentFile)" multiple name="documentFile" class="form-control"  title="Pridėk dokumentus" placeholder="Pridėk dokumentus" />
+                </div>                
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <textarea class="form-control" id="service" name="service" formControlName="service" title="Paslauga" placeholder="Paslauga"></textarea>    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <textarea class="form-control" id="aboutMe" name="aboutMe" formControlName="aboutMe" title="Apie mane" placeholder="Apie mane"></textarea>
+                 </div>
+            </div>            
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type="number" class="form-control" id="hourrate" name="hourrate" title="Mano valandinis atlygis" placeholder="Mano valandinis atlygis" formControlName="hourrate" />
+                    </div>
+                </div>           
+            <div class="col-md-4">
+                <select class="form-control" id="type" name="type" formControlName="type" placeholder="Type">
+                    <option value="" selected disabled>Type</option>
+                    <option value="KvM">KvM</option>
+                    <option value="Val">Val</option>
+                    <option value="Vat">Vat</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">                    
+                    <div class="form-group label-floating">
+                        <label>Prisekite nuotraukas, rodančias savo darbo pasiekimus, rezultatus.</label>
+                        <input type="file" id="images" #images (change)="onImagePicked($event,images)" multiple name="images" class="form-control"  title="Prisekite nuotraukas, rodančias savo darbo pasiekimus, rezultatus." placeholder="Prisekite nuotraukas, rodančias savo darbo pasiekimus, rezultatus." />
+                    </div>
+                </div> 
+            </div>
+        </div>           
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success" value="išsaugoti"> išsaugoti </button>
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col-md-12">
+                <label class="text-danger">{{errorMessage}}</label>
+            </div>
+        </div>        
+    </form>
+    </div>
+</div>

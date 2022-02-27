@@ -1,0 +1,164 @@
+<!-- <div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6" routerLink="/individual">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="lightred">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category"><b>Individualūs vartotojai</b></p>
+                        <h3 class="card-title"><b>{{individualUser}}</b></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6" routerLink="/business">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="lightred">
+                        <i class="material-icons">contact_mail</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category"><b>Verslo vartotojai</b></p>
+                        <h3 class="card-title"><b>{{bussinessUser}}</b></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6" routerLink="/quickjob">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="lightred">
+                        <i class="material-icons">list_alt</i>
+                    </div>
+                    <div class="card-content last-content">
+                        <p class="category"><b>Greiti darbai</b></p>
+                        <h3 class="card-title"><b>{{quickJobs}}</b></h3>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats payment-card">
+                    <div class="card-header" data-background-color="lightred">
+                        <i class="material-icons">money</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category"><b>Iš viso EUR</b></p>
+                        <h3 class="card-title"><b>{{totalEuro}}</b></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats payment-card">
+                    <div class="card-header" data-background-color="lightred">
+                        <i class="material-icons">money</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category"><b>Iš viso darbuotojų EUR</b></p>
+                        <h3 class="card-title"><b>{{employeesEuro}}</b></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats payment-card">
+                    <div class="card-header" data-background-color="lightred">
+                        <i class="material-icons">money</i>
+                    </div>
+                    <div class="card-content last-content">
+                        <p class="category"><b>Tiesiog mokestis EUR</b></p>
+                        <h3 class="card-title"><b>{{feesEuro}}</b></h3>
+                    </div>
+                </div>
+            </div>   
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <bs-daterangepicker-inline 
+                (bsValueChange)="onCalendarValueChange($event)"
+                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  displayMonths: 1, containerClass : 'theme-orange'}">
+            </bs-daterangepicker-inline>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+                 <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6" routerLink="/individual">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="lightred">
+                                    <i class="material-icons">person</i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><b>Individualūs vartotojai</b></p>
+                                    <h3 class="card-title"><b>{{individualUser}}</b></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6" routerLink="/business">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="lightred">
+                                    <i class="material-icons">contact_mail</i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><b>Verslo vartotojai</b></p>
+                                    <h3 class="card-title"><b>{{bussinessUser}}</b></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6" routerLink="/quickjob">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="lightred">
+                                    <i class="material-icons">list_alt</i>
+                                </div>
+                                <div class="card-content last-content">
+                                    <p class="category"><b>Greiti darbai</b></p>
+                                    <h3 class="card-title"><b>{{quickJobs}}</b></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="card card-stats payment-card">
+                                <div class="card-header" data-background-color="lightred">
+                                    <i class="material-icons">money</i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><b>Iš viso EUR</b></p>
+                                    <h3 class="card-title"><b>{{totalEuro}}</b></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="card card-stats payment-card">
+                                <div class="card-header" data-background-color="lightred">
+                                    <i class="material-icons">money</i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><b>Iš viso darbuotojų EUR</b></p>
+                                    <h3 class="card-title"><b>{{employeesEuro}}</b></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="card card-stats payment-card">
+                                <div class="card-header" data-background-color="lightred">
+                                    <i class="material-icons">money</i>
+                                </div>
+                                <div class="card-content last-content">
+                                    <p class="category"><b>Ašdirbu komisiniai EUR</b></p>
+                                    <h3 class="card-title"><b>{{feesEuro}}</b></h3>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+                <div class="col-md-1 no-padding">
+                    <br>
+                     <bs-daterangepicker-inline 
+                    (bsValueChange)="onCalendarValueChange($event)"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  displayMonths: 1, containerClass : 'theme-orange'}">
+                </bs-daterangepicker-inline>
+                </div>   
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+.card-top-title {
+    padding: 10px 0 35px;
+}
+
+.select-file-image-preview {
+    margin-bottom: 10px;
+}
+
+
+.question-icon i {
+    color: #e57d33;
+    position: absolute;
+    right: -15px;
+    top: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 991.98px) {
+    .question-icon i {
+        right: -5px;
+    }
+}
+
+@media (max-width: 767.98px) {}
+
+@media (max-width: 575.98px) {
+    .question-icon i {
+        right: 15px;
+        top: 0;
+    }
+}

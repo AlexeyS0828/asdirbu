@@ -1,0 +1,150 @@
+<section class="business-registration-section" id="business-registration">
+    <div class="container">
+        <div class="row bg-white">
+            <div class="col-md-12 p-0">
+                <h4 class="section-title-one text-center">Registracija</h4>
+            </div>
+            <div class="col-md-12">
+                <form [formGroup]="form" (submit)="onRegister()" class="business-registration-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">El. paštas</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="email" formControlName="email">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('email').hasError('required') && (form.get('email').touched || submitted)">
+                                        <!-- Email field is required. -->
+                                        El. Pašto laukas yra būtinas.
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('email').hasError('pattern') && (form.get('email').touched || submitted)">
+                                        <!-- Please enter a valid email. -->
+                                        Įveskite galiojantį el. Pašto adresą.
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                    *ngIf="form.get('email').hasError('isEmailUnique') && (form.get('email').touched || submitted)">
+                                    <!-- Email id all ready exist -->
+                                    El. Paštas jau registruotas
+                                </div>
+
+                                    
+                                  
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Slaptažodis</label>
+                                <div class="col-sm-7">
+                                    <input type="password" class="form-control" name="password"
+                                        formControlName="password">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('password').hasError('required') && (form.get('password').touched || submitted)">
+                                        <!-- Password field is required. -->
+                                        Slaptažodžio laukas yra būtinas.
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('password').hasError('pattern') && (form.get('password').touched || submitted)">
+                                        <!-- Password must be at least 8 characters, and at least 1 uppercase, 1 lowercase, and 1 number. -->
+                                        Slaptažodis privalo būti sudarytas iš 8 raidžių ir bent vieno skaičiaus.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Pakartoti slaptažodį</label>
+                                <div class="col-sm-7">
+                                    <input type="password" class="form-control" name="confirmPassword"
+                                        formControlName="confirmPassword">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('confirmPassword').hasError('required') && (form.get('confirmPassword').touched || submitted)">
+                                        <!-- Confirm password field is required. -->
+                                        Patvirtinkite slaptažodžio lauką.
+                                    </div>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('confirmPassword').hasError('mustMatch') && (form.get('confirmPassword').touched || submitted)">
+                                        <!-- Password and confirm password must match. -->
+                                        Slaptažodis ir patvirtinimo slaptažodis turi sutapti.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Įmonės pavadinimas</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="companyName"
+                                        formControlName="companyName">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('companyName').hasError('required') && (form.get('companyName').touched || submitted)">
+                                        <!-- Company name field is required. -->
+                                        Įmonės pavadinimo laukas yra būtinas.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Įmonės kodas</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="companyCode"
+                                        formControlName="companyCode">
+                                        <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('companyCode').hasError('required') && (form.get('companyCode').touched || submitted)">
+                                        <!-- Company code field is required. -->
+                                        Įmonės kodo laukas yra būtinas.
+                                    </div> 
+                                    <div class="invalid-feedback d-block"
+                                    *ngIf="(form.get('companyCode').hasError('minlength') || form.get('companyCode').hasError('pattern') || form.get('companyCode').hasError('maxlength'))  && (form.get('companyCode').touched || submitted)">
+                                   <!-- Company code field is required. -->
+                                        Leisti tik nuo 7 iki 9 skaitmenų daugiau ne mažiau
+                                </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Sektorius</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="sector" formControlName="sector">
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="form.get('sector').hasError('required') && (form.get('sector').touched || submitted)">
+                                        
+                                        Sektoriaus laukas yra būtinas.
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group font-weight-bold text-center">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                        formControlName="allowRegister" name="allowRegister">
+                                    <label class="custom-control-label" for="customCheck1">
+                                        <a routerLink='/term-condition' target="_blank" class="text-primary">
+                                            Sutinku su taisyklėmis bei
+                                            privatumo politika
+                                        </a>
+                                    </label>
+                                    <div class="invalid-feedback d-block"
+                                        *ngIf="!form.get('allowRegister').value && submitted">
+                                        <!-- Please accept terms and conditions to proceed. -->
+                                        Norėdami tęsti, sutikite su taisyklėmis ir nuostatomis.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group text-center mb-0">
+                                <button class="btn btn-primary login-registration-submit" id="submitButton"
+                                    type="submit">Registracija</button>
+                            </div>
+                            <div class="form-group text-center mb-4">
+                                <a (click)="signInWithFacebook()"><img src="assets/image/facebooklogin.svg" alt="Facebook" class="social-icon first-social-icon" /></a>
+                                <a (click)="signInWithGoogle()"><img src="assets/image/gmaillogin.svg" alt="Google" class="social-icon first-social-icon" /></a>
+                            </div>
+                            <div class="text-center mt-2 " id="errorMessageSection" style="display: none;">
+                                <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                                <label id="errorMessage"></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

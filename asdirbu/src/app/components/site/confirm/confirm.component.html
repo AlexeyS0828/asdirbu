@@ -1,0 +1,21 @@
+<section class="section-style-1">
+    <div class="container">
+        <div class="bg-white confirm-box">
+            <h3 class="text-center text-primary bold confirm-title" *ngIf="this.type==='job-posting'">
+                Jūsų skelbimas išsiųstas sėkmingai
+            </h3>
+            <h3 class="text-center text-primary bold confirm-title" *ngIf="this.type==='registration' || this.type==='payment'">
+                Patvirtinkite savo el paštą, sekdami nuorodas el pašte
+            </h3>
+            <hr>
+            <div class="text-center confirm-body">
+                <div class="confirm-img-box">
+                    <img class="img-fluid confirm-img" src="assets/image/confirm.png" alt="">
+                </div>
+                <div class="confirm-btn-area">
+                    <button class="btn btn-primary" (click)="redirectToHome()" type="button">Į pagrindinį</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

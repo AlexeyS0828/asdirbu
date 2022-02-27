@@ -1,0 +1,455 @@
+<section class="section-style-1">
+    <div class="container">
+        <div class="card border-0">
+            <!-- card-body Start -->
+            <div class="card-body">
+                <div class="msg-profile-area">
+                    <div class="msg-profile-left-area">
+                        <img [src]="profileImage" alt="">
+                    </div>
+                    <div class="msg-profile-right-area">
+                        <h4 class="msg-profile-name text-primary font-weight-bold">{{name}} </h4>
+                        <p class="mb-0">{{specialty}}</p>
+                        <p class="mb-0">{{address}}</p>
+                        <div class="list-member-retting">
+                            <span
+                                class="text-primary font-weight-bold user-hourrate">€{{hourrate}}</span> &nbsp;
+                            <rating [(ngModel)]="rating" [readonly]="isReadonly"></rating>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-primary font-weight-bold">Apie Paslaugą</h4>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" disabled
+                            rows="5">{{aboutus}}</textarea>
+                        <div><br>
+                            <h4 class="text-primary font-weight-bold">Darbo nuotraukos</h4>
+                            <div class="d-inline-block mr-3 va-t" *ngFor="let image of imageList">
+                                <div class="select-file-image-preview image-preview"
+                                    (click)="openPriviewImage(previewImageModel,image)">
+                                    <img [src]="image" [alt]="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <h4 class="text-primary font-weight-bold">Užimtumo kalendorius</h4>
+                            <div class="mb-2 review-datepicker">
+                                <bs-datepicker-inline #bsDatePicker [bsValue]="bsInlineValue"
+                                    [dateCustomClasses]="dateCustomClasses"
+                                    [bsConfig]="{ showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY',  displayMonths: 1, containerClass : 'theme-orange'}"
+                                    (bsValueChange)="onCalendarValueChange($event)"></bs-datepicker-inline>
+                            </div>
+                            <div class="mb-2 text-right calander-below-btn-area">
+                                <a (click)="addUserChat()" class="btn btn-primary text-white">Siųsti žinutę</a>&nbsp;
+                                <a (click)="onRedirectPaymentPage()" class="btn btn-primary text-white">Samdyti </a>
+                            </div>
+                            <div class="text-center mt-2 " id="errorMessageSection" style="display: none;">
+                                <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                                <label id="errorMessage"></label>
+                            </div>
+                            <div class="text-center mt-2 " id="successMessageSection" style="display: none;">
+                                <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+                                <label id="successMessage"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- card-body End -->
+        </div>
+        <div class="card border-0 mt-4" id="review">
+            <div class="card-body">
+                <h4 class="text-primary font-weight-bold mb-4">Atsiliepimai</h4>
+                <ul class="review-list" *ngIf="displayDummyReviewText">
+                    <li>
+                        <div class="text-primary text-center">
+                            <h4>Nerasta atsiliepimų</h4>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Review List  -->
+                <ul class="review-list" *ngIf="!displayDummyReviewText">
+                    <li *ngFor="let reviews of reviewList">
+                        <div class="review-profile-area">
+                            <div class="review-profile-left-area">
+                                <img src="{{reviews.image}}" alt="">
+                            </div>
+                            <div class="review-profile-right-area">
+                                <h5 class="review-profile-name text-primary">{{reviews.name}}</h5>
+                                <div class="list-member-retting">
+                                    <rating [(ngModel)]="reviews.rating" [readonly]="isReadonly"></rating>
+                                </div>
+                                <p>{{reviews.review}}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="row" *ngIf="!displayDummyReviewText">
+                    <div class="col-md-12">
+                        <pagination class="mt-4" pageBtnClass="btn" [totalItems]="totalPageNumber"
+                            [(ngModel)]="pageNumber" (pageChanged)="pageChanged($event)" previousText="Atgal"
+                            nextText="Kitas">
+                        </pagination>
+                    </div>
+                </div>
+                <div class="row" id="errorMessageSection2" style="display: none;">
+                    <div class="col-md-12">
+                        <div class="text-center mt-2">
+                            <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                            <label id="errorMessage2"></label>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Review List  -->
+            </div>
+        </div>
+        <modal #timesheetModal>
+            <modal-header>
+                <h5 class="modal-title text-primary font-weight-bold" id="exampleModalScrollableTitle">Samdyti</h5>
+            </modal-header>
+            <modal-content>
+                <form [formGroup]="calendarForm" style="overflow: auto;">
+                    <div class="modal-body">
+                        <div>
+                            <div class="time-table-contr">
+                                <i class="fas fa-chevron-circle-left mr-2" (click)="changeDate('decrement')"></i>
+                                <span>{{selectedTextDate}}</span>
+                                <i class="fas fa-chevron-circle-right ml-2" (click)="changeDate('increment')"></i>
+                            </div>
+                            <div class="table-responsive">
+                                <div class="d-flex cu-table-layout">
+                                    <div *ngFor="let element of selectedDateWiseTableHeading">{{element.day}}
+                                        {{element.date | date:'d/M'}}</div>
+                                </div>
+                                <div class="d-flex cu-table-layout-inner" *ngIf="selectedDateCount!=0">
+                                    <div>
+                                        <div formArrayName="0"
+                                            *ngFor="let control of calendarForm.controls[0]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="calendarForm.controls[0]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':calendarForm.controls[0]['controls'][j].value.isDisable}"
+                                                        id="demo-0-{{j}}" name="check" formControlName="check"
+                                                        value="calendarForm.controls[0]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,0,calendarForm.controls[0]['controls'][j].value.from,calendarForm.controls[0]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-0-{{j}}">{{calendarForm.controls[0]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="1"
+                                            *ngFor="let control of calendarForm.controls[1]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="calendarForm.controls[1]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':calendarForm.controls[1]['controls'][j].value.isDisable}"
+                                                        id="demo-1-{{j}}" name="check" formControlName="check"
+                                                        value="calendarForm.controls[1]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,1,calendarForm.controls[1]['controls'][j].value.from,calendarForm.controls[1]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-1-{{j}}">{{calendarForm.controls[1]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="2"
+                                            *ngFor="let control of calendarForm.controls[2]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="calendarForm.controls[2]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':calendarForm.controls[2]['controls'][j].value.isDisable}"
+                                                        id="demo-2-{{j}}" name="check" formControlName="check"
+                                                        value="calendarForm.controls[2]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,2,calendarForm.controls[2]['controls'][j].value.from,calendarForm.controls[2]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-2-{{j}}">{{calendarForm.controls[2]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="3"
+                                            *ngFor="let control of calendarForm.controls[3]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="calendarForm.controls[3]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':calendarForm.controls[3]['controls'][j].value.isDisable}"
+                                                        id="demo-3-{{j}}" name="check" formControlName="check"
+                                                        value="calendarForm.controls[3]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,3,calendarForm.controls[3]['controls'][j].value.from,calendarForm.controls[3]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-3-{{j}}">{{calendarForm.controls[3]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="4"
+                                            *ngFor="let control of calendarForm.controls[4]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="calendarForm.controls[4]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':calendarForm.controls[4]['controls'][j].value.isDisable}"
+                                                        id="demo-4-{{j}}" name="check" formControlName="check"
+                                                        value="calendarForm.controls[4]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,4,calendarForm.controls[4]['controls'][j].value.from,calendarForm.controls[4]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-4-{{j}}">{{calendarForm.controls[4]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="5"
+                                            *ngFor="let control of calendarForm.controls[5]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="calendarForm.controls[5]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':calendarForm.controls[5]['controls'][j].value.isDisable}"
+                                                        id="demo-5-{{j}}" name="check" formControlName="check"
+                                                        value="calendarForm.controls[5]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,5,calendarForm.controls[5]['controls'][j].value.from,calendarForm.controls[5]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-5-{{j}}">{{calendarForm.controls[5]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="6"
+                                            *ngFor="let control of calendarForm.controls[6]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="calendarForm.controls[6]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':calendarForm.controls[6]['controls'][j].value.isDisable}"
+                                                        id="demo-6-{{j}}" name="check" formControlName="check"
+                                                        value="calendarForm.controls[6]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,6,calendarForm.controls[6]['controls'][j].value.from,calendarForm.controls[6]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-6-{{j}}">{{calendarForm.controls[6]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex cu-table-layout" *ngIf="selectedDateCount==0">
+                                    <div>Įrašas nerastas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span>Viso : {{totalHourRatePrice}}€ (mokeščiai įskaičiuoti)</span>
+                        <button type="button" (click)="onSubmitCalendarform()" class="btn btn-primary"
+                            data-dismiss="modal">Patvirtinti</button>
+                    </div>
+                </form>
+            </modal-content>
+            <modal-footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-left mt-2 " *ngIf="errorMessage1">
+                            <img class="img-fluid" *ngIf="errorMessage1" src="assets/image/form-error.png"> &nbsp;
+                            <label id="errorMessage1">{{errorMessage1}}</label>
+                        </div>
+                    </div>
+                </div>
+            </modal-footer>
+        </modal>
+        <modal #customTimesheetModal>
+            <modal-header>
+                <h5 class="modal-title text-primary font-weight-bold" id="exampleModalScrollableTitle">Samdyti</h5>
+            </modal-header>
+            <modal-content>
+                <form [formGroup]="customCalendarForm" style="overflow: auto;">
+                    <div class="modal-body">
+                        <div>
+                            <div class="time-table-contr">
+                                <i class="fas fa-chevron-circle-left mr-2" (click)="changeCustomDate('decrement')"></i>
+                                <span>{{selectedTextDate}}</span>
+                                <i class="fas fa-chevron-circle-right ml-2" (click)="changeCustomDate('increment')"></i>
+                            </div>
+                            <div class="table-responsive">
+                                <div class="d-flex cu-table-layout">
+                                    <div *ngFor="let element of selectedDateWiseTableHeading">{{element.day}}
+                                        {{element.date | date:'d/M'}}</div>
+                                </div>
+                                <div class="d-flex cu-table-layout-inner" *ngIf="selectedDateCount!=0">
+                                    <div>
+                                        <div formArrayName="0"
+                                            *ngFor="let control of customCalendarForm.controls[0]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="customCalendarForm.controls[0]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':customCalendarForm.controls[0]['controls'][j].value.isDisable}"
+                                                        id="demo-0-{{j}}" name="check" formControlName="check"
+                                                        value="customCalendarForm.controls[0]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,0,customCalendarForm.controls[0]['controls'][j].value.from,customCalendarForm.controls[0]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-0-{{j}}">{{customCalendarForm.controls[0]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="1"
+                                            *ngFor="let control of customCalendarForm.controls[1]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="customCalendarForm.controls[1]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':customCalendarForm.controls[1]['controls'][j].value.isDisable}"
+                                                        id="demo-1-{{j}}" name="check" formControlName="check"
+                                                        value="customCalendarForm.controls[1]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,1,customCalendarForm.controls[1]['controls'][j].value.from,customCalendarForm.controls[1]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-1-{{j}}">{{customCalendarForm.controls[1]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="2"
+                                            *ngFor="let control of customCalendarForm.controls[2]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="customCalendarForm.controls[2]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':customCalendarForm.controls[2]['controls'][j].value.isDisable}"
+                                                        id="demo-2-{{j}}" name="check" formControlName="check"
+                                                        value="customCalendarForm.controls[2]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,2,customCalendarForm.controls[2]['controls'][j].value.from,customCalendarForm.controls[2]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-2-{{j}}">{{customCalendarForm.controls[2]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="3"
+                                            *ngFor="let control of customCalendarForm.controls[3]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="customCalendarForm.controls[3]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':customCalendarForm.controls[3]['controls'][j].value.isDisable}"
+                                                        id="demo-3-{{j}}" name="check" formControlName="check"
+                                                        value="customCalendarForm.controls[3]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,3,customCalendarForm.controls[3]['controls'][j].value.from,customCalendarForm.controls[3]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-3-{{j}}">{{customCalendarForm.controls[3]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="4"
+                                            *ngFor="let control of customCalendarForm.controls[4]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="customCalendarForm.controls[4]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':customCalendarForm.controls[4]['controls'][j].value.isDisable}"
+                                                        id="demo-4-{{j}}" name="check" formControlName="check"
+                                                        value="customCalendarForm.controls[4]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,4,customCalendarForm.controls[4]['controls'][j].value.from,customCalendarForm.controls[4]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-4-{{j}}">{{customCalendarForm.controls[4]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="5"
+                                            *ngFor="let control of customCalendarForm.controls[5]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="customCalendarForm.controls[5]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':customCalendarForm.controls[5]['controls'][j].value.isDisable}"
+                                                        id="demo-5-{{j}}" name="check" formControlName="check"
+                                                        value="customCalendarForm.controls[5]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,5,customCalendarForm.controls[5]['controls'][j].value.from,customCalendarForm.controls[5]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-5-{{j}}">{{customCalendarForm.controls[5]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div formArrayName="6"
+                                            *ngFor="let control of customCalendarForm.controls[6]['controls'];let j=index">
+                                            <ng-container [formGroupName]="j">
+                                                <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox"
+                                                    *ngIf="customCalendarForm.controls[6]['controls'][j].value.isExist">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [ngClass]="{'user-hire':customCalendarForm.controls[6]['controls'][j].value.isDisable}"
+                                                        id="demo-6-{{j}}" name="check" formControlName="check"
+                                                        value="customCalendarForm.controls[6]['controls'][j].controls.check"
+                                                        (change)="isChecked($event.target.checked,6,customCalendarForm.controls[6]['controls'][j].value.from,customCalendarForm.controls[6]['controls'][j].value.to)" />
+                                                    <label class="custom-control-label"
+                                                        for="demo-6-{{j}}">{{customCalendarForm.controls[6]['controls'][j].value.from}}</label>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex cu-table-layout" *ngIf="selectedDateCount==0">
+                                    <div>Įrašas nerastas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span>Viso : {{totalHourRatePrice}}€ (mokeščiai įskaičiuoti)</span>
+                        <button type="button" (click)="customTimesheetFormSubmit()" class="btn btn-primary"
+                            data-dismiss="modal">Patvirtinti</button>
+                    </div>
+                </form>
+            </modal-content>
+            <modal-footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-left mt-2 " *ngIf="errorMessage1">
+                            <img class="img-fluid" *ngIf="errorMessage1" src="assets/image/form-error.png"> &nbsp;
+                            <label id="errorMessage1">{{errorMessage1}}</label>
+                        </div>
+                    </div>
+                </div>
+            </modal-footer>
+        </modal>
+    </div>
+</section>
+<button class="invisible" #previewImageModel data-toggle="modal" data-target="#previewImageModel"></button>
+<div class="modal fade open" id="previewImageModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img [src]="previewImage" class="img-responsive" />
+            </div>
+        </div>
+    </div>
+</div>

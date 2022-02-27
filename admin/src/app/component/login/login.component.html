@@ -1,0 +1,63 @@
+<div class="wrapper wrapper-full-page">
+    <div class="full-page login-page" filter-color="black" data-image="assets/img/login.jpg">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                        <form method="" action="#" id="loginForm"  [formGroup]="loginForm"
+                        (ngSubmit)="onLoginFormSubmit()">
+                            <div class="card card-login">
+                                <div class="card-header bg-lightred text-center" data-background-color="rose">
+                                    <h4 class="card-title">Prisijungti</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">email</i>
+                                        </span>
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">El. paštas</label>
+                                            <input type="text" class="form-control" id="email" 
+                                            title="Email" formControlName="email"
+                                            [ngClass]="{'is-invalid':loginForm.get('email').touched && loginForm.get('email').invalid}" />
+                                            <span class="material-input"></span>
+                                            <div class="invalid-feedback text-left">
+                                                    <label class="text-left text-danger"
+                                                        *ngIf="loginForm.get('email').errors?.required">
+                                                        El.pašto laukas yra privalomas
+                                                    </label>
+                                                    <label class="text-left text-danger" *ngIf="loginForm.get('email').errors?.email">
+                                                        Įveskite galiojantį el. Pašto adresą.
+                                                    </label>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">lock_outline</i>
+                                        </span>
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Slaptažodis</label>
+                                            <input type="password" class="form-control" id="password" autocomplete="password"
+                                                 title="Password" formControlName="password"
+                                                [ngClass]="{'is-invalid':loginForm.get('password').touched && loginForm.get('password').invalid}" />
+                                                <span class="material-input"></span>
+                                            <label class="invalid-feedback text-left text-danger">Slaptažodžio laukas yra privalomas</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <button type="submit" class="btn btn-lightred  btn-simple btn-wd btn-lg">Prisijunk</button>
+                                </div> 
+                                <div class="footer text-center">
+                                    <label class="text-danger">{{errorMessage}}</label>
+                                </div>
+                            </div>  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="full-page-background" style="background-image: url(assets/img/login.jpg);"></div>
+    </div>
+</div>

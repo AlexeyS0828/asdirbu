@@ -1,0 +1,214 @@
+<section class="section-style-1">
+
+    <div class="container">
+        <div class="card border-0">
+            <!-- card-body Start -->
+            <div class="card-body">
+                <div class="msg-profile-area">
+                    <div class="msg-profile-left-area">
+                        <img [src]="profileImage" alt="">
+                    </div>
+                    <div class="msg-profile-right-area">
+                        <h4 class="msg-profile-name text-primary font-weight-bold">{{name}}</h4>
+                        <div class="list-member-retting">
+                            <rating [(ngModel)]="rating"  [max]="5" [readonly]="true"></rating>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div>
+                    <h4 class="text-primary font-weight-bold">Sąlygos</h4>
+                    <p><a href="https://www.asdirbu.lt/term-condition" class="text-primary" target="_blank">Prašome skaityti mūsų puslapyje Taisyklės ir sąlygos</a></p>
+                </div>
+            </div>
+            <!-- card-body End -->
+        </div>
+        <div class="card border-0 mt-4">
+            <div class="card-body">
+                <h4 class="text-primary font-weight-bold mb-4">Mokėjimo detalės
+                </h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="booking-detail-list">
+                            <table class="table m-0">
+                                <tbody>
+                                    <tr>
+                                        <th class="border-0" colspan="2">Jūsų pirkinys</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Miestas</td>
+                                        <td class="text-right">{{city}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diena</td>
+                                        <td class="text-right">{{day}}({{totalHour}} hr)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Darbas</th>
+                                        <th class="text-right">{{work}}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="booking-item-list">
+                            <table class="table m-0 table-booking-item-list">
+                                <tbody>
+                                    <tr>
+                                        <th class="border-0" colspan="2">Kaina</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{serviceName}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paslaugos</td>
+                                        <td class="text-right">€{{servicePrice}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Administravimo mokestis</td>
+                                        <td class="text-right">€{{fees}}</td>
+                                    </tr>
+                                    <tr *ngIf="taxPay">
+                                        <td>PVM mokestis</td>
+                                        <td class="text-right">€0.00</td>
+                                    </tr> 
+                                    <tr>
+                                        <th>Viso</th>
+                                        <th class="text-right">€{{totalPrice}}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                    <h5 class="text-center mb-4 mt-4">Mokėjimo būdas</h5>                
+                    <form class="payment-form pb-4" [formGroup]="paymentForm" (submit)="onPaymentFormSubmit()">    
+                    <div class="row justify-content-center">
+                        <!-- <div class="col-3 text-center mb-3 mt-3" (click)="onSelectPaymentType(1)">
+                            <div class="payment-type-box"  [ngClass]="{'active':paymentType==1}">
+                                <i class="fab fa-cc-stripe"></i>
+                            </div>
+                        </div> -->
+                        <div class="col-6 text-center mb-3 mt-3" (click)="opayPayment(3)">
+                            <div class="payment-type-box" [ngClass]="{'active':paymentType==3}">
+                                <h6 class="font-weight-bold opay-payment-text text-primary">El.bankininkystė</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center mb-3 mt-3" (click)="onSelectPaymentType(2)">
+                            <div class="payment-type-box" [ngClass]="{'active':paymentType==2}">
+                                <i class="fab fa-cc-paypal"></i>
+                            </div>
+                        </div>                        
+                    </div>
+                    
+                <!-- <div class="row">
+                    <div class="col-3 text-center mb-3 mt-3" (click)="onSelectPaymentType(1)">
+                        <div class="payment-type-box"  [ngClass]="{'active':paymentType==1}">
+                            <i class="fab fa-cc-stripe"></i>
+                        </div>
+                    </div>
+                    <div class="col-3 text-center mb-3 mt-3" (click)="onSelectPaymentType(2)">
+                        <div class="payment-type-box" [ngClass]="{'active':paymentType==2}">
+                            <i class="fab fa-cc-paypal"></i>
+                        </div>
+                    </div>
+                    <a href="{{opayEncodeCode}}">
+                        <div class="col-3 text-center mb-3 mt-3">
+                            <div class="payment-type-box">
+                                <i class="fab fa-cc-paypal"></i>
+                            </div>
+                        </div>  
+                    </a>
+                 </div> -->
+                
+                     <h5 class="font-weight-bold mt-4">Mokėk su nauja kortele</h5>
+                    <div class="form-group">
+                    <input type="tel" id="cc-number" class="form-control"  placeholder="Kredito / debeto kortelės numeris" name="cardNumber"  formControlName="cardNumber"  />
+                    <div class="invalid-feedback d-block"
+                    *ngIf="paymentForm.get('cardNumber').hasError('required') && (paymentForm.get('cardNumber').touched || submitted)">                           
+                    Įveskite kredito / debeto kortelės numerį
+                    </div>
+                    <div class="invalid-feedback d-block"
+                    *ngIf="paymentForm.get('cardNumber').hasError('pattern') && (paymentForm.get('cardNumber').touched || submitted)">
+                    Įveskite tik numerį
+                    </div>
+                    <div class="invalid-feedback d-block"
+                    *ngIf="(paymentForm.get('cardNumber').hasError('maxlength') || paymentForm.get('cardNumber').hasError('minlength')) && (!paymentForm.get('cardNumber').hasError('pattern')) && (paymentForm.get('cardNumber').touched || submitted)">
+                    Įveskite teisingą kredito / debeto kortelės numerį
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="form-group col-md-4">
+                    <input type="tel" id="cc-exp-date" class="form-control" name="month" placeholder="MM/YYYY" formControlName="month" mask="00/0000" />
+                    <div class="invalid-feedback d-block"
+                    *ngIf="paymentForm.get('month').hasError('required') && (paymentForm.get('month').touched || submitted)">
+                    Įveskite mėnesio metus
+                    </div>
+                    <div class="invalid-feedback d-block"
+                    *ngIf="(paymentForm.get('month').hasError('minlength') || paymentForm.get('month').hasError('maxlength')) && (paymentForm.get('month').touched || submitted)">
+                    Įveskite galiojantį mėnesį ir metus (MM/YYYY)
+                    </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                    <input type="tel" id="cc-cvc" class="form-control" name="cvv" placeholder="CVV" formControlName="cvv" />
+                    <div class="invalid-feedback d-block"
+                    *ngIf="paymentForm.get('cvv').hasError('required') && (paymentForm.get('cvv').touched || submitted)">
+                    Įveskite CVV
+                    </div>
+                    <div class="invalid-feedback d-block"
+                    *ngIf="paymentForm.get('cvv').hasError('pattern') && (paymentForm.get('cvv').touched || submitted)">
+                    Įveskite tik numerį
+                    </div>
+                    <div class="invalid-feedback d-block"
+                    *ngIf="(paymentForm.get('cvv').hasError('maxlength') || paymentForm.get('cvv').hasError('minlength')) && (!paymentForm.get('cvv').hasError('pattern')) && (paymentForm.get('cvv').touched || submitted)">
+                    Įveskite galiojantį CVC
+                    </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="country" placeholder="Šalis" formControlName="country" />
+                    <div class="invalid-feedback d-block" *ngIf="paymentForm.get('country').invalid && (paymentForm.get('country').touched || submitted)">
+                    Įveskite šalį
+                    </div>
+                    </div>
+                    </div>
+                    <div class="form-group pl-2 mt-4 mb-4">
+                    <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="termCondition" />
+                    <label class="custom-control-label" for="customCheck1"><a routerLink='/term-condition' class="text-primary font-weight-bold" target="_blank">Sutinku su taisyklėmis bei privatumo politika</a>
+                    </label>                           
+                    </div>
+                    </div>
+                    <div class="form-group text-center">
+                    <button class="btn btn-primary btn-block p-r" type="submit"><span class="s-price">€{{totalPrice}} viso</span> Rezervuok</button>
+                    </div>
+                    <div class="text-center mt-2 " id="errorMessageSection" style="display: none;">
+                    <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                    <label id="errorMessage"></label>
+                    </div>
+                    <div class="text-center mt-2 " id="successMessageSection" style="display: none;">
+                    <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+                    <label id="successMessage"></label>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+         <modal #paymentModal>
+            <modal-header>
+               <h4 class="font-bold text-center">Pasirinkite mokėjimą</h4>
+            </modal-header>
+            <modal-content>
+                <div class="paymentModel">
+                    <div class="row">
+                        <div class="col-md-12 col-centered">
+                            <ngx-paypal [config]="paypalPlanConfig"></ngx-paypal>
+                        </div>
+                    </div>
+                </div>
+            </modal-content>
+        </modal>
+    </div>
+</section>

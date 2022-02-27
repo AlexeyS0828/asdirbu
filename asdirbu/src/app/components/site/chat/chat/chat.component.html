@@ -1,0 +1,10 @@
+<br>
+<div class="chat-page">
+  <div class="w-100">
+  <div class="chat-box">
+    <app-contacts-list *ngIf="showContactList" [defaultSelectedUser]="defaultSelectedUser" (selectedUser)="onUserSelected($event)"></app-contacts-list>
+    <app-messages-view *ngIf="showMessageList" [messages]="messages" [selectedUser]="selectedUser"  (sendMessage)="onSendMessage($event)"></app-messages-view>
+  </div>
+</div></div>
+
+

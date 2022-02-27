@@ -1,0 +1,27 @@
+export interface UserDetails {
+    id:string;
+    name:string;
+    lastname?:string;
+    email:string;
+    hourRate:string;
+    dob?:string;
+    type?:string;
+    service?:string;
+    houseNumber?:string;
+    mobileNumber:string;
+    city:string;
+    address:string;
+    bankAccountNumber:string;
+    aboutMe:string; 
+    documentFile:[];
+    timeSheet:[];
+    isApproved:number;
+    specialty:string;
+    serviceName:string;
+    companyName?:string;
+    companyCode?:string;
+    userType?:number;
+    profileImage?:string;
+    images?:string;
+    otherServiceName?:string;
+}

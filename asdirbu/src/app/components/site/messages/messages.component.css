@@ -1,0 +1,41 @@
+.msg-title {
+    margin: 20px 0;
+}
+
+.msg-body {
+    margin: 80px 0 60px;
+}
+
+.msg-profile-area {
+    display: -webkit-box !important;
+    display: flex !important;
+    align-items: center;
+}
+
+.msg-profile-left-area {
+    max-width: 100px;
+    width: 70px;
+    background: #ecf0f1;
+    height: 70px;
+    border-radius: 60px;
+    min-width: 70px;
+    overflow: hidden;
+}
+
+.msg-profile-left-area img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.msg-profile-right-area {
+    padding-left: 15px;
+    width: 100%;
+}
+
+.msg-profile-right-area .msg-profile-name {
+    margin: 0;
+}
+
+.msg-profile-right-area .list-member-retting {
+    font-size: 15px;
+}

@@ -1,0 +1,12 @@
+<section class="section-style-1">
+    <div class="container">
+        <div class="bg-white p-3">
+            <div class="text-center" *ngIf="errorMessage">
+                <h1 class="text-primary">{{errorMessage}}</h1>
+            </div>      
+            <div class="text-center" *ngIf="successMessage">
+                <h1 class="text-primary">{{successMessage}}</h1>
+            </div>           
+        </div>
+    </div>
+</section>

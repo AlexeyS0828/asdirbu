@@ -1,0 +1,110 @@
+.msg-profile-area {
+    display: -webkit-box !important;
+    display: flex !important;
+    align-items: center;
+}
+
+.msg-profile-left-area {
+    max-width: 100px;
+    width: 70px;
+    background: #ecf0f1;
+    height: 70px;
+    border-radius: 60px;
+    min-width: 70px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msg-profile-left-area img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.msg-profile-right-area {
+    padding-left: 15px;
+    width: 100%;
+}
+
+.msg-profile-right-area .msg-profile-name {
+    margin: 0;
+}
+
+.msg-profile-right-area .list-member-retting {
+    font-size: 15px;
+}
+
+
+/* review list */
+
+.review-list {
+    padding: 0;
+    margin: 0;
+}
+
+.review-list li {
+    list-style: none;
+    border: 1px solid #939393;
+    border-radius: 10px;
+    padding: 15px 15px 5px;
+    margin-bottom: 20px;
+}
+
+.review-profile-area {
+    display: -webkit-box;
+    display: flex;
+}
+
+.review-profile-left-area {
+    max-width: 100px;
+    background: #ecf0f1;
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 60px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-profile-left-area img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.review-profile-right-area {
+    padding-left: 15px;
+    width: 100%;
+}
+
+.review-profile-right-area .review-profile-name {
+    margin: 0;
+}
+
+.review-profile-right-area .list-member-retting {
+    margin-bottom: 10px;
+}
+
+.review-profile-right-area .list-member-retting {
+    font-size: 12px;
+}
+
+
+/* Modal */
+
+.employment-tbl tr {
+    vertical-align: middle;
+}
+
+.employment-tbl tr td {
+    vertical-align: middle;
+}
+
+.employment-time-filds span input {
+    max-width: 90px;
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+}

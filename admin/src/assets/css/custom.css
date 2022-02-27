@@ -1,0 +1,211 @@
+body,a,p,span,h1,h2,h3,h4,h5,h6 {
+    font-family: 'Montserrat', serif;
+}
+.bg-lightred{
+	background-color: #fd7e14 !important;
+}
+.text-lightred{
+	color: #fd7e14 !important;
+}
+.text-danger{
+    color: #FF0000 !important;
+}
+
+.font-weight-bold{
+    font-weight: bold;
+}
+th,td{
+    word-break: break-word;
+}
+.bg-lightred{
+	background: #fd7e14 !important;
+	box-shadow:unset;
+}
+.btn-lightred{
+	background: #fd7e14 !important;
+	color: #FFFFFF !important;
+	padding: 10px 30px !important;
+}
+.login-page .card-login .btn-wd{
+	min-width:unset;
+}
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+.form-control.is-invalid~.invalid-feedback, .form-control.is-invalid~.invalid-tooltip, .was-validated .form-control:invalid~.invalid-feedback, .was-validated .form-control:invalid~.invalid-tooltip{
+	display: block;
+}
+.invisible{
+    visibility: hidden;
+}
+
+/* You can add global styles to this file, and also import other style files */
+#toast-container>div {
+    opacity: 1;
+    top:50px;
+}
+
+.toast-container .ngx-toastr {
+    width: 350px;
+}
+
+.toast-top-right {
+    right: 75px;
+}
+.view-profile-button:hover,
+.edit-button:hover,
+.delete-button:hover,
+.view-profile-button:active,
+.edit-button:active,
+.delete-button:active,
+.view-profile-button,
+.edit-button,
+.delete-button{
+    padding: 7px 7px;
+    margin: 2px 1px;
+    background-color: #fd7e14 !important;
+}
+.incomplete-button{
+    padding: 7px 7px;
+    margin: 2px 1px;
+    background-color: #dc3545!important;
+}
+.complete-button{
+    padding: 7px 7px;
+    margin: 2px 1px;
+    background-color: #28a745!important
+}
+.swal2-container:not(.swal2-in){
+    pointer-events: all !important;
+}
+.swal2-icon.swal2-warning {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #f8bb86;
+    border-color: #facea8;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+.swal2-popup{
+    width: 500px !important;
+}
+.swal2-confirm:focus,.swal2-cancel:focus{
+    box-shadow:unset !important;
+}
+.swal2-confirm,.swal2-cancel{
+    font-size: 20px !important;
+    box-shadow:unset !important;
+}
+.swal2-confirm{
+    background-color: #fd7e14 !important;
+}
+.sidebar[data-active-color="lightred"] li.active > a{
+    background-color: #fd7e14 !important;
+}
+.card [data-background-color="lightred"]
+{
+    background-color: #fd7e14 !important;
+}
+.navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:focus, .navbar .dropdown-menu li a:active, .navbar.navbar-default .dropdown-menu li a:hover, .navbar.navbar-default .dropdown-menu li a:focus, .navbar.navbar-default .dropdown-menu li a:active, .bootstrap-table .dropdown-menu li a:hover, .bootstrap-table .dropdown-menu li a:focus, .bootstrap-table .dropdown-menu li a:active{
+    background-color: #fd7e14 !important;
+}
+.show{
+    opacity: 1 !important;
+}
+.modal-dialog-centered{
+    display: block !important;
+}
+.add-user-form  .mymodal{
+   top:130px !important;
+}
+.add-user-form .modal-content .modal-header{
+    padding-top:5px !important;
+}
+.add-user-form .modal-content .modal-header .close{
+    font-size: 25px;
+    position: absolute;
+    top: 14px;
+    right: 15px;
+
+}
+.add-user-form  .modal-content .modal-body{
+    padding: 10px 20px !important;
+}
+
+.btn-green{
+    background: linear-gradient(60deg, #66bb6a, #43a047);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4)
+}
+.login-page > .content, .lock-page > .content {
+    padding-top:33vh !important;
+}
+.card{
+    cursor: pointer;
+}
+.form-group input[type=file]{
+    opacity: 1;
+    height: 32px;
+    position: relative;
+}
+.main-panel .content {
+    margin-top: 70px;
+    padding: 30px 15px;
+    min-height: calc(100vh - 123px);
+}
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after{
+    content: unset !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    background: #fd7e14 !important;
+    color: #FFF !important;
+    border:1px solid #fd7e14; 
+}
+div.dataTables_wrapper div.dataTables_filter input,
+div.dataTables_wrapper div.dataTables_length select {
+    padding: .375rem .75rem;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    background: #fd7e1490 !important;
+    border-color: #fd7e1490 !important;
+    color:#FFF !important;
+}
+.swal2-modal h2{
+    font-size: 26px;
+}
+
+.quickjobtable tr th{
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+.bs-datepicker-container{
+    padding: 0px !important;
+}
+.theme-orange .bs-datepicker-body table td.week span{
+    color:#fd7e14 !important;
+}
+.theme-orange .bs-datepicker-body table td span.selected, .theme-orange .bs-datepicker-body table td.selected span, .theme-orange .bs-datepicker-body table td span[class*="select-"]:after, .theme-orange .bs-datepicker-body table td[class*="select-"] span:after,
+.theme-orange .bs-datepicker-head{
+    background-color: #fd7e14 !important;
+}
+.form-control, .form-group .form-control{
+    background-image: linear-gradient(#fd7e14, #fd7e14), linear-gradient(#D2D2D2, #D2D2D2) !important;
+}/* 
+body .quickjobtable tr:first-child>th {
+    width: 0px !important;
+    min-width: 0px !important;
+    max-width: 0px !important;
+  } */
+  

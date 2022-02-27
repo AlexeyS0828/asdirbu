@@ -1,0 +1,96 @@
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header card-header-icon" data-background-color="lightred">
+						<i class="material-icons">person</i>
+					</div>
+                    <div class="card-content">
+						<h4 class="card-title mb-0 text-lightred font-weight-bold">Sandorių istorija</h4>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" title="Date Filter" placeholder="Date Filter" bsDaterangepicker
+                                (bsValueChange)="onCalendarValueChange($event)"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  displayMonths: 1, containerClass : 'theme-orange'}" />
+                            </div>   
+                        </div>   
+                        <div class="material-datatables">
+							<table #dataTable id="datatables" class=" row-border hover table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead class="quickjobtable">
+                                    <tr>
+                                        <!-- <th class="first-column">Id</th>
+                                        <th class="second-column">Kliento vardas ir pavardė</th>
+                                        <th class="third-column">Kūrėjo vardas ir pavardė</th>
+                                        <th class="five-column">Moketi naudotojui</th>
+                                        <th class="four-column">Suma</th>
+                                        <th class="five-column">Kūrėjo banko duomenys</th>
+                                        <th class="six-column">Sandorio ID</th>
+                                        <th class="seven-column">Mokėjimo tipas</th>
+                                        <th class="eight-column">Veiksmas</th> -->
+                                        <th class="first-column">Id</th>
+                                        <th class="second-column">Date</th>
+                                        <th class="third-column">Payment</th>
+                                        <th class="five-column">Pirkėjas</th>
+                                        <th class="four-column">Pardavėjo kaina</th>
+                                        <th class="five-column">Paslaugų teikėjo</th>
+                                        <th class="six-column">IBAN</th>
+                                        <th class="seven-column">Sumokėta</th>
+                                        <th class="eight-column">Stripe</th>
+                                        <th class="eight-column">Paypal</th>
+                                        <th class="eight-column">El.bankininkystė</th>
+                                        <th class="eight-column">Pelnas</th>
+                                        <th class="eight-column">Veiksmas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let transction of transctionHistory; let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{transction.date}}</td>
+                                        <td>{{transction.amount}}</td>
+                                        <td>{{transction.developerName}}</td>
+                                        <td>{{transction.servicePrice}}</td>
+                                        <td>{{transction.clientName}}</td>
+                                        <td>{{transction.bankAccountNumber}}</td>
+                                        <td>{{transction.isPaid}}</td>
+                                        <td>{{transction.stripe}}</td>
+                                        <td>{{transction.paypal}}</td>
+                                        <td>{{transction.opay}}</td>
+                                        <td>{{transction.profilt}}</td>
+                                        <td >                                                
+                                            <button *ngIf="transction.status==0" (click)="changeTransactionStatus(transction.id,1)" type="button" rel="tooltip" class="btn complete-button">
+                                                Baigta
+                                            </button>
+                                            <button *ngIf="transction.status==1" type="button" rel="tooltip" class="btn incomplete-button" (click)="changeTransactionStatus(transction.id,0)">
+                                                Nebaigtas
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

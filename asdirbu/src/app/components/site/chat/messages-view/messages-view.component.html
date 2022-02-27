@@ -1,0 +1,37 @@
+<ng-template #noMessages>
+  <div class="no-messages">
+    <img src="assets/image/envelope.png" />
+    <span class="title">Žinutes apie naujus užsakymus gausi čia.</span>
+    <!-- <span class="info">Send your first message below.</span> -->
+  </div>
+</ng-template>
+<div class="main">
+	<div class="user-information">
+	<ng-container *ngIf="selectedUser.id">
+	<a [routerLink]="['/profilis', selectedUser.id]" class="p-1">
+	<img [src]="selectedUser.profileImage" class="user-image" *ngIf="selectedUser.profileImage" />
+  	<div class="user-info">{{ selectedUser.name }}</div>
+	</a>
+</ng-container></div>
+  <div
+    *ngIf="messages.length; else noMessages"
+    class="messages-container"
+    #scrollMe
+  >
+    <ul>
+      <li
+        *ngFor="let message of messages" [style.flex-direction]="message.sender_id === currentUserId ? 'row-reverse' : 'row'">
+        <span [innerHTML]="message.message" [ngClass]="message.sender_id === currentUserId ? 'speech-bubble-own' : 'speech-bubble'">
+          
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div class="input-container">
+    <input
+      placeholder="Rašykite žinutę"
+      #messageInput
+      (keydown.enter)="onSendMessage(messageInput.value); messageInput.value = ''"
+    />
+  </div>
+</div>

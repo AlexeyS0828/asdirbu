@@ -1,0 +1,85 @@
+.msg-profile-area {
+    display: -webkit-box !important;
+    display: flex !important;
+    align-items: center;
+}
+
+.msg-profile-left-area {
+    max-width: 100px;
+    width: 70px;
+    background: #ecf0f1;
+    height: 70px;
+    border-radius: 60px;
+    min-width: 70px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msg-profile-left-area img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.msg-profile-right-area {
+    padding-left: 15px;
+    width: 100%;
+}
+
+.msg-profile-right-area .msg-profile-name {
+    margin: 0;
+}
+
+.msg-profile-right-area .list-member-retting {
+    font-size: 15px;
+}
+
+
+/* paymant */
+
+.booking-item-list {
+    padding: 5px 10px 5px;
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.table-booking-item-list.table th,
+.table-booking-item-list.table td {
+    padding: 0.49rem;
+}
+
+.booking-detail-list {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px 10px 5px;
+}
+
+.payment-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.s-price {
+    position: absolute;
+    left: 10px;
+}
+
+.payment-type-box {
+    height: 100px;
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    background: #f1f1f1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.payment-type-box i {
+    font-size: 45px;
+    color: #3f4d50;
+}

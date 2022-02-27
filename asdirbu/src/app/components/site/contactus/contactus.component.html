@@ -1,0 +1,134 @@
+<section class="section-style-1">
+    <div class="container">
+        <div class="row bg-white p-3">
+            <div class="col-md-5">  
+                <div class="row text-center">
+                    <div class="col-md-12">
+                    <h3 class="text-primary font-weight-bold mt-4">Portalo „Aš dirbu“ savininkė </h3>
+                    <img src="assets/image/logo1.svg" class="company-logo" />
+                    </div>
+                    <div class="col-md-12">
+                        <p class="mt-4">Įmonės kodas: 304093955</p>
+                        <p class="mt-4">PVM kodas: LT100010278915</p>
+                        <p class="mt-4">Adresas: Taikos 263A-76, Vilnius</p>
+                    </div>
+                </div>
+            </div>   
+            <div class="col-md-7">
+                <div class="text-center">
+                    <h3 class="text-primary font-weight-bold mt-4">Kontaktai</h3><br />
+                    <form [formGroup]="form" (submit)="onFormSubmit()" class="registration-form">
+                        <div class="form-group row align-items-center">
+                            <label class="col-sm-3 col-form-label text-right">Vardas</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="name" formControlName="name" />
+                                <div class="invalid-feedback d-block"
+                                    *ngIf="form.get('name').hasError('required') && (form.get('name').touched || submitted)">
+                                    Įveskite vardą
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <label class="col-sm-3 col-form-label text-right">El. paštas</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="email" formControlName="email" />
+                                <div class="invalid-feedback d-block"
+                                    *ngIf="form.get('email').hasError('required') && (form.get('email').touched || submitted)">
+                                    Įveskite el. Pašto adresą
+                                </div>
+                                <div class="invalid-feedback d-block"
+                                    *ngIf="form.get('email').hasError('email') && (form.get('email').touched || submitted)">
+                                    Įveskite galiojantį el. Pašto adresą
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <label class="col-sm-3 col-form-label text-right">Žinutė</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="message" rows="5" formControlName="message"></textarea>
+                                <div class="invalid-feedback d-block"
+                                    *ngIf="form.get('message').hasError('required') && (form.get('message').touched || submitted)">
+                                    Įveskite pranešimą
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center registration-btn-area">
+                            <button class="btn btn-primary" type="submit">Siųsti</button>
+                            <div class="text-center mt-2 " id="errorMessageSection" style="display: none;">
+                                <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                                <label id="errorMessage"></label>
+                            </div>
+                            <div class="text-center mt-2 " id="successMessageSection" style="display: none;">
+                                <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+                                <label id="successMessage"></label>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row">
+                            <div class="col-md-12">
+                                <p class="mb-0">Portalo “Aš dirbu” savininkas: UAB “Pilka Linija”</p>
+                            </div>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        <!-- <div class="bg-white p-3">
+            <div class="text-center">
+                <h3 class="text-primary font-weight-bold mt-4">Kontaktai</h3><br />
+            </div>
+            <form [formGroup]="form" (submit)="onFormSubmit()" class="registration-form">
+                <div class="form-group row align-items-center">
+                    <label class="col-sm-5 col-form-label text-right">Vardas</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="name" formControlName="name" />
+                        <div class="invalid-feedback d-block"
+                            *ngIf="form.get('name').hasError('required') && (form.get('name').touched || submitted)">
+                            Įveskite vardą
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row align-items-center">
+                    <label class="col-sm-5 col-form-label text-right">El. paštas</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="email" formControlName="email" />
+                        <div class="invalid-feedback d-block"
+                            *ngIf="form.get('email').hasError('required') && (form.get('email').touched || submitted)">
+                            Įveskite el. Pašto adresą
+                        </div>
+                        <div class="invalid-feedback d-block"
+                            *ngIf="form.get('email').hasError('email') && (form.get('email').touched || submitted)">
+                            Įveskite galiojantį el. Pašto adresą
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row align-items-center">
+                    <label class="col-sm-5 col-form-label text-right">Žinutė</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" name="message" rows="5" formControlName="message"></textarea>
+                        <div class="invalid-feedback d-block"
+                            *ngIf="form.get('message').hasError('required') && (form.get('message').touched || submitted)">
+                            Įveskite pranešimą
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center registration-btn-area">
+                    <button class="btn btn-primary" type="submit">Siųsti</button>
+                    <div class="text-center mt-2 " id="errorMessageSection" style="display: none;">
+                        <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                        <label id="errorMessage">{{errorMessage}}</label>
+                    </div>
+                    <div class="text-center mt-2 " id="successMessageSection" style="display: none;">
+                        <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+                        <label id="successMessage">{{successMessage}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <p class="mb-0">Portalo “Aš dirbu” savininkas: UAB “Pilka Linija”</p>
+                    </div>
+                </div>
+            </form>
+        </div> -->
+    </div>
+</section>

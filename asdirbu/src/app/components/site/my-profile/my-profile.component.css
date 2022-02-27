@@ -1,0 +1,139 @@
+.card-top-title {
+    padding: 10px 0 35px;
+}
+
+.msg-profile-area {
+    display: -webkit-box !important;
+    display: flex !important;
+    align-items: center;
+}
+
+.msg-profile-left-area {
+    max-width: 100px;
+    width: 70px;
+    background: #ecf0f1;
+    height: 70px;
+    border-radius: 60px;
+    min-width: 70px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msg-profile-left-area img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.msg-profile-right-area {
+    padding-left: 15px;
+    width: 100%;
+}
+
+.msg-profile-right-area .msg-profile-name {
+    margin: 0;
+}
+
+.msg-profile-right-area .list-member-retting {
+    font-size: 15px;
+}
+
+
+/* review list */
+
+.review-list {
+    padding: 0;
+    margin: 0;
+}
+
+.review-list li {
+    list-style: none;
+    border: 1px solid #939393;
+    border-radius: 10px;
+    padding: 15px 15px 5px;
+    margin-bottom: 20px;
+}
+
+.review-profile-area {
+    display: -webkit-box;
+    display: flex;
+}
+
+.review-profile-left-area {
+    max-width: 100px;
+    background: #ecf0f1;
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 60px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-profile-left-area img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.review-profile-right-area {
+    padding-left: 15px;
+    width: 100%;
+}
+
+.review-profile-right-area .review-profile-name {
+    margin: 0;
+}
+
+.review-profile-right-area .list-member-retting {
+    margin-bottom: 10px;
+}
+
+.review-profile-right-area .list-member-retting {
+    font-size: 12px;
+}
+
+
+/* Profile pic */
+
+.select-file-image-preview {
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.select-file-image-preview span {
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    color: #666666;
+    transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+}
+
+
+/* table */
+
+.dokumentus-table {
+    width: 100%;
+}
+
+.dokumentus-table tr {}
+
+.dokumentus-table td+td {
+    padding-left: 10px;
+    width: 80px;
+}
+
+.dokumentus-table td+td button {
+    min-width: 80px;
+    text-align: center;
+}

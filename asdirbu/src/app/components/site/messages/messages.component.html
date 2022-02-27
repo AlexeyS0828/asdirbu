@@ -1,0 +1,55 @@
+    <section class="section-style-1">
+
+    <div class="container">
+        <div class="card border-0">
+            <!-- card-body Start -->
+             <form [formGroup]="form" (submit)="onFormSubmit()">
+            <div class="card-body">
+                <div class="text-center msg-title">
+                    <h3 class="text-primary font-weight-bold">Palikite atsiliepimą</h3>
+                </div>
+                <div class="msg-body">
+                    <div class="row">
+                        <div class="col-lg-4 mb-lg-0 mb-3">
+                            <div class="msg-profile-area">
+                                <div class="msg-profile-left-area">
+                                    <img src="{{profileImage}}" alt="">
+                                </div>
+                                <div class="msg-profile-right-area">
+                                    <h4 class="msg-profile-name text-primary">{{name}}</h4>
+                                    <div class="list-member-retting">
+                                         <rating class="view-rating" formControlName="ratings" [max]="5" iconClass="list-member-retting"></rating>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            
+                                <div class="form-group">
+                                    <textarea class="form-control" formControlName="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                     <div class="invalid-feedback d-block"
+                            *ngIf="form.get('message').hasError('required') && (form.get('message').touched || submitted)">
+                           Įveskite pranešimą
+                        </div>
+                                </div>
+                                <div class="text-sm-right">
+                                    <button class="btn btn-primary mr-3" type="submit">Patvirtinti</button>
+                                    <button class="btn btn-primary" type="submit">Atsakyti</button>
+                                </div>                            
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center mt-2 " id="errorMessageSection" style="display: none;">
+                                <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                                <label id="errorMessage"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+            <!-- card-body End -->
+        </div>
+    </div>
+</section>

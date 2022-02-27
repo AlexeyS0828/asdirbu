@@ -1,0 +1,25 @@
+import { environment } from 'src/environments/environment';
+
+export const apiConstants = {
+    login: environment.origin + 'admin/login',
+    dashboard: environment.origin + 'admin/dashboard',
+    deleteUser: environment.origin + 'admin/deleteUser',
+    userListByType: environment.origin + 'admin/userlistbytype',
+    userDetailsById: environment.origin + 'admin/userdetailsbyid',
+    quickJobList: environment.origin + 'admin/quickjoblist',
+    deleteQuickJob: environment.origin + 'admin/deletequickjob',
+    quickJobDetailById: environment.origin + 'admin/quickjobdetailbyid',
+    blogList: environment.origin + 'admin/bloglist',
+    deleteBlog: environment.origin + 'admin/deleteblog',
+    storeBlog: environment.origin + 'admin/storeblog',
+    blogDetailById:environment.origin + 'admin/getblogdetailbyid',
+    updateBlog:environment.origin + 'admin/updateblog',
+    transctionHistroy:environment.origin + 'admin/transactionhistroy',
+    changeTransactionStatus:environment.origin + 'admin/changetransactionstatus',
+    getTotalPayementByDate:environment.origin + 'admin/gettotalpayementbydate',
+    getTransactionByDate:environment.origin + 'admin/gettransactionbydate',
+    updateUserStatus:environment.origin + 'admin/updateuserstatus',
+    getUserById:environment.origin + 'admin/userdetails',
+    updateProfileById:environment.origin + 'admin/updateprofilebyid',
+    addNewUser:environment.origin + 'admin/addnewuser',
+};

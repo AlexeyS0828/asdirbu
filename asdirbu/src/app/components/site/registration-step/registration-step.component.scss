@@ -1,0 +1,61 @@
+.regi-step {}
+
+.regi-step-logo-area {
+    margin: 23px 0px 60px;
+}
+
+.regi-step-logo-area img {
+    max-width: 200px;
+}
+
+.regi-step-title-area {
+    margin-bottom: 65px;
+}
+
+.regi-step-title-area .regi-step-title-icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.regi-step-title-area .regi-step-title {
+    font-weight: bold;
+}
+
+.regi-step-btn-are {
+    padding-bottom: 20px;
+}
+
+.regi-step-btn-are .btn-lg-style-1 {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin: 0 20px 10px;
+    min-width: 230px;
+}
+
+.regi-step-btn-are .btn-lg-style-2 {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin: 0 20px 10px;
+    min-width: 230px;
+    background: #395fb2;
+    border-color: #395fb2;
+    -webkit-appearance: none;
+}
+
+.regi-step-btn-are .btn-lg-style-2:hover {
+    background: #395fb2;
+    border-color: #395fb2;
+}
+
+@media (max-width: 575.98px) {
+    .regi-step-btn-are .btn-lg-style-1 {
+        margin: 0 auto 10px;
+        display: block;
+    }
+    .regi-step-btn-are .btn-lg-style-2 {
+        margin: 0 auto;
+        display: block;
+    }
+}

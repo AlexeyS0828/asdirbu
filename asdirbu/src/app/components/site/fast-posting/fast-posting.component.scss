@@ -1,0 +1,88 @@
+.select-file-image-preview {
+    margin-bottom: 10px;
+}
+
+
+.question-icon i {
+    color: #e57d33;
+    position: absolute;
+    right: -15px;
+    top: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.questionicon i {
+    color: #e57d33;
+    position: absolute;
+    right: -15px;
+    top: 65px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+/* Custom tabbing */
+
+.custom-tabbing {
+    margin-bottom: 40px;
+}
+
+.custom-tabbing .nav-tabs {
+    flex-wrap: nowrap;
+}
+
+.custom-tabbing .nav-tabs .nav-link:hover {
+    border-color: transparent
+}
+
+.custom-tabbing .nav-tabs a.nav-item {
+    width: 100%;
+    color: #495057;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.custom-tabbing .nav-tabs a.nav-item.active {
+    color: #e57d33;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.euro-icon{
+    position: absolute;
+    right: -70px;
+    top: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.euroicon{
+    position: absolute;
+    right: -15px;
+    top: 14px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+@media (max-width: 991.98px) {
+    .question-icon i {
+        right: -5px;
+    }
+    /* custom tabbing */
+    .custom-tabbing .nav-tabs a.nav-item {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {}
+
+@media (max-width: 575.98px) {
+    .question-icon i {
+        right: 15px;
+        top: 0;
+    }
+}
+
+.highlight-text {
+    color: black;
+    font-weight: bolder;
+}

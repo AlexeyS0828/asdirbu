@@ -1,0 +1,123 @@
+<section class="section-style-1">
+    <div class="container">
+        <div class="bg-white p-4">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img [src]="imagePreview" />
+                        </div>
+                        <div class="col-md-10 ">
+                            <h3 class="text-primary font-weight-bold">{{jobDetails.jobTitle}}</h3>
+                        </div>         
+                    </div>
+                    <div class="row mt-3" *ngIf="jobDetails.jobType==1">
+                        <div class="col-md-12">
+                            <h3 class="text-primary font-weight-bold">Apie darbą</h3>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="jobDetails.jobType==1">
+                        <div class="col-md-12">
+                            <p class="font-weight-bold">{{jobDetails.jobDescription}}</p>
+                        </div>
+                    </div>
+                    <div class="row mt-3" *ngIf="jobDetails.jobType==1">
+                        <div class="col-md-12">
+                            <h3 class="text-primary font-weight-bold">Darbo nuotraukos</h3>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="jobDetails.jobType==1">
+                        <div class="col-md-12">
+                            <div class="d-inline-block mr-3 va-t" *ngFor="let image of jobDetails.jobImage">
+                                <div class="select-file-image-preview image-preview" (click)="openPriviewImage(previewImageModel,image)">
+                                    <img [src]="image" [alt]=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" [ngClass]="{'mt-3':jobDetails.jobType==1,'mt-5':jobDetails.jobType==2}">
+                        <div class="col-md-12">
+                             <a (click)="sendMessage(myModel)" class="btn btn-primary text-white">Aplikuoti</a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="p-4 border">
+                                <div>
+                                    <h3 class="text-primary font-weight-bold">Plačiau</h3>
+                                </div>
+                            <div class="">
+                                <b>Paslaugos kaina</b>
+                                <p>{{jobDetails.servicePrice}} EUR </p>  
+                            </div>
+                            <div class="">
+                                <b>Paslaugos suteikimo vieta</b>
+                                <p>{{jobDetails.address}}</p>  
+                            </div>
+                            <div class="">
+                                <b>Paslaugos suteikimo data</b>
+                                <p>{{jobDetails.date}}</p>  
+                            </div>
+                            <div class="" *ngIf="jobDetails.jobType==2">
+                                <b>Paslaugos pristatymo vieta</b>
+                                <p>{{jobDetails.placeGoodsDelivery}}</p>  
+                            </div>    
+                            <div class="">
+                                <b>Paslaugos pristatymo laikas</b>
+                                <p>{{jobDetails.time}}</p>  
+                            </div>    
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="errorMessageSection" style="display: none;">
+                <div class="col-md-12">
+                    <div class="text-center mt-2">
+                        <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                        <label id="errorMessage"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<button class="invisible" #previewImageModel data-toggle="modal" data-target="#previewImageModel"></button>
+<div class="modal fade open" id="previewImageModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img [src]="image" class="img-responsive" />
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<button class="invisible" #myModel data-toggle="modal"   data-target="#myModel"></button>
+<div class="modal fade"  id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tavo paraiška sėkminga!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Klientas susisieks su tavimi jei tavo paraiška sėkminga!.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Uždaryti</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <!-- Footer Location -->
+      <div class="col-lg-4 mb-5 mb-lg-0 footer-section">
+        <h4 class="text-uppercase mb-4">MENU</h4>
+        <ul>
+          <li><a routerLink='/aboutus' class="text-primary">Apie mus</a></li>
+          <li><a routerLink='/contactus' class="text-primary">Kontaktai</a></li>
+          <li><a routerLink='/term-condition' class="text-primary">Taisyklės ir sąlygos</a></li>
+          <li><a routerLink='/privacy-policy' class="text-primary">Privatumo politika</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Social Icons -->
+      <div class="col-lg-4 mb-5 mb-lg-0 footer-section">
+        <h4 class="text-uppercase">SEKITE MUS</h4>
+        <a href="https://www.facebook.com/asdirbu.lt/" target="_blank"><img src="assets/image/facebook.svg" alt="Facebook" class="social-icon first-social-icon" /></a>
+        <a href="https://www.linkedin.com/company/as-dirbu" target="_blank"><img src="assets/image/linkedin.svg" alt="Twitter" class="social-icon last-icon" /></a>
+      </div>
+
+      <div class="col-lg-4 footer-section">
+        <h4 class="text-uppercase mb-4">NAUJIENLAIŠKIS</h4>
+        <p class="mb-0" style="color: #666666;">Prenumeruok ''Aš dirbu'' naujienlaiškį!</p>
+        <form [formGroup]="form" (submit)="onFormSubmit()">
+          <div class="form-group">
+            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Tavo el.paštas"
+              formControlName="email">
+            <div class="invalid-feedback d-block"
+              *ngIf="form.get('email').hasError('required') && (form.get('email').touched || submitted)">
+              Įveskite el. Pašto adresą
+            </div>
+            <div class="invalid-feedback d-block"
+              *ngIf="form.get('email').hasError('email') && (form.get('email').touched || submitted)">Įveskite
+              galiojantį el. Pašto adresą.
+            </div>
+          </div>
+          <div class="form-group mb-0">
+            <button type="submit" class="btn footer-form-sub">PRENUMERUOTI</button>
+          </div>
+          <div class="text-center mt-2 " id="subscribeErrorMessageSection" style="display: none;">
+            <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+            <label id="subscribeErrorMessage"></label>
+        </div>
+        <div class="text-center mt-2 " id="subscribeSuccessMessageSection" style="display: none;">
+                <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+               <label id="subscribeSuccessMessage"></label>
+           </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- Copyright Section -->
+<section class="copyright py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="mb-0">Copyright &copy; {{currentYear | date:'yyyy'}} ''Aš dirbu''</p>
+    </div>
+    <div class="col-md-6 text-right">
+      <!-- <img src="assets/image/favicon.svg" /> -->
+      <img src="assets/image/password.svg" />&nbsp;
+      <img src="assets/image/visa.svg" />&nbsp;
+      <img src="assets/image/mastercard.svg" />&nbsp;
+      <!-- <img src="assets/image/opay.png" />&nbsp; -->
+      <img src="assets/image/paypal.svg" />
+  </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>

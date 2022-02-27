@@ -1,0 +1,1067 @@
+<section class="section-style-1">
+    <div class="container">
+        <form [formGroup]="updateProfileForm" (submit)="onSubmit()">
+            <div class="card border-0">
+                <div class="card-body">
+                    <div class="card-top-title">
+                        <h3 class="text-primary font-weight-bold pl-3">Mano profilis</h3>
+                    </div>
+                    <!-- <form [formGroup]="updateProfileForm" (submit)="onSubmit()"> -->
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <div class="select-file-image-preview" (click)="filePicker.click()">
+                                <input class="d-none" type="file" #filePicker (change)="onImagePicked($event)" />
+                                <img [src]="imagePreview" alt="Image" />
+                                <span *ngIf="!imagePreview">Nuotrauka</span>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" formControlName="name" placeholder="Vardas" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('name').invalid && (updateProfileForm.get('name').touched || submitted)">
+                                            Vardas yra privaloma
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="Pavardė" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('lastName').invalid && (updateProfileForm.get('lastName').touched || submitted)">
+                                            Pavardė yra privaloma
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="email" formControlName="email" placeholder="El.paštas" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('email').hasError('required') && (updateProfileForm.get('email').touched || submitted)">
+                                            Įveskite teisingą el pašto adresą
+                                        </div>
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('email').hasError('email') && (updateProfileForm.get('email').touched || submitted)">
+                                            Įveskite teisingą el pašto adresą
+                                        </div>
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('email').hasError('isEmailUnique') && (updateProfileForm.get('email').touched || submitted)">
+                                            El. Paštas jau registruotas
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="phone" placeholder="Telefono numeris" formControlName="phone" />
+                                        <div class="invalid-feedback d-block" *ngIf="(updateProfileForm.get('phone').hasError('required') || updateProfileForm.get('phone').hasError('match') || updateProfileForm.get('phone').hasError('pattern')) && (updateProfileForm.get('phone').touched || submitted)">
+                                            Telefono yra privalomas.(3706XXXXXXX)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="city" placeholder="Miestas" formControlName="city" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('city').invalid && (updateProfileForm.get('city').touched || submitted)">
+                                            Miestas yra privalomas.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"  (keyup)="changeAddress(1)" name="address" placeholder="Gatvės pavadinimas" ngx-google-places-autocomplete #placesRef="ngx-places" formControlName="address" (onAddressChange)="onChangeAddress($event)" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('address').invalid && (updateProfileForm.get('address').touched || submitted)">
+                                            Gatvės pavadinimas yra privalomas.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="houseNumber" placeholder="Namo numeris" formControlName="houseNumber" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('houseNumber').invalid && (updateProfileForm.get('houseNumber').touched || submitted)">
+                                            Namo numeris yra privalomas.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 offset-lg-1">
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="specialty" placeholder="Pasirink specialybe">
+                                            <option value="" selected disabled>Pasirink specialybe</option>
+                                            <optgroup label="A">
+                                                <option value="Advokatai, teisininkai">Advokatai, teisininkai</option>
+                                                <option value="Apsaugininkas">Apsaugininkas</option>
+                                                <option value="Architektas, projektavimas">Architektas, projektavimas</option>
+                                                <option value="Astrologas">Astrologas</option>
+                                                <option value="Auklė">Auklė</option>
+                                                <option value="Aukštalipis">Aukštalipis</option>
+                                                <option value="Autoelektrikai">Autoelektrikai</option>
+                                                <option value="Autoservisai, automobilių remontas">Autoservisai, automobilių remontas</option>
+                                                <option value="Automobilių pirkimo-pardavimo konsultantas">Automobilių pirkimo-pardavimo konsultantas</option>
+                                                <option value="Automobilių plovyklos">Automobilių plovyklos</option>
+                                                <option value="Akvariumų specialistas">Akvariumų specialistas</option>
+                                                <option value="Automobilių poliravimas, priežiūra">Automobilių poliravimas, priežiūra</option>
+                                                <option value="Aplinkos tvarkymas, apželdinimas">Aplinkos tvarkymas, apželdinimas</option>
+                                                <option value="Archyvaras">Archyvaras</option>
+                                                <option value="Anglų kalbos kursai, pamokos">Anglų kalbos kursai, pamokos</option>
+                                                <option value="Archeologas">Archeologas</option>
+                                                <option value="Automobilių nuoma">Automobilių nuoma</option>
+                                                <option value="Automobilių tiuningas">Automobilių tiuningas</option>
+                                                <option value="Akmens mūras, lauko židiniai, tvoros">Akmens mūras, lauko židiniai, tvoros</option>
+                                                <option value="Audėjas">Audėjas</option>
+                                                <option value="Automobilių remonto agentas">Automobilių remonto agentas</option>
+                                                <option value="Asmeninis vairuotojas">Asmeninis vairuotojas</option>
+                                                <option value="Alternatyvi energija">Alternatyvi energija</option>
+                                                <option value="Automatikos sistemos">Automatikos sistemos</option>
+                                                <option value="Asmeninis treneris">Asmeninis treneris</option>
+                                                <option value="Apšvietimo, įgarsinimo paslaugos">Apšvietimo, įgarsinimo paslaugos</option>
+                                                <option value="Automobilių supirkimas">Automobilių supirkimas</option>
+                                                <option value="Avarinis atrakinimas">Avarinis atrakinimas</option>
+                                                <option value="Antikvariatas">Antikvariatas</option>
+                                                <option value="Architektūrinių maketų gamyba">Architektūrinių maketų gamyba</option>
+                                                <option value="Architektūros korepetitorius">Architektūros korepetitorius</option>
+                                                <option value="Apšiltinimas, šiltinimas">Apšiltinimas, šiltinimas</option>
+                                                <option value="Autobusų, limobusų nuoma">Autobusų, limobusų nuoma</option>
+                                                <option value="Akmens masės, marmuro, granito darbai">Akmens masės, marmuro, granito darbai</option>
+                                                <option value="Automobilių apsaugos sistemos, montavimas">Automobilių apsaugos sistemos, montavimas</option>
+                                                <option value="Automobilių salonų remontas">Automobilių salonų remontas</option>
+                                            </optgroup> 
+                                            <optgroup label="B">
+                                                <option value="Baldų gamyba">Baldų gamyba</option>
+                                                <option value="Barmenai, gėrimai renginiams">Barmenai, gėrimai renginiams</option>
+                                                <option value="Bitininkas">Bitininkas</option>
+                                                <option value="Braižytojas">Braižytojas</option>
+                                                <option value="Būrimai, būrėjas">Būrimai, būrėjas</option>
+                                                <option value="Buhalterinės apskaitos paslaugos">Buhalterinės apskaitos paslaugos</option>
+                                                <option value="Betonavimo darbai, betonavimas">Betonavimo darbai, betonavimas</option>
+                                                <option value="Baldų restauravimas, remontas">Baldų restauravimas, remontas</option>
+                                                <option value="Buitinės technikos remontas">Buitinės technikos remontas</option>
+                                                <option value="Bokso treniruotės">Bokso treniruotės</option>
+                                                <option value="Biologijos korepetitorius">Biologijos korepetitorius</option>
+                                                <option value="Blakstienų priauginimas">Blakstienų priauginimas</option>
+                                                <option value="Baldų projektavimas, dizaineriai">Baldų projektavimas, dizaineriai</option>
+                                                <option value="Burnos higienistas">Burnos higienistas</option>
+                                                <option value="Bioenergetikas">Bioenergetikas</option>
+                                                <option value="Baidarių nuoma">Baidarių nuoma</option>
+                                                <option value="Batutų nuoma">Batutų nuoma</option>
+                                                <option value="Baseinų, jacuzzi įrengimas, priežiūra">Baseinų, jacuzzi įrengimas, priežiūra</option>
+                                                <option value="Balionai, helio balionai">Balionai, helio balionai</option>
+                                                <option value="Betranšėjės technologijos">Betranšėjės technologijos</option>
+                                            </optgroup> 
+                                            <optgroup label="C">
+                                                <option value="Choreografas">Choreografas</option>
+                                                <option value="Chemijos korepetitorius">Chemijos korepetitorius</option>
+                                            </optgroup> 
+                                            <optgroup label="D">
+                                                <option value="Dailininkas">Dailininkas</option>
+                                                <option value="Dainavimo, vokalo pamokos">Dainavimo, vokalo pamokos</option>
+                                                <option value="DJ">DJ</option>
+                                                <option value="Drabužių dizaineris">Drabužių dizaineris</option>
+                                                <option value="Dviračių, paspirtukų remontas">Dviračių, paspirtukų remontas</option>
+                                                <option value="Draudimas, draudimo agentas">Draudimas, draudimo agentas</option>
+                                                <option value="Dietologas">Dietologas</option>
+                                                <option value="Dailės mokytojas">Dailės mokytojas</option>
+                                                <option value="Dviračių, paspirtukų nuoma">Dviračių, paspirtukų nuoma</option>
+                                                <option value="Drožėjas">Drožėjas</option>
+                                                <option value="Darbo teisės specialistas">Darbo teisės specialistas</option>
+                                                <option value="Danų kalbos kursai, pamokos">Danų kalbos kursai, pamokos</option>
+                                                <option value="Drabužių siuvimas, taisymas">Drabužių siuvimas, taisymas</option>
+                                                <option value="Dažasvydis, šratasvydis (airsoft)">Dažasvydis, šratasvydis (airsoft)</option>
+                                                <option value="Darbo saugos paslaugos">Darbo saugos paslaugos</option>
+                                                <option value="Dujų įvedimas, pajungimas">Dujų įvedimas, pajungimas</option>
+                                                <option value="Dujų įrangos montavimas">Dujų įrangos montavimas</option>
+                                        </optgroup>
+                                        <optgroup label="E">
+                                            <option value="Elektrikas, elektros darbai">Elektrikas, elektros darbai</option>
+                                            <option value="Ekologas">Ekologas</option>
+                                            <option value="Ekonomistas">Ekonomistas</option>
+                                            <option value="Ekskursijos, gidai">Ekskursijos, gidai</option>
+                                            <option value="Ezoterikas">Ezoterikas</option>
+                                            <option value="Elektronikos inžinierius">Elektronikos inžinierius</option>
+                                            <option value="Ekstremalios pramogos">Ekstremalios pramogos</option>
+                                            <option value="Energijos vartojimo auditas">Energijos vartojimo auditas</option>
+                                        </optgroup>
+                                        <optgroup label="F">
+                                            <option value="Floristas, gėlių salonas">Floristas, gėlių salonas</option>
+                                            <option value="Fotografas">Fotografas</option>
+                                            <option value="Fitneso treneris">Fitneso treneris</option>
+                                            <option value="Fizikos korepetitorius">Fizikos korepetitorius</option>
+                                            <option value="Fasado apdaila, dažymas">Fasado apdaila, dažymas</option>
+                                            <option value="Finansų konsultantas">Finansų konsultantas</option>
+                                            <option value="Fotopaslaugos">Fotopaslaugos</option>
+                                            <option value="Frezavimas (CNC)">Frezavimas (CNC)</option>
+                                            <option value="Fotostudija">Fotostudija</option>
+                                            <option value="Fotografijos kursai">Fotografijos kursai</option>
+                                            <option value="Fotografai Verslui">Fotografai Verslui</option>
+                                            <option value="Foto video technikos remontas">Foto video technikos remontas</option>
+                                        </optgroup>    
+                                        <optgroup label="G">
+                                            <option value="Galandimo meistras">Galandimo meistras</option>
+                                            <option value="Gyvūnų auginimas ir pardavimas">Gyvūnų auginimas ir pardavimas</option>
+                                            <option value="Graviravimo paslaugos">Graviravimo paslaugos</option>
+                                            <option value="Grafikos dizaineris">Grafikos dizaineris</option>
+                                            <option value="Grindų klojimas, remontas">Grindų klojimas, remontas</option>
+                                            <option value="Grožio specialistų mokymai">Grožio specialistų mokymai</option>
+                                            <option value="Griovimo darbai">Griovimo darbai</option>
+                                            <option value="Grožio specialistas">Grožio specialistas</option>
+                                            <option value="Gyvūnų priežiūros prekės">Gyvūnų priežiūros prekės</option>
+                                            <option value="Garažo vartai, montavimas">Garažo vartai, montavimas</option>
+                                            <option value="Grožio salonai">Grožio salonai</option>
+                                            <option value="Gamybos inžinieriai">Gamybos inžinieriai</option>
+                                            <option value="Grožio kabineto nuoma">Grožio kabineto nuoma</option>
+                                        </optgroup>     
+                                        <optgroup label="H">
+                                            <option value="Homeopatas">Homeopatas</option>
+                                        </optgroup>
+                                        <optgroup label="I">
+                                            <option value="Interneto svetainių kūrimas">Interneto svetainių kūrimas</option>
+                                            <option value="Interjero dizaineris">Interjero dizaineris</option>
+                                            <option value="Inžinierius">Inžinierius</option>
+                                            <option value="IT specialistas">IT specialistas</option>
+                                            <option value="Internetinio verslo konsultantas">Internetinio verslo konsultantas</option>
+                                            <option value="Interjero dekoravimas">Interjero dekoravimas</option>
+                                            <option value="Ispanų kalbos kursai, pamokos">Ispanų kalbos kursai, pamokos</option>
+                                            <option value="Istorijos korepetitorius">Istorijos korepetitorius</option>
+                                            <option value="Informatikos korepetitorius">Informatikos korepetitorius</option>
+                                            <option value="Interneto svetainių administratorius">Interneto svetainių administratorius</option>
+                                            <option value="Iliustruotojas">Iliustruotojas</option>
+                                            <option value="Indų nuoma">Indų nuoma</option>
+                                            <option value="Italų kalbos kursai, pamokos">Italų kalbos kursai, pamokos</option>
+                                            <option value="Interneto svetainių dizaineris">Interneto svetainių dizaineris</option>
+                                            <option value="Irklenčių (SUP) nuoma">Irklenčių (SUP) nuoma</option>
+                                            <option value="Interjero dekoro montavimas">Interjero dekoro montavimas</option>
+                                        </optgroup>     
+                                        <optgroup label="J">
+                                            <option value="Juvelyras, juvelyriniai dirbiniai">Juvelyras, juvelyriniai dirbiniai</option>
+                                            <option value="Joga, jogos treneriai">Joga, jogos treneriai</option>
+                                            <option value="Jojimo treneris">Jojimo treneris</option>
+                                            <option value="Jėgos aitvarų instruktorius">Jėgos aitvarų instruktorius</option>
+                                            <option value="Japonų kalbos kursai, pamokos">Japonų kalbos kursai, pamokos</option>
+                                        </optgroup>     
+                                        <optgroup label="K">    
+                                            <option value="Kėbulo remontas">Kėbulo remontas</option>
+                                            <option value="Kalviai, kalvystės darbai">Kalviai, kalvystės darbai</option>
+                                            <option value="Kaminų valymas">Kaminų valymas</option>
+                                            <option value="Keramikas">Keramikas</option>
+                                            <option value="Kompiuterių remontas">Kompiuterių remontas</option>
+                                            <option value="Kosmetologė">Kosmetologė</option>
+                                            <option value="Krovinių pervežimas">Krovinių pervežimas</option>
+                                            <option value="Katilų montavimas, remontas">Katilų montavimas, remontas</option>
+                                            <option value="Kirpyklos, kirpėjai, stilistai">Kirpyklos, kirpėjai, stilistai</option>
+                                            <option value="Komunikacijos specialistas">Komunikacijos specialistas</option>
+                                            <option value="Kelionių organizavimas">Kelionių organizavimas</option>
+                                            <option value="Kaligrafijos meistras">Kaligrafijos meistras</option>
+                                            <option value="Kalanetikos treneris">Kalanetikos treneris</option>
+                                            <option value="Kardiologas">Kardiologas</option>
+                                            <option value="Kineziterapeutas">Kineziterapeutas</option>
+                                            <option value="Kinų kalbos kursai, pamokos">Kinų kalbos kursai, pamokos</option>
+                                            <option value="Kailinių siuvimas">Kailinių siuvimas</option>
+                                            <option value="Kovinės savigynos treneris">Kovinės savigynos treneris</option>
+                                            <option value="Kemperių nuoma">Kemperių nuoma</option>
+                                            <option value="Kvapų sistemų specialistas">Kvapų sistemų specialistas</option>
+                                            <option value="Kapų tvarkymas, priežiūra">Kapų tvarkymas, priežiūra</option>
+                                            <option value="Kosmetikė">Kosmetikė</option>
+                                            <option value="Keleivių pervežimas">Keleivių pervežimas</option>
+                                            <option value="Koučingo specialistas">Koučingo specialistas</option>
+                                            <option value="Karjeros ir asmeninio augimo konsultantas">Karjeros ir asmeninio augimo konsultantas</option>
+                                            <option value="Knygų nuoma ir pardavimas">Knygų nuoma ir pardavimas</option>
+                                            <option value="Kitos statybos paslaugos">Kitos statybos paslaugos</option>
+                                            <option value="Kitos ekstremalios paslaugos">Kitos ekstremalios paslaugos</option>
+                                            <option value="Kitos pramogos vaikams">Kitos pramogos vaikams</option>
+                                            <option value="Karnizų, roletų montavimas">Karnizų, roletų montavimas</option>
+                                            <option value="Kiti įvairūs kursai">Kiti įvairūs kursai</option>
+                                            <option value="Kenkėjų naikinimas, prevencija">Kenkėjų naikinimas, prevencija</option>
+                                            <option value="Kitos paslaugos renginiams">Kitos paslaugos renginiams</option>
+                                            <option value="Krosnys, krosnių meistrai">Krosnys, krosnių meistrai</option>
+                                            <option value="Kartingai, kartodromai">Kartingai, kartodromai</option>
+                                            <option value="Kompiuterių kursai">Kompiuterių kursai</option>
+                                            <option value="Kovų menų treneris">Kovų menų treneris</option>
+                                            <option value="Kitos įvairios paslaugos">Kitos įvairios paslaugos</option>
+                                            <option value="Kitos laisvalaikio paslaugos">Kitos laisvalaikio paslaugos</option>
+                                            <option value="Kiti mokymai, kursai">Kiti mokymai, kursai</option>
+                                            <option value="Kelių tiesimas">Kelių tiesimas</option>
+                                            <option value="Kurjeris">Kurjeris</option>
+                                             </optgroup>
+                                             <optgroup label="L">
+                                                <option value="Laivų, valčių, variklių remontas">Laivų, valčių, variklių remontas</option>
+                                                <option value="Lauko žaidimų nuoma">Lauko žaidimų nuoma</option>
+                                                <option value="Laiptų gamyba, montavimas">Laiptų gamyba, montavimas</option>
+                                                <option value="Lektorius">Lektorius</option>
+                                                <option value="Lietuvių kalbos korepetitorius">Lietuvių kalbos korepetitorius</option>
+                                                <option value="Langai, durys: gamyba, montavimas">Langai, durys: gamyba, montavimas</option>
+                                                <option value="Logopedas">Logopedas</option>
+                                                <option value="Limuzinų nuoma, transportas vestuvėms">Limuzinų nuoma, transportas vestuvėms</option>
+                                                <option value="Laistymo sistemos, įrengimas">Laistymo sistemos, įrengimas</option>
+                                                <option value="Langų, durų restauravimas">Langų, durų restauravimas</option>
+                                                <option value="Laivo, jachtos nuoma">Laivo, jachtos nuoma</option>
+                                                <option value="Lieknėjimo procedūros">Lieknėjimo procedūros</option>
+                                                <option value="Laidojimo paslaugos">Laidojimo paslaugos</option>
+                                        </optgroup>
+                                        <optgroup label="M">
+                                            <option value="Malkos: gamyba, pristatymas">Malkos: gamyba, pristatymas</option>
+                                            <option value="Masažo paslaugos">Masažo paslaugos</option>
+                                            <option value="Medžių genėjimas, pjovimas">Medžių genėjimas, pjovimas</option>
+                                            <option value="Miškininkas">Miškininkas</option>
+                                            <option value="Muzikantas, dainininkas, grupė">Muzikantas, dainininkas, grupė</option>
+                                            <option value="Muzikos instrumentų meistras">Muzikos instrumentų meistras</option>
+                                            <option value="Mechanikas">Mechanikas</option>
+                                            <option value="Medžio darbai, stalius">Medžio darbai, stalius</option>
+                                            <option value="Maitinimas, maistas renginiams">Maitinimas, maistas renginiams</option>
+                                            <option value="Manikiūras">Manikiūras</option>
+                                            <option value="Matininkai, geodezininkai">Matininkai, geodezininkai</option>
+                                            <option value="Mobiliųjų telefonų remontas">Mobiliųjų telefonų remontas</option>
+                                            <option value="Mezgėja">Mezgėja</option>
+                                            <option value="Muitinės tarpininkas">Muitinės tarpininkas</option>
+                                            <option value="Metalo gaminiai, suvirintojas">Metalo gaminiai, suvirintojas</option>
+                                            <option value="Mūro darbai, mūrijimas">Mūro darbai, mūrijimas</option>
+                                            <option value="Matematikos korepetitorius">Matematikos korepetitorius</option>
+                                            <option value="Muzikos mokytojas">Muzikos mokytojas</option>
+                                            <option value="Muzikos prodiuseris">Muzikos prodiuseris</option>
+                                            <option value="Mobilūs gateriai, medienos pjovimas">Mobilūs gateriai, medienos pjovimas</option>
+                                            <option value="Medienos gaminiai">Medienos gaminiai</option>
+                                            <option value="Mobiliųjų aplikacijų kūrimas">Mobiliųjų aplikacijų kūrimas</option>
+                                            <option value="Meno terapija">Meno terapija</option>
+                                            <option value="Motociklų, motorolerių remontas">Motociklų, motorolerių remontas</option>
+                                            <option value="Medelynai, uogos, gėlės">Medelynai, uogos, gėlės</option>
+                                            <option value="Modeliavimas">Modeliavimas</option>
+                                            <option value="Mozaikos meistras">Mozaikos meistras</option>
+                                            <option value="Mobilus dokumentų naikinimas">Mobilus dokumentų naikinimas</option>
+                                            <option value="Microsoft Office Excel specialistas">Microsoft Office Excel specialistas</option>
+                                            <option value="Metalo apdirbimas">Metalo apdirbimas</option>
+                                            <option value="Mikroautobusų nuoma">Mikroautobusų nuoma</option>
+                                            <option value="Mobilaus kubilo nuoma">Mobilaus kubilo nuoma</option>
+                                            <option value="Mobilios pirties nuoma">Mobilios pirties nuoma</option>
+                                            <option value="Motociklų nuoma">Motociklų nuoma</option>
+                                            <option value="Metalo laužo supirkimas">Metalo laužo supirkimas</option>
+                                        </optgroup>
+                                        <optgroup label="N">
+                                            <option value="Nuotraukų retušavimas">Nuotraukų retušavimas</option>
+                                            <option value="Nekilnojamo turto brokeriai">Nekilnojamo turto brokeriai</option>
+                                            <option value="Nekilnojamo turto nuoma">Nekilnojamo turto nuoma</option>
+                                            <option value="Namų ūkio meistras">Namų ūkio meistras</option>
+                                            <option value="Norvegų kalbos kursai, pamokos">Norvegų kalbos kursai, pamokos</option>
+                                            <option value="Nuotekų valymo įrenginiai">Nuotekų valymo įrenginiai</option>
+                                            <option value="Neformalus vaikų ugdymas">Neformalus vaikų ugdymas</option>
+                                            <option value="Nuotekų išvežimas">Nuotekų išvežimas</option>
+                                        </optgroup>    
+                                        <optgroup label="O">
+                                            <option value="Odininkai, odos gaminiai">Odininkai, odos gaminiai</option>
+                                            <option value="Odontologas">Odontologas</option>
+                                            <option value="Originalios interjero detalės">Originalios interjero detalės</option>
+                                            <option value="Olandų kalbos kursai, pamokos">Olandų kalbos kursai, pamokos</option>
+                                        </optgroup>    
+                                        <optgroup label="P">
+                                            <option value="Pagalbiniai darbai">Pagalbiniai darbai</option>
+                                            <option value="Paminklai, antkapiai, paminklų gamyba">Paminklai, antkapiai, paminklų gamyba</option>
+                                            <option value="Priešgasrinės saugos specialistas">Priešgasrinės saugos specialistas</option>
+                                            <option value="Privatus detektyvas">Privatus detektyvas</option>
+                                            <option value="Programuotojas">Programuotojas</option>
+                                            <option value="Projektų ir dokumentų rengėjas">Projektų ir dokumentų rengėjas</option>
+                                            <option value="Psichologas, psichoterapeutas">Psichologas, psichoterapeutas</option>
+                                            <option value="Pynimas">Pynimas</option>
+                                            <option value="Prodiuseris">Prodiuseris</option>
+                                            <option value="Papuošalų, aksesuarų kūrimas">Papuošalų, aksesuarų kūrimas</option>
+                                            <option value="Psichiatras">Psichiatras</option>
+                                            <option value="Prancūzų kalbos kursai, pamokos">Prancūzų kalbos kursai, pamokos</option>
+                                            <option value="Plėvelės klijavimas">Plėvelės klijavimas</option>
+                                            <option value="Pobūvių, pokylių salės nuoma">Pobūvių, pokylių salės nuoma</option>
+                                            <option value="Plytininkas">Plytininkas</option>
+                                            <option value="Pirties nuoma">Pirties nuoma</option>
+                                            <option value="Perkraustymo paslaugos">Perkraustymo paslaugos</option>
+                                            <option value="Pilateso treneris">Pilateso treneris</option>
+                                            <option value="Pramogos vaikams">Pramogos vaikams</option>
+                                            <option value="Povandeniniai techniniai darbai">Povandeniniai techniniai darbai</option>
+                                            <option value="Personalo sprendimai">Personalo sprendimai</option>
+                                            <option value="Pramogų organizatorius">Pramogų organizatorius</option>
+                                            <option value="Permanentinio makiažo meistrė">Permanentinio makiažo meistrė</option>
+                                            <option value="Prekyba kosmetikos priemonėmis">Prekyba kosmetikos priemonėmis</option>
+                                            <option value="Prekyba drabužiais">Prekyba drabužiais</option>
+                                            <option value="Prekyba avalyne">Prekyba avalyne</option>
+                                            <option value="Prekyba papuošalais ir aksesuarais">Prekyba papuošalais ir aksesuarais</option>
+                                            <option value="Prekyba maisto papildais ir vitaminais">Prekyba maisto papildais ir vitaminais</option>
+                                            <option value="Prekyba baldais">Prekyba baldais</option>
+                                            <option value="Prekyba mobiliaisiais telefonais">Prekyba mobiliaisiais telefonais</option>
+                                            <option value="Prekyba namų apyvokos reikmenimis">Prekyba namų apyvokos reikmenimis</option>
+                                            <option value="Prekyba garso aparatūra">Prekyba garso aparatūra</option>
+                                            <option value="Prekyba buitine technika">Prekyba buitine technika</option>
+                                            <option value="Prekyba foto technika">Prekyba foto technika</option>
+                                            <option value="Prekyba automobilių dalimis">Prekyba automobilių dalimis</option>
+                                            <option value="Prekyba žemės ūkio technika">Prekyba žemės ūkio technika</option>
+                                            <option value="Prekyba prekėmis vaikams">Prekyba prekėmis vaikams</option>
+                                            <option value="Plaukų tiesinimas">Plaukų tiesinimas</option>
+                                            <option value="Pasirodymai, šou renginiams">Pasirodymai, šou renginiams</option>
+                                            <option value="Priekabų nuoma">Priekabų nuoma</option>
+                                            <option value="Portugalų kalbos kursai, pamokos">Portugalų kalbos kursai, pamokos</option>
+                                            <option value="Pakuočių gamyba">Pakuočių gamyba</option>
+                                            <option value="Prekyba maisto produktais">Prekyba maisto produktais</option>
+                                            <option value="Prekyba rankdarbių reikmenimis">Prekyba rankdarbių reikmenimis</option>
+                                            <option value="Prekyba laisvalaikio ir sporto prekėmis">Prekyba laisvalaikio ir sporto prekėmis</option>
+                                            <option value="Prekyba atributika">Prekyba atributika</option>
+                                            <option value="Prekyba ekologiškais gaminiais">Prekyba ekologiškais gaminiais</option>
+                                            <option value="Privati klinika">Privati klinika</option>
+                                            <option value="Pardavimų vadybininkas">Pardavimų vadybininkas</option>
+                                            <option value="Pamatų liejimas, įrengimas">Pamatų liejimas, įrengimas</option>
+                                            <option value="Pelėsio naikinimas">Pelėsio naikinimas</option>
+                                            <option value="Prekyba dažais">Prekyba dažais</option>
+                                            <option value="Pabėgimo kambariai">Pabėgimo kambariai</option>
+                                            <option value="Palapinių, paviljonų nuoma">Palapinių, paviljonų nuoma</option>
+                                            <option value="Priekabų, puspriekabių remontas">Priekabų, puspriekabių remontas</option>
+                                            <option value="Pirtys, pirčių įrengimas">Pirtys, pirčių įrengimas</option>
+                                            <option value="Pradinių klasių mokytoja">Pradinių klasių mokytoja</option>
+                                            <option value="Prekyba darbo saugos priemonėmis">Prekyba darbo saugos priemonėmis</option>
+                                            <option value="Plytelių pjovimas">Plytelių pjovimas</option>
+                                        </optgroup>     
+                                        <optgroup label="R">
+                                            <option value="Reklamos paslaugos">Reklamos paslaugos</option>
+                                            <option value="Renginių organizavimas">Renginių organizavimas</option>
+                                            <option value="Restauravimas">Restauravimas</option>
+                                            <option value="Redaktorius">Redaktorius</option>
+                                            <option value="Renginių vedėjas">Renginių vedėjas</option>
+                                            <option value="Ryšių su visuomene specialistas">Ryšių su visuomene specialistas</option>
+                                            <option value="Roletai, žaliuzės, romanetės">Roletai, žaliuzės, romanetės</option>
+                                            <option value="Rašto darbų konsultantas">Rašto darbų konsultantas</option>
+                                            <option value="Rusų kalbos mokytojas">Rusų kalbos mokytojas</option>
+                                            <option value="Rankdarbių kūrėjas">Rankdarbių kūrėjas</option>
+                                            <option value="Rankų darbo muilas">Rankų darbo muilas</option>
+                                            <option value="Rankų darbo žaislai">Rankų darbo žaislai</option>
+                                            <option value="Reklamos gamyba">Reklamos gamyba</option>
+                                            <option value="Rėminimo paslaugos">Rėminimo paslaugos</option>
+                                            <option value="Rinkodara (marketingas)">Rinkodara (marketingas)</option>
+                                            <option value="Režisierius">Režisierius</option>
+                                            <option value="Restoranai, kavinės, barai, salės">Restoranai, kavinės, barai, salės</option>
+                                            <option value="Rąstinių namų statyba">Rąstinių namų statyba</option>
+                                        </optgroup>     
+                                        <optgroup label="S">
+                                            <option value="Santechnikai, santechnikos darbai">Santechnikai, santechnikos darbai</option>
+                                            <option value="Senelių priežiūra">Senelių priežiūra</option>
+                                            <option value="Siuvimas, siuvykla, siuvėjas">Siuvimas, siuvykla, siuvėjas</option>
+                                            <option value="Skardinimo darbai, skardininkas">Skardinimo darbai, skardininkas</option>
+                                            <option value="Slaugytojas">Slaugytojas</option>
+                                            <option value="Statybos darbų vykdytojas">Statybos darbų vykdytojas</option>
+                                            <option value="Stiklų, veidrodžių gamyba, keitimas">Stiklų, veidrodžių gamyba, keitimas</option>
+                                            <option value="Stilistas">Stilistas</option>
+                                            <option value="Stogų dengimas, stogdengiai">Stogų dengimas, stogdengiai</option>
+                                            <option value="Suvirintojai, suvirinimo darbai">Suvirintojai, suvirinimo darbai</option>
+                                            <option value="Skulptorius">Skulptorius</option>
+                                            <option value="Sąmatininkas: sąmatų skaičiavimas">Sąmatininkas: sąmatų skaičiavimas</option>
+                                            <option value="SEO paslaugos">SEO paslaugos</option>
+                                            <option value="Spaudos paslaugos">Spaudos paslaugos</option>
+                                            <option value="Statybos dokumentų tvarkymas">Statybos dokumentų tvarkymas</option>
+                                            <option value="Stiklų keitimas, remontas, tonavimas">Stiklų keitimas, remontas, tonavimas</option>
+                                            <option value="Sodybos nuomai">Sodybos nuomai</option>
+                                            <option value="Skrydis parasparniu">Skrydis parasparniu</option>
+                                            <option value="Siuvinėjimas">Siuvinėjimas</option>
+                                            <option value="Suknelių nuoma">Suknelių nuoma</option>
+                                            <option value="Statybos darbai">Statybos darbai</option>
+                                            <option value="Signalizacijos, kameros, apsaugos sistemos">Signalizacijos, kameros, apsaugos sistemos</option>
+                                            <option value="Sveikatos mokytojas">Sveikatos mokytojas</option>
+                                            <option value="Stiklo konstrukcijos, montavimas">Stiklo konstrukcijos, montavimas</option>
+                                            <option value="Statybinių medžiagų gamintojas">Statybinių medžiagų gamintojas</option>
+                                            <option value="Srautinis valymas">Srautinis valymas</option>
+                                            <option value="Senovinių automobilių nuoma">Senovinių automobilių nuoma</option>
+                                            <option value="Sveiki produktai">Sveiki produktai</option>
+                                            <option value="Statybos projektų valdymas">Statybos projektų valdymas</option>
+                                            <option value="Soliariumas">Soliariumas</option>
+                                            <option value="Statybos darbų vadovas">Statybos darbų vadovas</option>
+                                            <option value="Skylių gręžimas, angų pjovimas">Skylių gręžimas, angų pjovimas</option>
+                                            <option value="Stogo bagažinių nuoma">Stogo bagažinių nuoma</option>
+                                            <option value="Stovyklavietės">Stovyklavietės</option>
+                                            <option value="Sniego valymas">Sniego valymas</option>
+                                            <option value="Stovyklos vaikams">Stovyklos vaikams</option>
+                                            <option value="Statybinės technikos nuoma">Statybinės technikos nuoma</option>
+                                            <option value="Smėliavimas, dažymas">Smėliavimas, dažymas</option>
+                                            <option value="Skalda, smėlis, žvyras, juodžemis">Skalda, smėlis, žvyras, juodžemis</option>
+                                            <option value="Sunkvežimių, autobusų remontas">Sunkvežimių, autobusų remontas</option>
+                                            <option value="Sodo technikos remontas">Sodo technikos remontas</option>
+                                            <option value="Skaitmenizacijos paslaugos">Skaitmenizacijos paslaugos</option>
+                                        </optgroup>     
+                                        <optgroup label="T">
+                                            <option value="Tortai, desertai">Tortai, desertai</option>
+                                            <option value="Tatuiruotės (tattoo)">Tatuiruotės (tattoo)</option>
+                                            <option value="Tekstų surinkėjas">Tekstų surinkėjas</option>
+                                            <option value="Tekstų kūrėjas">Tekstų kūrėjas</option>
+                                            <option value="Tvoros, vartai, montavimas">Tvoros, vartai, montavimas</option>
+                                            <option value="Techninė pagalba kelyje">Techninė pagalba kelyje</option>
+                                            <option value="Teniso treneris">Teniso treneris</option>
+                                            <option value="Tinklinio treneris">Tinklinio treneris</option>
+                                            <option value="Termovizijos specialistas">Termovizijos specialistas</option>
+                                            <option value="Tinklaraštininkas">Tinklaraštininkas</option>
+                                            <option value="Tarologas">Tarologas</option>
+                                            <option value="Tekintojas, frezuotojas">Tekintojas, frezuotojas</option>
+                                            <option value="Trinkelių klojimas">Trinkelių klojimas</option>
+                                            <option value="Tentai, tentų gamyba">Tentai, tentų gamyba</option>
+                                        </optgroup>     
+                                        <optgroup label="U">
+                                            <option value="Užuolaidų siuvimas">Užuolaidų siuvimas</option>
+                                            <option value="Ugnies šou">Ugnies šou</option>
+                                        </optgroup>     
+                                        <optgroup label="V">
+                                            <option value="Video filmavimas, operatorius">Video filmavimas, operatorius</option>
+                                            <option value="Vaismedžių genėjimas">Vaismedžių genėjimas</option>
+                                            <option value="Vantų rišėjas">Vantų rišėjas</option>
+                                            <option value="Vertimų biurai, vertėjai">Vertimų biurai, vertėjai</option>
+                                            <option value="Vizažistė">Vizažistė</option>
+                                            <option value="Vandens gręžiniai">Vandens gręžiniai</option>
+                                            <option value="Vestuvinių suknelių siuvimas">Vestuvinių suknelių siuvimas</option>
+                                            <option value="Video animacijos, animatorius">Video animacijos, animatorius</option>
+                                            <option value="Veterinarijos klinikos, veterinarai">Veterinarijos klinikos, veterinarai</option>
+                                            <option value="Vestuvių planuotojas">Vestuvių planuotojas</option>
+                                            <option value="Vokiečių kalbos kursai, pamokos">Vokiečių kalbos kursai, pamokos</option>
+                                            <option value="Vidaus apdaila, remontas">Vidaus apdaila, remontas</option>
+                                            <option value="Verslo konsultantas">Verslo konsultantas</option>
+                                            <option value="Vaikų darželis">Vaikų darželis</option>
+                                            <option value="Vestuvių, švenčių dekoravimas">Vestuvių, švenčių dekoravimas</option>
+                                            <option value="Vėlėja">Vėlėja</option>
+                                            <option value="Vitražai, stiklo interjero detalės">Vitražai, stiklo interjero detalės</option>
+                                            <option value="Valymo paslaugos">Valymo paslaugos</option>
+                                            <option value="Video montavimas, dizaineris">Video montavimas, dizaineris</option>
+                                            <option value="Vandens filtrai: montavimas, keitimas">Vandens filtrai: montavimas, keitimas</option>
+                                            <option value="Ventiliacija, vėdinimo sistemos">Ventiliacija, vėdinimo sistemos</option>
+                                            <option value="Viešųjų pirkimų konsultantas">Viešųjų pirkimų konsultantas</option>
+                                            <option value="Vejos priežiūra, įrengimas">Vejos priežiūra, įrengimas</option>
+                                            <option value="Vonios restauravimas">Vonios restauravimas</option>
+                                            <option value="Vairavimo mokykla">Vairavimo mokykla</option>
+                                            <option value="Vaizdo stebėjimo, apsaugos, IP kameros">Vaizdo stebėjimo, apsaugos, IP kameros</option>
+                                            <option value="Virtualus asistentas">Virtualus asistentas</option>
+                                            <option value="Vestuvinių suknelių salonas">Vestuvinių suknelių salonas</option>
+                                            <option value="Viešbučiai">Viešbučiai</option>
+                                            <option value="Vaikų žaidimų kambarys">Vaikų žaidimų kambarys</option>
+                                            <option value="Vertimo kursai">Vertimo kursai</option>
+                                            <option value="Voljerai, šuns būdos, gamyba">Voljerai, šuns būdos, gamyba</option>
+                                        </optgroup>     
+                                        <optgroup label="Į">
+                                            <option value="Įvairios technikos nuoma">Įvairios technikos nuoma</option>
+                                            <option value="Įtempiamos lubos, montavimas">Įtempiamos lubos, montavimas</option>
+                                            <option value="Įvairios paslaugos vestuvėms">Įvairios paslaugos vestuvėms</option>
+                                            <option value="Įrankių nuoma">Įrankių nuoma</option>
+                                        </optgroup>
+                                        <optgroup label="Š">
+                                            <option value="Šunų dresuotojas">Šunų dresuotojas</option>
+                                            <option value="Šokiai, šokių pamokos">Šokiai, šokių pamokos</option>
+                                            <option value="Šunų kirpykla">Šunų kirpykla</option>
+                                            <option value="Šeimos gydytojas">Šeimos gydytojas</option>
+                                            <option value="Šventinės įrangos nuoma">Šventinės įrangos nuoma</option>
+                                            <option value="Švedų kalbos kursai, pamokos">Švedų kalbos kursai, pamokos</option>
+                                            <option value="Šunų veislynas">Šunų veislynas</option>
+                                            <option value="Šiukšlių išvežimas: statybinių ir kt.">Šiukšlių išvežimas: statybinių ir kt.</option>
+                                            <option value="Šokėjas">Šokėjas</option>
+                                            <option value="Šunų viešbutis">Šunų viešbutis</option>
+                                        </optgroup>     
+                                        <optgroup label="Ž">
+                                            <option value="Žurnalistas">Žurnalistas</option>
+                                            <option value="Žemės kasimas, lyginimas">Žemės kasimas, lyginimas</option>
+                                            <option value="Žolininkas">Žolininkas</option>
+                                            <option value="Žvakių gamyba">Žvakių gamyba</option>
+                                            <option value="Židinių meistrai">Židinių meistrai</option>
+                                            <option value="Žemės ūkio technikos nuoma">Žemės ūkio technikos nuoma</option>
+                                        </optgroup>
+                                        </select>
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('specialty').invalid && (updateProfileForm.get('specialty').touched || submitted)">
+                                            Pasirink specialybe yra privalomas
+                                        </div>
+                                    </div>
+                                    <div class="form-group" *ngIf="updateProfileForm.get('specialty').value=='Kitas'">
+                                        <input type="text" class="form-control" name="otherSpecialty" placeholder="Kitas" formControlName="otherSpecialty" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('otherSpecialty').invalid && (updateProfileForm.get('otherSpecialty').touched || submitted)">
+                                            Kitas yra privalomas.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>Įveskite galiojantį banko sąskaitos numerį – į jį bus pervedamas Jūsų atlygis</p>
+                                        <input type="text" class="form-control" placeholder="Banko sąskaitos numeris" formControlName="bank_ac_no" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('bank_ac_no').invalid && (updateProfileForm.get('bank_ac_no').touched || submitted)">
+                                            Banko sąskaitos numeris yra privalomas
+                                        </div>
+                                    </div>
+                                    <label>Pridėk dokumentus (Pasas arba ID kortelė)</label>
+                                    <label>Čia galite pridėti asmens dokumento kopiją, veiklos licenciją,liudijimą, sertifikatus ar kt.reikalingus dokumentus</label>
+                                    <table class="dokumentus-table">
+                                        <tr *ngFor="let document of uploadedDocumentList; let i=index">
+                                            <td> <a href="{{document.document}}" target="_blank" download="download" class="word-wrap">{{document.name}}</a>&nbsp;&nbsp;
+                                                <a href="{{document.document}}" target="_blank" download="download" class="word-wrap"><i class="fa fa-download"></i></a>
+                                            </td>
+                                            <td><button type="button" class="btn btn-danger mb-3" (click)="removeDocumentName(i)">Ištrinti</button></td>
+                                        </tr>
+                                        <tr formArrayName="documentList" *ngFor="let document of documentList.controls; let i=index">
+                                            <ng-container [formGroupName]="i">
+                                                <td><input type="text" readonly class="form-control mb-3" (click)="documentPicker.click()" placeholder="Naujas dokumentas pdf,jpg" formControlName="documentFileName">
+                                                    <input class="d-none" type="file" #documentPicker (change)="onFileSelect($event,i)" name="profile_image" />
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger mb-3" (click)="deleteDocument(i)" [hidden]="documentList.length==(i+1)">Ištrinti</button>
+                                                    <button type="button" class="btn btn-success mb-3" (click)="addDocument()" [hidden]="!(documentList.length==(i+1))"><i
+                                                            class="fas fa-plus"></i> Papildyti</button></td>
+                                            </ng-container>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <!-- <button type="submit" class="btn btn-primary">Išsaugoti</button> -->
+                                    <div class="text-center mt-2 " id="errorMessageSection1" style="display: none;">
+                                        <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                                        <label id="errorMessage1"></label>
+                                    </div>
+                                    <div class="text-center mt-2 " id="successMessageSection1" style="display: none;">
+                                        <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+                                        <label id="successMessage1"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </form> -->
+                </div>
+                <!-- card-body End -->
+            </div>
+            <div class="card border-0 mt-4">
+                <!-- card-body Start -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                         <!--   <div class="form-group">
+                                <h4 class="text-primary font-weight-bold">Paslauga</h4>
+                                <textarea class="form-control" rows="3" placeholder="Detaliai aprašykite, kokią paslaugą siūlote, apibūdinkite dažniausių darbų orientacinę trukmę,pvz. manikiūras – 1 val." name="service" formControlName="service"></textarea>
+                                <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('service').hasError('required') && (updateProfileForm.get('service').touched || submitted)">
+                                    Privalomas aptarnavimo laukas.
+                                </div>
+                            </div>-->
+                            <div class="form-group">
+                                <h4 class="text-primary font-weight-bold">Apie Paslaugą</h4>
+                                <textarea class="form-control" rows="3" placeholder="Papasakokite apie save, savo profesines stiprybes ir pasiekimus." name="aboutMe" formControlName="aboutMe"></textarea>
+                                <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('aboutMe').hasError('required') && (updateProfileForm.get('aboutMe').touched || submitted)">
+                                    Šis laukas yra privalomas
+                                </div>
+                            </div>
+                            <div class="form-group d-flex">
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="taxPay" class="form-check-input" type="radio" name="taxPay" id="inlineRadio1" value="1" />
+                                    <label class="form-check-label" for="inlineRadio1">Esu PVM mokėtojas</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="taxPay" class="form-check-input" type="radio" name="taxPay" id="inlineRadio2" value="0">
+                                    <label class="form-check-label" for="inlineRadio2">Nesu PVM mokėtojas</label>
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <h4 class="text-primary font-weight-bold">Mano valandinis atlygis &nbsp;&nbsp; <span class="pull-right"><label>EUR</label> &nbsp;&nbsp; <i class="far fa-question-circle" data-toggle="modal"
+                                    data-target="#questionInformation"></i></span></h4>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" placeholder="Valandinis atlygis EUR" name="hourlyRate" formControlName="hourlyRate" min="0" />
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('hourlyRate').hasError('required') && (updateProfileForm.get('hourlyRate').touched || submitted)">
+                                            Šis laukas yra privalomas
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select formControlName="type" placeholder="Pasirinkite parinktį" name="type" class="form-control">
+                                                <option value="KvM">KvM</option>
+                                                <option value="Val">Val</option>
+                                                <option value="Vat">Vat</option>
+                                            </select>
+                                        <div class="invalid-feedback d-block" *ngIf="updateProfileForm.get('type').hasError('required') && (updateProfileForm.get('type').touched || submitted)">
+                                            Šis laukas yra privalomas
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="text-primary font-weight-bold">Prisekite nuotraukas, rodančias savo darbo pasiekimus, rezultatus.</h4>
+                                <div>
+                                    <div class="d-inline-block mr-3 va-t">
+                                        <div class="select-file-image-preview image-preview" (click)="filePicker1.click()">
+                                            <input class="d-none" type="file" #filePicker1 (change)="onImageSelect($event,1)">
+                                            <img [src]="imagePreview1" [alt]="">
+                                            <i *ngIf="!imagePreview1" class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block mr-3 va-t">
+                                        <div class="select-file-image-preview image-preview" (click)="filePicker2.click()">
+                                            <input class="d-none" type="file" #filePicker2 (change)="onImageSelect($event, 2)">
+                                            <img [src]="imagePreview2" [alt]="">
+                                            <i *ngIf="!imagePreview2" class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block mr-3 va-t">
+                                        <div class="select-file-image-preview image-preview" (click)="filePicker3.click()">
+                                            <input class="d-none" type="file" #filePicker3 (change)="onImageSelect($event, 3)">
+                                            <img [src]="imagePreview3" [alt]="">
+                                            <i *ngIf="!imagePreview3" class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block va-t">
+                                        <div class="select-file-image-preview image-preview" (click)="filePicker4.click()">
+                                            <input class="d-none" type="file" #filePicker4 (change)="onImageSelect($event, 4)">
+                                            <img [src]="imagePreview4" [alt]="">
+                                            <i *ngIf="!imagePreview4" class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group text-center">
+                                    <button class="btn btn-primary" type="submit">
+                                        išsaugoti
+                                    </button>
+                                    <div class="text-center mt-2 " id="errorMessageSection2" style="display: none;">
+                                        <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                                        <label id="errorMessage2"></label>
+                                    </div>
+                                    <div class="text-center mt-2 " id="successMessageSection2" style="display: none;">
+                                        <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+                                        <label id="successMessage2"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <!-- <h4 class="text-primary font-weight-bold text-center">Jūsų darbo valandos</h4> -->
+                            <h4 class="text-primary font-weight-bold text-center">Mano darbo valandos</h4>
+                            <p>Įveskite laiką, kada galite teikti paslaugas.</p>
+                            <div class="mb-2">
+                                <!-- <bs-daterangepicker-inline [bsValue]="bsInlineRangeValue" (bsValueChange)="onCalendarValueChange($event)" [minDate]="currentDate" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  displayMonths: 1, containerClass : 'theme-orange'}" [datesDisabled]="disabledDates"
+                                    [dateCustomClasses]="dateCustomClasses">
+                                </bs-daterangepicker-inline> -->
+                                <bs-datepicker-inline [bsValue]="bsInlineRangeValue" (bsValueChange)="onCalendarValueChange($event)" [minDate]="currentDate" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  displayMonths: 1, containerClass : 'theme-orange'}" [datesDisabled]="disabledDates"
+                                    [dateCustomClasses]="dateCustomClasses">
+                                </bs-datepicker-inline>
+                            </div>
+                            <!-- Button trigger modal -->
+                            <div class="mb-2 text-center calander-below-btn-area">
+                                <button type="button" class="btn btn-primary" (click)="openModal(exampleModalScrollable)">
+                                Pridėti valandas
+                            </button>
+                            </div>
+                            <div class="text-center mt-2 " id="errorMessageSection3" style="display: none;">
+                                <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                                <label id="errorMessage3"></label>
+                            </div>
+                            <div class="text-center mt-2 " id="successMessageSection3" style="display: none;">
+                                <img class="img-fluid" src="assets/image/form-confirm.png"> &nbsp;
+                                <label id="successMessage3"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="card border-0 mt-4" id="review">
+            <div class="card-body">
+                <h4 class="text-primary font-weight-bold mb-4">Atsiliepimai</h4>
+                <ul class="review-list" *ngIf="displayDummyReviewText">
+                    <li>
+                        <div class="text-primary text-center">
+                            <h4>Nerasta atsiliepimų</h4>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Review List  -->
+                <ul class="review-list" *ngIf="!displayDummyReviewText">
+                    <li *ngFor="let reviews of reviewList;">
+                        <div class="review-profile-area">
+                            <div class="review-profile-left-area">
+                                <img src="{{reviews.image}}" alt="">
+                            </div>
+                            <div class="review-profile-right-area">
+                                <h5 class="review-profile-name text-primary">{{reviews.name}}</h5>
+                                <div class="list-member-retting">
+                                    <rating [(ngModel)]="reviews.rating" [max]="5" [readonly]="true"></rating>
+                                </div>
+                                <p>{{reviews.review}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="row" *ngIf="!displayDummyReviewText">
+                    <div class="col-md-12">
+                        <pagination class="mt-4" pageBtnClass="btn" [totalItems]="totalPageNumber" [(ngModel)]="pageNumber" (pageChanged)="pageChanged($event)" previousText="Atgal" nextText="Kitas">
+                        </pagination>
+                    </div>
+                </div>
+                <div class="row" id="errorMessageSection4" style="display: none;">
+                    <div class="col-md-12">
+                        <div class="text-center mt-2">
+                            <img class="img-fluid" src="assets/image/form-error.png"> &nbsp;
+                            <label id="errorMessage4"></label>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Review List  -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Modal -->
+<button class="invisible" #exampleModalScrollable data-toggle="modal" data-target="#exampleModalScrollable"></button>
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary font-weight-bold" id="exampleModalScrollableTitle">Mano užimtumas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="calendarForm" style="overflow: auto;">
+                <div class="modal-body">
+                    <div>
+                        <div class="time-table-contr">
+                            <i class="fas fa-chevron-circle-left mr-2" (click)="changeDate('decrement')"></i>
+                            <span>{{selectedTextDate}}</span>
+                            <i class="fas fa-chevron-circle-right ml-2" (click)="changeDate('increment')"></i>
+                        </div>
+                        <div class="time-table-contr">
+                            <div  class="custom-checkbox-sm check-all-checkbox custom-control custom-checkbox time-table-custom-checkbox">
+                                <input type="checkbox" class="custom-control-input"  id="checkAll" name="checkAll"  (change)="onSelectAll($event.target.checked)"  />
+                                <label class="custom-control-label"   for="checkAll">Pasirinkti visus</label>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="d-flex cu-table-layout">
+                                <div *ngFor="let element of selectedDateWiseTableHeading">{{element.day}} {{element.date | date:'d/M'}}</div>
+                            </div>
+                            <div class="d-flex cu-table-layout">
+                                <div *ngFor="let element of dayWiseCheck;let i=index"> 
+                                    <div  class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"   id="check-{{i}}" name="check" [checked]="element" value="element" (change)="onSelectIndexWise($event.target.checked,i)" />
+                                        <label class="custom-control-label" for="check-{{i}}">Pasirinkti visus</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex cu-table-layout-inner" *ngIf="selectedDateCount!=0">
+                                <div>
+                                    <div formArrayName="0"  *ngFor="let control of calendarForm.controls[0]['controls'];let j=index">
+                                        <ng-container [formGroupName]="j">
+                                            <div  class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" 
+                                                    id="demo-0-{{j}}" name="check" formControlName="check" 
+                                                    value="calendarForm.controls[0]['controls'][j].controls.check"
+                                                    (change)="isChecked($event.target.checked,0,calendarForm.controls[0]['controls'][j].value.from,calendarForm.controls[0]['controls'][j].value.to)" />
+                                                <label class="custom-control-label"
+                                                    for="demo-0-{{j}}">{{calendarForm.controls[0]['controls'][j].value.from}}</label>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div formArrayName="1"
+                                        *ngFor="let control of calendarForm.controls[1]['controls'];let j=index">
+                                        <ng-container [formGroupName]="j">
+                                            <div    class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="demo-1-{{j}}" name="check" formControlName="check"
+                                                    value="calendarForm.controls[1]['controls'][j].controls.check"  
+                                                    (change)="isChecked($event.target.checked,1,calendarForm.controls[1]['controls'][j].value.from,calendarForm.controls[1]['controls'][j].value.to)"/>
+                                                <label class="custom-control-label"
+                                                    for="demo-1-{{j}}">{{calendarForm.controls[1]['controls'][j].value.from}}</label>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div formArrayName="2"
+                                        *ngFor="let control of calendarForm.controls[2]['controls'];let j=index">
+                                        <ng-container [formGroupName]="j">
+                                            <div
+                                                class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="demo-2-{{j}}" name="check" formControlName="check"
+                                                    value="calendarForm.controls[2]['controls'][j].controls.check" 
+                                                    (change)="isChecked($event.target.checked,2,calendarForm.controls[2]['controls'][j].value.from,calendarForm.controls[2]['controls'][j].value.to)" />
+                                                <label class="custom-control-label"
+                                                    for="demo-2-{{j}}">{{calendarForm.controls[2]['controls'][j].value.from}}</label>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div formArrayName="3"
+                                        *ngFor="let control of calendarForm.controls[3]['controls'];let j=index">
+                                        <ng-container [formGroupName]="j">
+                                            <div
+                                                class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="demo-3-{{j}}" name="check" formControlName="check"
+                                                    value="calendarForm.controls[3]['controls'][j].controls.check" 
+                                                    (change)="isChecked($event.target.checked,3,calendarForm.controls[3]['controls'][j].value.from,calendarForm.controls[3]['controls'][j].value.to)" />
+                                                <label class="custom-control-label"
+                                                    for="demo-3-{{j}}">{{calendarForm.controls[3]['controls'][j].value.from}}</label>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div formArrayName="4"
+                                        *ngFor="let control of calendarForm.controls[4]['controls'];let j=index">
+                                        <ng-container [formGroupName]="j">
+                                            <div
+                                                class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="demo-4-{{j}}" name="check" formControlName="check"
+                                                    value="calendarForm.controls[4]['controls'][j].controls.check" 
+                                                    (change)="isChecked($event.target.checked,4,calendarForm.controls[4]['controls'][j].value.from,calendarForm.controls[4]['controls'][j].value.to)" />
+                                                <label class="custom-control-label"
+                                                    for="demo-4-{{j}}">{{calendarForm.controls[4]['controls'][j].value.from}}</label>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div formArrayName="5"
+                                        *ngFor="let control of calendarForm.controls[5]['controls'];let j=index">
+                                        <ng-container [formGroupName]="j">
+                                            <div
+                                                class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="demo-5-{{j}}" name="check" formControlName="check"
+                                                    value="calendarForm.controls[5]['controls'][j].controls.check" 
+                                                    (change)="isChecked($event.target.checked,5,calendarForm.controls[5]['controls'][j].value.from,calendarForm.controls[5]['controls'][j].value.to)" />
+                                                <label class="custom-control-label"
+                                                    for="demo-5-{{j}}">{{calendarForm.controls[5]['controls'][j].value.from}}</label>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div formArrayName="6"
+                                        *ngFor="let control of calendarForm.controls[6]['controls'];let j=index">
+                                        <ng-container [formGroupName]="j">
+                                            <div
+                                                class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="demo-6-{{j}}" name="check" formControlName="check"
+                                                    value="calendarForm.controls[6]['controls'][j].controls.check" 
+                                                    (change)="isChecked($event.target.checked,6,calendarForm.controls[6]['controls'][j].value.from,calendarForm.controls[6]['controls'][j].value.to)" />
+                                                <label class="custom-control-label"
+                                                    for="demo-6-{{j}}">{{calendarForm.controls[6]['controls'][j].value.from}}</label>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                <div class="modal-footer">
+                    <button type="button" (click)="onSubmitCalendarform()" class="btn btn-primary"
+                        data-dismiss="modal">Patvirtinti</button>
+                </div>
+            </form>
+            <!-- <form [formGroup]="calendarForm" style="overflow: auto;">
+                <div class="modal-body">
+                    <div class="text-center text-primary c-p" (click)="decrementNumberOfDates()" *ngIf="displayPrevious">
+                        Ankstesnis<br><i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dienos-laikas-box">
+                        <div class="dienos text-primary">Dienos</div>
+                        <div class="laikas text-primary">Laikas</div>
+                    </div>
+                    <div class="dienos-laikas-box" formArrayName="timesheetArray" *ngFor="let timesheetArray of timesheetArray.controls | slice:initialDates:EndDates; let i=index">
+
+                        <ng-container [formGroupName]="i+initialDates">
+                            <div class="dienos text-primary">
+                                <div class="custom-control custom-checkbox mb-2">
+                                    <input type="checkbox" class="custom-control-input" id="{{i+initialDates}}" name="check" formControlName="check" (change)="onCheckChange($event.target.checked, i+initialDates, timeSheetDetails[i+initialDates])" value="{{timesheetArray.value.check}}">
+                                    <label class="custom-control-label" for="{{i+initialDates}}">{{timeSheetDetails[i+initialDates]}}</label>
+                                </div>
+                            </div>
+                            <div class="laikas text-primary">
+
+                                <div class="employment-time-filds row">
+                                    <div class="text-primary mb-2 col-md-6 d-flex align-items-center">
+                                        <span class="mr-2 nuo">Nuo</span>
+                                        <div>
+                                            <timepicker class="timepicker-custom" [(ngModel)]="timesheetArray.value.from" name="from" formControlName="from" [showMeridian]="false" minuteStep="1">
+                                            </timepicker>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary mb-2 col-md-6 d-flex align-items-center ">
+                                        <span class="mr-2 iki">Iki</span>
+                                        <div>
+                                            <timepicker class="timepicker-custom" [(ngModel)]="timesheetArray.value.to" name="to" formControlName="to" [showMeridian]="false" minuteStep="1">
+                                            </timepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <div class="text-center text-primary c-p" (click)="incrementNumberOfDates()" *ngIf="displayMore">
+                        Daugiau<br><i class="fas fa-chevron-down"></i>
+                    </div>
+                    <hr />
+                    <div class="pl-3">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheckall" (change)="onSelectAll($event.target.checked)" value="{{allSelected}]">
+                            <label class="custom-control-label" for="customCheckall">Pasirinkti visus</label>
+                        </div>
+                    </div>                    
+                    <div>
+                        <div class="time-table-contr">
+                            <i class="fas fa-chevron-circle-left mr-2"></i>
+                            <span>2020 birželis 06 d. - 12 d.</span>
+                            <i class="fas fa-chevron-circle-right ml-2"></i>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered time-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Št 06/06</th>
+                                        <th scope="col">Sk 06/07</th>
+                                        <th scope="col">Pr 06/08</th>
+                                        <th scope="col">An 06/09</th>
+                                        <th scope="col">Tr 06/10</th>
+                                        <th scope="col">Kt 06/11</th>
+                                        <th scope="col">Pn 06/12</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <td></td>
+                                        <td></td>
+                                        <th></th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="demo" name="check" formControlName="check" value="">
+                                                <label class="custom-control-label" for="demo">10:00</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td></td>
+                                        <td></td>
+                                        <th></th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <div class="custom-checkbox-sm custom-control custom-checkbox time-table-custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="demo2" name="check" formControlName="check" value="" disabled>
+                                                <label class="custom-control-label" for="demo2">10:30</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)="onSubmitCalendarform()" class="btn btn-primary" data-dismiss="modal">Patvirtinti</button>
+                </div>
+            </form> -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="questionInformation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informacinis pranešimas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Mano valandinis atlygis. Nurodykite atlygį už valandą, kv.metrą ar vnt. be PVM. Pažymėjus varnele „Esu PVM mokėtojas“, PVM bus automatiškai pridėtas prie Jūsų nurodyto atlygio.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Uždaryti</button>
+            </div>
+        </div>
+    </div>
+</div>

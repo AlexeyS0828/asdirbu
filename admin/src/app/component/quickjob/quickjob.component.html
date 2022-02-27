@@ -1,0 +1,147 @@
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header card-header-icon" data-background-color="lightred">
+						<i class="material-icons">person</i>
+					</div>
+					<div class="card-content">
+						<h4 class="card-title mb-0 text-lightred font-weight-bold">
+                            Greitas darbas</h4>
+						<div class="material-datatables">
+							<table #dataTable id="datatables" class=" row-border hover table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead class="quickjobtable">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Vardas</th>
+                                        <th>Pašto adresą</th>
+                                        <th>Skelbimo pavadinimas</th>
+                                        <th>Paslaugos priemimo laikas</th>
+                                        <th>Papasakok plačiau</th>
+                                        <th>Raktažodžiai</th>
+                                        <th>Paslaugos kaina</th>
+                                        <th>Paslaugos suteikimo vieta</th>
+                                        <th>Atstumas</th>
+                                        <th>Paslaugos priėmimo vieta</th>
+                                        <th>Darbo tipas</th>
+                                        <th>Veiksmas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let quickJob of quickJobs; let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{quickJob.name}}</td>
+                                        <td>{{quickJob.email}}</td>
+                                        <td>{{quickJob.adName}}</td>
+                                        <td>{{quickJob.serviceAdmissionTime}}</td>
+                                        <td>{{quickJob.tellMore}}</td>
+                                        <td>{{quickJob.keyword}}</td>
+                                        <td>{{quickJob.servicePrice}}</td>
+                                        <td>{{quickJob.locationServicePrice}}</td>
+                                        <td>{{quickJob.distance}}</td>
+                                        <td>{{quickJob.serivcePlace}}</td>
+                                        <td>{{quickJob.jobType}}</td>
+                                        <td>                                                
+                                            <button (click)="quickJobDetails(quickJob.id,openModal)" type="button" rel="tooltip" class="btn  view-profile-button" data-original-title="" title="">
+                                                <i class="material-icons">person</i>
+                                            </button>
+                                            <button type="button" rel="tooltip" 
+                                            class="btn delete-button" data-original-title=""
+                                            title="" (click)="deleteUserById(quickJob.id)">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" #openModal class="btn btn-primary invisible" data-toggle="modal" data-target="#exampleModalLong">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <table class="table table-border">
+                <tbody class="quick-job-table">
+                    <tr>
+                        <th colspan="2" class="text-center">Informacija apie vartotoją</th>
+                    </tr>
+                    <tr>
+                        <th>Vardas</th>
+                        <td>{{quickJobDetail.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pašto adresą</th>
+                        <td>{{quickJobDetail.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Skelbimo pavadinimas</th>
+                        <td>{{quickJobDetail.adName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Atstumas</th>
+                        <td>{{quickJobDetail.distance}}</td>
+                    </tr>
+                    <tr>
+                        <th>Darbo tipas</th>
+                        <td>{{quickJobDetail.jobType}}</td>
+                    </tr>
+                    <tr>
+                        <th>Raktažodžiai</th>
+                        <td>{{quickJobDetail.keyword}}</td>
+                    </tr>
+                    <tr>
+                        <th>Paslaugos suteikimo vieta</th>
+                        <td>{{quickJobDetail.locationServicePrice}}</td>
+                    </tr>
+                    <tr>
+                        <th>Paslaugos priėmimo vieta</th>
+                        <td>{{quickJobDetail.serivcePlace}}</td>
+                    </tr>
+                    <tr>
+                        <th>Paslaugos priemimo laikas</th>
+                        <td>{{quickJobDetail.serviceAdmissionTime}}</td>
+                    </tr>
+                    <tr>
+                        <th>Paslaugos kaina</th>
+                        <td>{{quickJobDetail.servicePrice}}</td>
+                    </tr>
+                    <tr>
+                        <th>Papasakok plačiau</th>
+                        <td>{{quickJobDetail.tellMore}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pasirink paslaugą</th>
+                        <td>{{quickJobDetail.serviceName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pasirink specialybe</th>
+                        <td>{{quickJobDetail.specialty}}</td>
+                    </tr>
+                    <tr>
+                        <th>Vaizdas</th>
+                        <td><img width="100" height="100" *ngFor="let image of quickJobDetail.image" src="{{image}}" />
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "asdirbu": {
+            "projectType": "application",
+            "schematics": {},
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/asdirbu",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets",
+                            "src/app.appcache"
+                        ],
+                        "styles": [
+                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+                            "node_modules/ngx-toastr/toastr.css",
+                            "node_modules/minireset.css/minireset.css",
+                            "src/styles.scss",
+                            "src/assets/lib/vendor/fontawesome-free/css/all.min.css",
+                            "src/assets/lib/css/bootstrap.css",
+                            "src/assets/css/custom.scss",
+                            "src/assets/css/global.scss"
+                        ],
+                        "scripts": [
+                            "src/assets/lib/vendor/jquery/jquery.min.js",
+                            "src/assets/lib/vendor/bootstrap/js/bootstrap.bundle.min.js",
+                            "src/assets/lib/vendor/jquery-easing/jquery.easing.min.js",
+                            "src/assets/js/custom.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }],
+                            "aot": true,
+                            "optimization": false,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "5mb",
+                                    "maximumError": "10mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "asdirbu:build",
+                        "port": 3200
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "asdirbu:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "asdirbu:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.spec.json",
+                        "karmaConfig": "karma.conf.js",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+                            "src/styles.css"
+                        ],
+                        "scripts": []
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "tsconfig.app.json",
+                            "tsconfig.spec.json",
+                            "e2e/tsconfig.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "e2e/protractor.conf.js",
+                        "devServerTarget": "asdirbu:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "asdirbu:serve:production"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "defaultProject": "asdirbu",
+    "cli": {
+        "analytics": false
+    },
+    "schematics": {
+        "@schematics/angular:component": {
+            "styleext": "scss"
+        }
+    }
+}

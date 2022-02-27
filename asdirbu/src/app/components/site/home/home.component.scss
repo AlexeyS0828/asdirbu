@@ -1,0 +1,36 @@
+.list-member-img {
+    max-height: 48px;
+    min-height: 48px;
+    max-width: 48px;
+    border-radius: 50%;
+    min-width: 48px;
+	
+}
+.member-charege .job-price{
+	min-width: 85px;
+}
+.list-member-retting {
+    color: #E57D33;
+}
+agm-map{
+	width: 100%;
+	height: 55vh;
+}
+rating{
+	font-size: 18px;
+}
+.home-blog .blog-shot-content .blog-content{
+	margin-top: 0px;
+}
+.blog-image{
+	min-height: 250px;
+}
+.blog-image img{
+	max-height: 250px;
+}
+@media only screen and (max-width: 768px) {
+ 	agm-map{
+		width: 100%;
+		height: 85vh;
+	}	 
+}

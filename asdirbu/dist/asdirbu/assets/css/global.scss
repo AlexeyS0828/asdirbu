@@ -1,0 +1,430 @@
+@import 'comet-chat-theme.scss';
+@import 'full-bk.scss';
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    outline: none;
+}
+
+.section-style-1 {
+    padding: 50px 0;
+    margin: 100px 0px 0px 0px;
+}
+
+
+/*********** buttons ***********/
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+.btn-primary {
+    background: #E57D33;
+    background-color: #E57D33;
+    border-color: #E57D33;
+    border-radius: 20px;
+    font-weight: 700;
+    -webkit-appearance: none;
+}
+
+.btn-primary:hover,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background: #dd7429;
+    background-color: #dd7429;
+    border-color: #dd7429;
+}
+
+a.bg-primary:hover,
+a.bg-primary:focus,
+button.bg-primary:hover,
+button.bg-primary:focus {
+    background-color: #dd7429 !important;
+    text-decoration: none;
+    outline: none;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    box-shadow: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+
+/********* Text **********/
+
+.text-primary {
+    color: #E57D33 !important;
+}
+
+.c-p {
+    cursor: pointer;
+}
+
+.p-r {
+    position: relative;
+}
+
+.va-t {
+    vertical-align: top;
+}
+
+
+/********* BG Colors **********/
+
+.bg-primary {
+    background-color: #E57D33 !important;
+}
+
+
+/********* Form **********/
+
+::-webkit-input-placeholder {
+    /* Edge */
+    color: #acacac !important;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #acacac !important;
+}
+
+::placeholder {
+    color: #acacac !important;
+}
+
+
+/* Special styling for WebKit/Blink */
+
+input[type=range]::-webkit-slider-thumb {
+    border: 1px solid #ECF0F1;
+    border-radius: 30px;
+    background: #E57D33;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+}
+
+
+/* All the same stuff for Firefox */
+
+input[type=range]::-moz-range-thumb {
+    border: 1px solid #ECF0F1;
+    border-radius: 30px;
+    background: #E57D33;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+}
+
+
+/* All the same stuff for IE */
+
+input[type=range]::-ms-thumb {
+    border: 1px solid #ECF0F1;
+    border-radius: 30px;
+    background: #E57D33;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+}
+
+.form-control {
+    background: #F7F8FC;
+    border: 1px solid #ECF0F1;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #e57d33;
+    outline: 0;
+    box-shadow: none;
+}
+
+.custom-control-label::after {
+    top: 0;
+    left: -32px;
+    width: 25px;
+    height: 25px;
+}
+
+.custom-control-label::before {
+    top: 0;
+    left: -32px;
+    width: 25px;
+    height: 25px;
+    border: #E57D33 solid 1.5px;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #E57D33;
+    background-color: #E57D33;
+}
+
+.custom-control-input:not(:disabled):active~.custom-control-label::before {
+    color: #fff;
+    background-color: #ffffff;
+    border-color: #ffceab;
+}
+
+.custom-control-input:focus~.custom-control-label::before {
+    box-shadow: none;
+}
+
+.custom-control-input:focus:not(:checked)~.custom-control-label::before {
+    border-color: #e57d33;
+}
+
+.custom-control-input:disabled~.custom-control-label::before {
+    border: rgba(229, 125, 51, 0.59) solid 1.5px;
+}
+
+
+/* Image preview */
+
+.select-file-image-preview {
+    background: #F7F8FC;
+    border: 1px solid #ECF0F1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 100px;
+    min-width: 100px;
+    max-height: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.select-file-image-preview img {
+    max-width: 100%;
+    max-height: 100px;
+    position: relative;
+    z-index: 3;
+}
+
+.select-file-image-preview img[src="null"] {
+    display: none;
+}
+
+.select-file-image-preview i {
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    color: #666666;
+    transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+}
+
+
+/* datepicker */
+
+.theme-green .bs-datepicker-head,
+.theme-green .bs-datepicker-body table td span.selected,
+.theme-green .bs-datepicker-body table td.selected span,
+.theme-green .bs-datepicker-body table td span[class*="select-"]:after,
+.theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+    background-color: #dd7429;
+    color: #FFF !important;
+}
+
+.bs-datepicker {
+    box-shadow: none;
+}
+
+.bs-datepicker-container {
+    padding: 0 15px 15px;
+}
+
+bs-datepicker-inline-container {
+    max-width: 400px;
+    width: 100%;
+}
+
+bs-datepicker-inline-container .bs-datepicker-container {
+    width: 100%;
+}
+
+bs-datepicker-inline-container bs-days-calendar-view,
+bs-datepicker-inline-container bs-month-calendar-view,
+bs-datepicker-inline-container bs-years-calendar-view {
+    width: 100%;
+}
+
+.calander-below-btn-area {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+/* Pagination */
+
+.page-item.active .page-link {
+    background-color: #e57d33;
+    border-color: #e57d33;
+}
+
+.page-link {
+    color: #e57d33;
+}
+
+.page-link:hover {
+    color: #e57d33;
+}
+
+
+/* Ratting */
+
+.view-rating {
+    outline: none;
+}
+
+.view-rating span {
+    color: #e57d33;
+    outline: none;
+}
+
+
+/* google map */
+
+.gm-style .gm-style-iw-c {
+    border-radius: 0px !important;
+    border: 3px solid #bdc3c7 !important;
+    width: 300px;
+}
+
+.gm-style-iw-d {
+    overflow: hidden !important;
+}
+
+.review-datepicker .bs-calendar-container .bs-datepicker-body table tbody tr td span.selected {
+    background-color: #FFF!important;
+}
+
+.review-datepicker .bs-calendar-container .bs-datepicker-body table tbody tr td span {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.review-datepicker .bs-calendar-container .bs-datepicker-body table tbody tr td span.date-selected {
+    background-color: #f0ad4e !important;
+    color: #FFF!important;
+    font-weight: bold;
+}
+
+p {
+    word-break: break-word;
+}
+
+//
+.custom-checkbox-sm .custom-control-label::before {
+    left: -24px;
+    width: 20px;
+    height: 20px;
+    top: 1px;
+}
+
+.custom-checkbox-sm .custom-control-label::after {
+    top: 0;
+    left: -25px;
+    width: 22px;
+    height: 22px;
+}
+
+.cu-table-layout {
+    &>div {
+        border: 0.5px solid #dee2e6;
+        padding: 10px 5px;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+        min-width: 85px;
+    }
+}
+
+.cu-table-layout-inner {
+    &>div {
+        &>div {
+            padding: 5px 8px;
+            border-bottom: 0.5px solid #dee2e6;
+            height: 35px;
+        }
+    }
+}
+.cu-table-layout-inner {
+    &>div {
+        border: 0.5px solid #dee2e6;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        min-width: 85px;
+    }
+}
+.custom-checkbox .custom-control-input:disabled:checked ~ .custom-control-label::before{
+    background-color: #e57d3382 !important;
+    border-color: #e57d3382 !important
+}
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius:10px;
+}
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius:10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius:10px;
+    background: #c1c1c1; 
+  }
+  select::-webkit-scrollbar {
+    width: 10px;
+    border-radius:10px;
+}
+  
+  /* Track */
+  select::-webkit-scrollbar-track {
+    border-radius:10px;
+  }
+  select::-webkit-scrollbar-thumb {
+    border-radius:10px;
+    background: #c1c1c1; 
+  }

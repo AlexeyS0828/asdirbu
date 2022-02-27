@@ -1,0 +1,16 @@
+<div class="main">
+  <div class="contacts-title">Kontaktų sąrašas</div>
+  <ul>
+    <li *ngFor="let user of userList" (click)="onUserSelected(user)" [ngClass]="{ active: user.id === activeUserId }">
+      <div class="image-container">
+        <img [src]="user.profileImage" class="user-image" />
+        <span class="circle" [ngClass]="user.status === 1 ? 'on' : 'off'"></span>
+
+      </div>
+      <div class="contacts-info">
+        <span class="status-title">{{ user.name }} </span>
+        <!-- <span class="status-text">{{ user.message }}</span> -->
+      </div>
+    </li>
+  </ul>
+</div>
